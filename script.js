@@ -1,1123 +1,553 @@
-/* =====================================================
-   NOCTIS ATALIC — INTERACTION ENGINE
-===================================================== */
+"use strict";
+
+
+/* ================= CONFIG ================= */
 
 const WHATSAPP_NUMBER = "6281318048885";
 
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+/* ================= ELEMENTS ================= */
 
-const consultModal =
-    document.getElementById("consultModal");
+const consultModal = document.getElementById("consultModal");
+const policyModal = document.getElementById("policyModal");
 
-const policyModal =
-    document.getElementById("policyModal");
+const consultForm = document.getElementById("consultForm");
+const agreement = document.getElementById("agreement");
+const whatsappButton = document.getElementById("whatsappButton");
+const formError = document.getElementById("formError");
 
-const form =
-    document.getElementById("consultForm");
-
-const agreement =
-    document.getElementById("agreement");
-
-const whatsappButton =
-    document.getElementById("whatsappButton");
-
-const formError =
-    document.getElementById("formError");
-
-const photoWrapper =
-    document.querySelector(".photo-wrapper");
-
-const photoToggle =
-    document.querySelector(".photo-toggle");
+const photoWrapper = document.querySelector(".photo-wrapper");
+const photoToggle = document.querySelector(".photo-toggle");
 
 
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
-const prefersReducedMotion =
-    window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-
-/* =====================================================
-   POLICY CONTENT
-===================================================== */
+/* ================= POLICY DATA ================= */
 
 const policies = {
 
-    terms: {
-        title: "Ketentuan Layanan",
-
-        html: `
-            <h3>1. Ruang Lingkup Pekerjaan</h3>
-
-            <p>
-                Ruang lingkup pekerjaan mengikuti brief,
-                kebutuhan, dan kesepakatan project.
-                Fitur atau pekerjaan yang berada di luar
-                scope dapat dianggap sebagai pekerjaan tambahan.
-            </p>
-
-            <h3>2. Komunikasi</h3>
-
-            <p>
-                Client dan developer bertanggung jawab menjaga
-                komunikasi yang jelas mengenai brief, materi,
-                feedback, approval, dan perubahan kebutuhan.
-            </p>
-
-            <h3>3. Revisi</h3>
-
-            <p>
-                Jumlah dan batas revisi mengikuti paket atau
-                kesepakatan project. Revisi minor dan perubahan
-                konsep besar dapat diperlakukan berbeda.
-            </p>
-
-            <h3>4. Timeline</h3>
-
-            <p>
-                Timeline dimulai setelah kebutuhan, materi,
-                dan pembayaran awal yang disepakati telah
-                tersedia. Keterlambatan materi atau approval
-                dari client dapat menggeser timeline.
-            </p>
-
-            <h3>5. Pembayaran</h3>
-
-            <p>
-                Mekanisme DP, pelunasan, milestone, dan biaya
-                tambahan disepakati sebelum pekerjaan dimulai.
-            </p>
-
-            <h3>6. Perubahan Scope</h3>
-
-            <p>
-                Penambahan fitur, halaman, integrasi,
-                perubahan flow, atau perubahan konsep setelah
-                approval dapat dikenakan biaya dan waktu tambahan.
-            </p>
-
-            <h3>7. Pembatalan Project</h3>
-
-            <p>
-                Pembatalan mengikuti kesepakatan project dan
-                memperhitungkan pekerjaan yang telah dikerjakan
-                serta biaya pihak ketiga yang sudah timbul.
-            </p>
-
-            <h3>8. Maintenance</h3>
-
-            <p>
-                Maintenance setelah project selesai hanya
-                termasuk apabila tercantum dalam paket atau
-                kesepakatan terpisah.
-            </p>
-
-            <h3>9. Hosting & Domain</h3>
-
-            <p>
-                Hosting, domain, email, API, payment gateway,
-                database hosting, dan layanan pihak ketiga
-                dapat menjadi biaya terpisah kecuali disepakati lain.
-            </p>
-
-            <h3>10. Third-Party Services</h3>
-
-            <p>
-                Layanan eksternal mengikuti ketersediaan,
-                harga, kebijakan, limit, dan ketentuan
-                provider masing-masing.
-            </p>
-        `
-    },
-
-
-    privacy: {
-        title: "Kebijakan Privasi",
-
-        html: `
-            <h3>Informasi yang Dikirim</h3>
-
-            <p>
-                Informasi seperti nama, nomor WhatsApp,
-                kebutuhan project, dan pesan yang diberikan
-                melalui form digunakan untuk menanggapi konsultasi
-                dan memahami kebutuhan.
-            </p>
-
-            <h3>Penggunaan Data</h3>
-
-            <p>
-                Data digunakan untuk komunikasi project,
-                penyusunan penawaran, dan kebutuhan layanan
-                yang relevan.
-            </p>
-
-            <h3>Penyimpanan & Keamanan</h3>
-
-            <p>
-                Data diperlakukan secara wajar dan dijaga
-                dari akses yang tidak semestinya.
-                Tidak ada sistem yang dapat menjamin keamanan absolut.
-            </p>
-
-            <h3>Third-Party Service</h3>
-
-            <p>
-                Jika project menggunakan layanan pihak ketiga
-                seperti hosting, cloud storage, analytics,
-                atau API, data dapat diproses sesuai kebijakan
-                provider terkait.
-            </p>
-
-            <h3>Hak Pengguna</h3>
-
-            <p>
-                Pengguna dapat meminta klarifikasi mengenai
-                data yang diberikan atau meminta komunikasi
-                dihentikan sejauh memungkinkan.
-            </p>
-        `
-    },
-
-
-    payment: {
-        title: "Kebijakan Pembayaran",
-
-        html: `
-            <h3>Mekanisme Pembayaran</h3>
-
-            <p>
-                Pembayaran dilakukan berdasarkan milestone
-                atau skema yang disepakati sebelum project dimulai.
-            </p>
-
-            <h3>DP & Pelunasan</h3>
-
-            <p>
-                Besaran DP dan pelunasan ditentukan dalam
-                kesepakatan project.
-            </p>
-
-            <h3>Biaya Tambahan</h3>
-
-            <p>
-                Fitur atau pekerjaan di luar scope awal dapat
-                memiliki biaya tambahan setelah mendapatkan
-                persetujuan client.
-            </p>
-        `
-    },
-
-
-    revision: {
-        title: "Kebijakan Revisi",
-
-        html: `
-            <h3>Revisi Minor</h3>
-
-            <p>
-                Penyesuaian teks, spacing, warna, atau detail
-                visual kecil yang masih berada dalam konsep
-                yang telah disepakati.
-            </p>
-
-            <h3>Revisi Major</h3>
-
-            <p>
-                Perubahan struktur, konsep visual, flow,
-                fitur, atau arah project setelah approval
-                dapat dianggap sebagai perubahan scope.
-            </p>
-
-            <h3>Approval</h3>
-
-            <p>
-                Client bertanggung jawab memberikan feedback
-                yang terarah dan tepat waktu agar timeline
-                tetap terjaga.
-            </p>
-        `
-    },
-
-
-    cancellation: {
-        title: "Kebijakan Pembatalan",
-
-        html: `
-            <h3>Pembatalan oleh Client</h3>
-
-            <p>
-                Pembatalan dibahas berdasarkan status pekerjaan,
-                pembayaran, dan biaya yang telah dikeluarkan.
-            </p>
-
-            <h3>Pembatalan oleh Developer</h3>
-
-            <p>
-                Developer dapat menghentikan project jika
-                terdapat kondisi yang membuat pekerjaan tidak
-                dapat dilanjutkan secara wajar.
-            </p>
-
-            <h3>Refund</h3>
-
-            <p>
-                Refund, apabila berlaku, mengikuti kesepakatan
-                dan memperhitungkan pekerjaan yang telah
-                dikerjakan serta biaya non-refundable.
-            </p>
-        `
-    },
-
-
-    ip: {
-        title: "Intellectual Property",
-
-        html: `
-            <h3>Source Code</h3>
-
-            <p>
-                Kepemilikan atau lisensi source code mengikuti
-                kesepakatan project dan status pembayaran.
-            </p>
-
-            <h3>Desain & Asset</h3>
-
-            <p>
-                Desain custom dan asset yang dibuat khusus
-                dapat dialihkan sesuai kesepakatan.
-            </p>
-
-            <h3>Font, Image & Library</h3>
-
-            <p>
-                Font, gambar, icon, library open-source,
-                template, dan asset pihak ketiga tetap
-                mengikuti lisensi masing-masing.
-            </p>
-
-            <h3>Disclaimer</h3>
-
-            <p>
-                Dokumen ini merupakan informasi umum dan
-                bukan pengganti nasihat hukum profesional.
-                Untuk kebutuhan hukum khusus, konsultasikan
-                dengan profesional hukum.
-            </p>
-        `
-    }
+  terms: {
+    title: "Ketentuan Layanan",
+    content: `
+      <p>
+        Konsultasi awal dilakukan untuk memahami kebutuhan,
+        scope, tujuan, dan estimasi project.
+      </p>
+
+      <h3>Scope Project</h3>
+      <p>
+        Detail pekerjaan akan disepakati sebelum proses development
+        dimulai.
+      </p>
+
+      <h3>Komunikasi</h3>
+      <p>
+        Komunikasi project dilakukan melalui channel yang telah
+        disepakati bersama.
+      </p>
+    `
+  },
+
+  privacy: {
+    title: "Kebijakan Privasi",
+    content: `
+      <p>
+        Data yang diberikan melalui form konsultasi digunakan
+        untuk keperluan komunikasi terkait project.
+      </p>
+
+      <h3>Data</h3>
+      <p>
+        Informasi seperti nama, nomor WhatsApp, kebutuhan,
+        dan pesan digunakan untuk merespons permintaan konsultasi.
+      </p>
+    `
+  },
+
+  payment: {
+    title: "Pembayaran",
+    content: `
+      <p>
+        Detail pembayaran, termin, dan metode pembayaran
+        akan disepakati berdasarkan scope project.
+      </p>
+
+      <h3>Kesepakatan</h3>
+      <p>
+        Pekerjaan dimulai setelah ketentuan project dan pembayaran
+        awal yang disepakati telah dipenuhi.
+      </p>
+    `
+  },
+
+  revision: {
+    title: "Kebijakan Revisi",
+    content: `
+      <p>
+        Revisi mengikuti scope dan kesepakatan project.
+      </p>
+
+      <h3>Perubahan Scope</h3>
+      <p>
+        Permintaan baru yang berada di luar scope awal
+        dapat membutuhkan penyesuaian waktu dan biaya.
+      </p>
+    `
+  },
+
+  cancellation: {
+    title: "Pembatalan Project",
+    content: `
+      <p>
+        Pembatalan project dibahas berdasarkan tahap pengerjaan
+        dan kesepakatan yang telah dibuat sebelumnya.
+      </p>
+
+      <h3>Komunikasi</h3>
+      <p>
+        Setiap pembatalan sebaiknya dikomunikasikan sesegera mungkin
+        untuk menentukan langkah berikutnya.
+      </p>
+    `
+  },
+
+  ip: {
+    title: "Hak Kekayaan Intelektual",
+    content: `
+      <p>
+        Kepemilikan hasil akhir project mengikuti kesepakatan
+        antara client dan Noctis Atalic.
+      </p>
+
+      <h3>Asset</h3>
+      <p>
+        Asset, library, font, gambar, atau layanan pihak ketiga
+        tetap mengikuti lisensi masing-masing.
+      </p>
+    `
+  }
 
 };
 
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* ================= MODAL ================= */
 
 function openModal(modal) {
+  if (!modal) return;
 
-    if (!modal) return;
-
-    modal.classList.add("open");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add("modal-open");
+  modal.classList.add("active");
+  document.body.classList.add("modal-open");
 }
-
 
 function closeModal(modal) {
+  if (!modal) return;
 
-    if (!modal) return;
+  modal.classList.remove("active");
 
-    modal.classList.remove("open");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    const anotherModalOpen =
-        document.querySelector(
-            ".modal-overlay.open"
-        );
-
-    if (!anotherModalOpen) {
-        document.body.classList.remove("modal-open");
-    }
+  if (
+    !consultModal?.classList.contains("active") &&
+    !policyModal?.classList.contains("active")
+  ) {
+    document.body.classList.remove("modal-open");
+  }
 }
 
 
-/* =====================================================
-   CONSULTATION
-===================================================== */
+/* ================= CONSULTATION ================= */
 
-document
-    .querySelectorAll(".open-consult")
-    .forEach(button => {
+document.querySelectorAll(".open-consult").forEach((button) => {
 
-        button.addEventListener(
-            "click",
-            () => {
+  button.addEventListener("click", () => {
 
-                openModal(consultModal);
+    if (!consultModal) return;
 
-                const firstInput =
-                    document.getElementById("clientName");
+    formError.textContent = "";
 
-                if (firstInput) {
-                    setTimeout(() => {
-                        firstInput.focus();
-                    }, 120);
-                }
-            }
-        );
+    openModal(consultModal);
 
-    });
+    setTimeout(() => {
+      document.getElementById("clientName")?.focus();
+    }, 100);
+
+  });
+
+});
 
 
-/* =====================================================
-   CLOSE MODALS
-===================================================== */
+/* ================= CLOSE BUTTONS ================= */
 
-document
-    .querySelectorAll("[data-close]")
-    .forEach(button => {
+document.querySelectorAll("[data-close]").forEach((element) => {
 
-        button.addEventListener(
-            "click",
-            () => {
+  element.addEventListener("click", () => {
 
-                const modal =
-                    document.getElementById(
-                        button.dataset.close
-                    );
+    closeModal(consultModal);
+    closeModal(policyModal);
 
-                closeModal(modal);
-            }
-        );
+  });
 
-    });
+});
 
 
-[consultModal, policyModal]
-    .filter(Boolean)
-    .forEach(modal => {
+/* ================= ESCAPE ================= */
 
-        modal.addEventListener(
-            "click",
-            event => {
+document.addEventListener("keydown", (event) => {
 
-                if (
-                    event.target === modal
-                ) {
-                    closeModal(modal);
-                }
+  if (event.key !== "Escape") return;
 
-            }
-        );
+  closeModal(consultModal);
+  closeModal(policyModal);
 
-    });
+});
 
 
-document.addEventListener(
-    "keydown",
-    event => {
+/* ================= POLICY ================= */
 
-        if (event.key === "Escape") {
+document.querySelectorAll("[data-policy]").forEach((button) => {
 
-            closeModal(consultModal);
-            closeModal(policyModal);
-        }
+  button.addEventListener("click", () => {
 
-    }
-);
+    const type = button.dataset.policy;
+    const policy = policies[type];
 
+    if (!policy) return;
 
-/* =====================================================
-   POLICY
-===================================================== */
+    const content = document.getElementById("policyContent");
 
-document
-    .querySelectorAll("[data-policy]")
-    .forEach(button => {
+    if (!content) return;
 
-        button.addEventListener(
-            "click",
-            () => {
+    content.innerHTML = `
+      <div class="section-label">
+        NOCTIS ATALIC
+      </div>
 
-                const key =
-                    button.dataset.policy;
+      <h2>${policy.title}</h2>
 
-                const policy =
-                    policies[key];
+      ${policy.content}
+    `;
 
-                if (!policy) return;
+    openModal(policyModal);
 
-                const title =
-                    document.getElementById(
-                        "policyTitle"
-                    );
+  });
 
-                const content =
-                    document.getElementById(
-                        "policyContent"
-                    );
-
-                if (title) {
-                    title.textContent =
-                        policy.title;
-                }
-
-                if (content) {
-                    content.innerHTML =
-                        policy.html;
-                }
-
-                openModal(policyModal);
-            }
-        );
-
-    });
+});
 
 
-/* =====================================================
-   WHATSAPP AGREEMENT
-===================================================== */
+/* ================= AGREEMENT ================= */
 
-if (
-    agreement &&
-    whatsappButton
-) {
+if (agreement && whatsappButton) {
 
-    agreement.addEventListener(
-        "change",
-        () => {
+  agreement.addEventListener("change", () => {
 
-            whatsappButton.disabled =
-                !agreement.checked;
+    whatsappButton.disabled = !agreement.checked;
 
-            if (
-                agreement.checked &&
-                formError
-            ) {
-                formError.textContent = "";
-            }
-
-        }
-    );
+  });
 
 }
 
 
-/* =====================================================
-   WHATSAPP FORM
-===================================================== */
+/* ================= WHATSAPP FORM ================= */
 
-if (form) {
+if (consultForm) {
 
-    form.addEventListener(
-        "submit",
-        event => {
+  consultForm.addEventListener("submit", (event) => {
 
-            event.preventDefault();
+    event.preventDefault();
 
-            if (formError) {
-                formError.textContent = "";
-            }
+    if (!agreement?.checked) {
 
-            if (
-                !agreement ||
-                !agreement.checked
-            ) {
+      formError.textContent =
+        "Centang persetujuan terlebih dahulu.";
 
-                if (formError) {
-                    formError.textContent =
-                        "Centang persetujuan terlebih dahulu.";
-                }
+      return;
 
-                return;
-            }
+    }
 
+    const name =
+      document.getElementById("clientName")?.value.trim() || "";
 
-            const name =
-                document
-                    .getElementById("clientName")
-                    ?.value
-                    .trim() || "";
+    const phone =
+      document.getElementById("clientPhone")?.value.trim() || "";
+
+    const need =
+      document.getElementById("clientNeed")?.value.trim() || "";
+
+    const message =
+      document.getElementById("clientMessage")?.value.trim() || "";
 
 
-            const phone =
-                document
-                    .getElementById("clientPhone")
-                    ?.value
-                    .trim() || "";
+    if (!name || !phone || !need || !message) {
+
+      formError.textContent =
+        "Lengkapi semua data terlebih dahulu.";
+
+      return;
+
+    }
 
 
-            const need =
-                document
-                    .getElementById("clientNeed")
-                    ?.value || "";
+    const text = `
+Halo Noctis Atalic,
 
-
-            const message =
-                document
-                    .getElementById("clientMessage")
-                    ?.value
-                    .trim() || "";
-
-
-            if (
-                !name ||
-                !phone ||
-                !need ||
-                !message
-            ) {
-
-                if (formError) {
-                    formError.textContent =
-                        "Lengkapi semua field terlebih dahulu.";
-                }
-
-                return;
-            }
-
-
-            const whatsappMessage =
-`Halo Noctis, saya ingin berkonsultasi mengenai pembuatan website.
+Saya ingin berkonsultasi mengenai project website.
 
 Nama: ${name}
-Nomor WhatsApp: ${phone}
+WhatsApp: ${phone}
 Kebutuhan: ${need}
 
 Pesan:
 ${message}
 
-Saya telah membaca dan menyetujui Ketentuan Layanan dan Kebijakan.`;
+Saya memahami bahwa konsultasi awal dilakukan melalui WhatsApp.
+    `.trim();
 
 
-            const encodedMessage =
-                encodeURIComponent(
-                    whatsappMessage
-                );
+    const whatsappURL =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 
-            const whatsappURL =
-                `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-
-            window.open(
-                whatsappURL,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-        }
+    window.open(
+      whatsappURL,
+      "_blank",
+      "noopener,noreferrer"
     );
+
+
+    consultForm.reset();
+
+    if (whatsappButton) {
+      whatsappButton.disabled = true;
+    }
+
+    closeModal(consultModal);
+
+  });
 
 }
 
 
-/* =====================================================
-   PHOTO — CURSOR INTERACTION
-===================================================== */
+/* ================= PHOTO INTERACTION ================= */
+
+/*
+  Desktop:
+  Mask photo mengikuti posisi cursor.
+
+  Mobile:
+  Tap tombol untuk berganti mode.
+*/
 
 if (photoWrapper) {
 
-    /*
-       Default position.
-    */
+  photoWrapper.addEventListener("pointermove", (event) => {
+
+    if (event.pointerType === "touch") return;
+
+    const rect = photoWrapper.getBoundingClientRect();
+
+    const x =
+      ((event.clientX - rect.left) / rect.width) * 100;
+
+    const y =
+      ((event.clientY - rect.top) / rect.height) * 100;
 
     photoWrapper.style.setProperty(
-        "--mx",
-        "50%"
+      "--mouse-x",
+      `${x}%`
     );
 
     photoWrapper.style.setProperty(
-        "--my",
-        "50%"
+      "--mouse-y",
+      `${y}%`
     );
 
-
-    /*
-       Desktop cursor tracking.
-    */
-
-    photoWrapper.addEventListener(
-        "pointermove",
-        event => {
-
-            if (
-                prefersReducedMotion ||
-                window.innerWidth <= 900
-            ) {
-                return;
-            }
-
-            const rect =
-                photoWrapper.getBoundingClientRect();
-
-            const x =
-                ((event.clientX - rect.left) / rect.width) * 100;
-
-            const y =
-                ((event.clientY - rect.top) / rect.height) * 100;
+  });
 
 
-            const clampedX =
-                Math.max(
-                    0,
-                    Math.min(100, x)
-                );
+  photoWrapper.addEventListener("pointerleave", () => {
 
-            const clampedY =
-                Math.max(
-                    0,
-                    Math.min(100, y)
-                );
-
-
-            photoWrapper.style.setProperty(
-                "--mx",
-                `${clampedX}%`
-            );
-
-            photoWrapper.style.setProperty(
-                "--my",
-                `${clampedY}%`
-            );
-
-
-            /*
-               Subtle 3D tilt.
-            */
-
-            const rotateY =
-                (clampedX - 50) * .10;
-
-            const rotateX =
-                (50 - clampedY) * .07;
-
-
-            photoWrapper.style.setProperty(
-                "--tilt-y",
-                `${rotateY}deg`
-            );
-
-            photoWrapper.style.setProperty(
-                "--tilt-x",
-                `${rotateX}deg`
-            );
-
-        }
+    photoWrapper.style.setProperty(
+      "--mouse-x",
+      "50%"
     );
 
-
-    /*
-       Reset when cursor leaves.
-    */
-
-    photoWrapper.addEventListener(
-        "pointerleave",
-        () => {
-
-            if (
-                prefersReducedMotion ||
-                window.innerWidth <= 900
-            ) {
-                return;
-            }
-
-            photoWrapper.style.setProperty(
-                "--mx",
-                "50%"
-            );
-
-            photoWrapper.style.setProperty(
-                "--my",
-                "50%"
-            );
-
-            photoWrapper.style.setProperty(
-                "--tilt-x",
-                "0deg"
-            );
-
-            photoWrapper.style.setProperty(
-                "--tilt-y",
-                "0deg"
-            );
-
-        }
+    photoWrapper.style.setProperty(
+      "--mouse-y",
+      "50%"
     );
+
+  });
 
 }
 
 
-/* =====================================================
-   PHOTO TOGGLE — MOBILE
-===================================================== */
+/* ================= PHOTO TOGGLE ================= */
 
-if (
-    photoToggle &&
-    photoWrapper
-) {
+if (photoToggle && photoWrapper) {
 
-    photoToggle.addEventListener(
-        "click",
-        () => {
+  photoToggle.addEventListener("click", (event) => {
 
-            photoWrapper.classList.toggle(
-                "masked"
-            );
+    event.stopPropagation();
 
-            const isMasked =
-                photoWrapper.classList.contains(
-                    "masked"
-                );
+    photoWrapper.classList.toggle("masked");
 
-            photoToggle.setAttribute(
-                "aria-label",
-                isMasked
-                    ? "Tampilkan foto asli"
-                    : "Tampilkan foto topeng"
-            );
-
-        }
-    );
+  });
 
 }
 
 
-/* =====================================================
-   SCROLL REVEAL
-===================================================== */
+/* ================= REVEAL ================= */
 
 const revealElements =
-    document.querySelectorAll(".reveal");
+  document.querySelectorAll(".reveal");
 
 
-if (
-    "IntersectionObserver" in window
-) {
+if ("IntersectionObserver" in window) {
 
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
+  const revealObserver =
+    new IntersectionObserver(
+      (entries, observer) => {
 
-                entries.forEach(
-                    entry => {
+        entries.forEach((entry) => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+          if (!entry.isIntersecting) return;
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
+          entry.target.classList.add("visible");
 
-                            revealObserver.unobserve(
-                                entry.target
-                            );
+          observer.unobserve(entry.target);
 
-                        }
+        });
 
-                    }
-                );
-
-            },
-            {
-                threshold: .1
-            }
-        );
-
-
-    revealElements.forEach(
-        element => {
-
-            revealObserver.observe(
-                element
-            );
-
-        }
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -30px 0px"
+      }
     );
+
+
+  revealElements.forEach((element) => {
+
+    revealObserver.observe(element);
+
+  });
 
 } else {
 
-    revealElements.forEach(
-        element => {
+  revealElements.forEach((element) => {
 
-            element.classList.add(
-                "visible"
+    element.classList.add("visible");
+
+  });
+
+}
+
+
+/* ================= ACTIVE NAV ================= */
+
+const sections = [
+  document.getElementById("home"),
+  document.getElementById("services"),
+  document.getElementById("about")
+].filter(Boolean);
+
+const bottomLinks =
+  document.querySelectorAll(".bottom-nav a");
+
+
+if ("IntersectionObserver" in window && sections.length) {
+
+  const navObserver =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (!entry.isIntersecting) return;
+
+          const id = entry.target.id;
+
+          bottomLinks.forEach((link) => {
+
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === `#${id}`
             );
 
-        }
+          });
+
+        });
+
+      },
+      {
+        threshold: 0.45
+      }
     );
+
+
+  sections.forEach((section) => {
+
+    navObserver.observe(section);
+
+  });
 
 }
 
 
-/* =====================================================
-   ACTIVE NAVIGATION
-===================================================== */
+/* ================= INTERNAL NAV ================= */
 
-const navItems =
-    [
-        ...document.querySelectorAll(
-            ".nav-item"
-        )
-    ];
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
+  link.addEventListener("click", (event) => {
 
-const trackedSections =
-    [
-        document.getElementById("home"),
-        document.getElementById("services"),
-        document.getElementById("about")
-    ]
-    .filter(Boolean);
+    const targetID =
+      link.getAttribute("href");
 
+    if (!targetID || targetID === "#") return;
 
-if (
-    "IntersectionObserver" in window &&
-    trackedSections.length
-) {
+    const target =
+      document.querySelector(targetID);
 
-    const navObserver =
-        new IntersectionObserver(
-            entries => {
+    if (!target) return;
 
-                entries.forEach(
-                    entry => {
+    event.preventDefault();
 
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            navItems.forEach(
-                                item => {
-
-                                    item.classList.toggle(
-                                        "active",
-                                        item.getAttribute(
-                                            "href"
-                                        ) ===
-                                        `#${entry.target.id}`
-                                    );
-
-                                }
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-            {
-                rootMargin:
-                    "-45% 0px -45% 0px"
-            }
-        );
-
-
-    trackedSections.forEach(
-        section => {
-
-            navObserver.observe(
-                section
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   SMOOTH INTERNAL NAVIGATION
-===================================================== */
-
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            event => {
-
-                const targetID =
-                    link.getAttribute(
-                        "href"
-                    );
-
-
-                if (
-                    !targetID ||
-                    targetID === "#"
-                ) {
-                    return;
-                }
-
-
-                const target =
-                    document.querySelector(
-                        targetID
-                    );
-
-
-                if (!target) {
-                    return;
-                }
-
-
-                event.preventDefault();
-
-
-                target.scrollIntoView({
-                    behavior:
-                        prefersReducedMotion
-                            ? "auto"
-                            : "smooth",
-
-                    block: "start"
-                });
-
-            }
-        );
-
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
 
+  });
 
-/* =====================================================
-   BUTTON CURSOR LIGHT
-===================================================== */
-
-document
-    .querySelectorAll(".btn")
-    .forEach(button => {
-
-        button.addEventListener(
-            "pointermove",
-            event => {
-
-                if (
-                    prefersReducedMotion
-                ) {
-                    return;
-                }
-
-                const rect =
-                    button.getBoundingClientRect();
-
-                const x =
-                    event.clientX -
-                    rect.left;
-
-                const y =
-                    event.clientY -
-                    rect.top;
+});
 
 
-                button.style.setProperty(
-                    "--btn-x",
-                    `${x}px`
-                );
+/* ================= PHONE CLEANUP ================= */
 
-                button.style.setProperty(
-                    "--btn-y",
-                    `${y}px`
-                );
-
-            }
-        );
-
-    });
+const phoneInput =
+  document.getElementById("clientPhone");
 
 
-/* =====================================================
-   HERO MICRO PARALLAX
-===================================================== */
+if (phoneInput) {
 
-const hero =
-    document.querySelector(".hero");
+  phoneInput.addEventListener("input", () => {
 
+    phoneInput.value =
+      phoneInput.value.replace(/[^\d+\-\s]/g, "");
 
-if (
-    hero &&
-    !prefersReducedMotion
-) {
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            if (
-                window.innerWidth <= 900
-            ) {
-                return;
-            }
-
-            const scroll =
-                window.scrollY;
-
-            const photo =
-                document.querySelector(
-                    ".photo-wrapper"
-                );
-
-            if (
-                photo &&
-                scroll < window.innerHeight
-            ) {
-
-                const amount =
-                    Math.min(
-                        scroll * .035,
-                        24
-                    );
-
-                photo.style.marginTop =
-                    `${amount}px`;
-
-            }
-
-        },
-        {
-            passive: true
-        }
-    );
+  });
 
 }
 
 
-/* =====================================================
-   INITIAL FORM STATE
-===================================================== */
+/* ================= INITIAL PHOTO STATE ================= */
 
-if (
-    agreement &&
-    whatsappButton
-) {
+if (photoWrapper) {
 
-    whatsappButton.disabled =
-        !agreement.checked;
+  photoWrapper.style.setProperty(
+    "--mouse-x",
+    "50%"
+  );
+
+  photoWrapper.style.setProperty(
+    "--mouse-y",
+    "50%"
+  );
 
 }
-
-
-/* =====================================================
-   END
-===================================================== */
