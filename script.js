@@ -1,5 +1,5 @@
 /* =====================================================
-   CONFIG
+   NOCTIS ATALIC — INTERACTION ENGINE
 ===================================================== */
 
 const WHATSAPP_NUMBER = "6281318048885";
@@ -34,6 +34,15 @@ const photoToggle =
     document.querySelector(".photo-toggle");
 
 
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+const prefersReducedMotion =
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
 
 /* =====================================================
    POLICY CONTENT
@@ -42,11 +51,9 @@ const photoToggle =
 const policies = {
 
     terms: {
-
         title: "Ketentuan Layanan",
 
         html: `
-
             <h3>1. Ruang Lingkup Pekerjaan</h3>
 
             <p>
@@ -56,7 +63,6 @@ const policies = {
                 scope dapat dianggap sebagai pekerjaan tambahan.
             </p>
 
-
             <h3>2. Komunikasi</h3>
 
             <p>
@@ -65,7 +71,6 @@ const policies = {
                 feedback, approval, dan perubahan kebutuhan.
             </p>
 
-
             <h3>3. Revisi</h3>
 
             <p>
@@ -73,7 +78,6 @@ const policies = {
                 kesepakatan project. Revisi minor dan perubahan
                 konsep besar dapat diperlakukan berbeda.
             </p>
-
 
             <h3>4. Timeline</h3>
 
@@ -84,14 +88,12 @@ const policies = {
                 dari client dapat menggeser timeline.
             </p>
 
-
             <h3>5. Pembayaran</h3>
 
             <p>
                 Mekanisme DP, pelunasan, milestone, dan biaya
                 tambahan disepakati sebelum pekerjaan dimulai.
             </p>
-
 
             <h3>6. Perubahan Scope</h3>
 
@@ -101,7 +103,6 @@ const policies = {
                 approval dapat dikenakan biaya dan waktu tambahan.
             </p>
 
-
             <h3>7. Pembatalan Project</h3>
 
             <p>
@@ -109,7 +110,6 @@ const policies = {
                 memperhitungkan pekerjaan yang telah dikerjakan
                 serta biaya pihak ketiga yang sudah timbul.
             </p>
-
 
             <h3>8. Maintenance</h3>
 
@@ -119,7 +119,6 @@ const policies = {
                 kesepakatan terpisah.
             </p>
 
-
             <h3>9. Hosting & Domain</h3>
 
             <p>
@@ -128,7 +127,6 @@ const policies = {
                 dapat menjadi biaya terpisah kecuali disepakati lain.
             </p>
 
-
             <h3>10. Third-Party Services</h3>
 
             <p>
@@ -136,17 +134,14 @@ const policies = {
                 harga, kebijakan, limit, dan ketentuan
                 provider masing-masing.
             </p>
-
         `
     },
 
 
     privacy: {
-
         title: "Kebijakan Privasi",
 
         html: `
-
             <h3>Informasi yang Dikirim</h3>
 
             <p>
@@ -156,7 +151,6 @@ const policies = {
                 dan memahami kebutuhan.
             </p>
 
-
             <h3>Penggunaan Data</h3>
 
             <p>
@@ -165,7 +159,6 @@ const policies = {
                 yang relevan.
             </p>
 
-
             <h3>Penyimpanan & Keamanan</h3>
 
             <p>
@@ -173,7 +166,6 @@ const policies = {
                 dari akses yang tidak semestinya.
                 Tidak ada sistem yang dapat menjamin keamanan absolut.
             </p>
-
 
             <h3>Third-Party Service</h3>
 
@@ -184,7 +176,6 @@ const policies = {
                 provider terkait.
             </p>
 
-
             <h3>Hak Pengguna</h3>
 
             <p>
@@ -192,24 +183,20 @@ const policies = {
                 data yang diberikan atau meminta komunikasi
                 dihentikan sejauh memungkinkan.
             </p>
-
         `
     },
 
 
     payment: {
-
         title: "Kebijakan Pembayaran",
 
         html: `
-
             <h3>Mekanisme Pembayaran</h3>
 
             <p>
                 Pembayaran dilakukan berdasarkan milestone
                 atau skema yang disepakati sebelum project dimulai.
             </p>
-
 
             <h3>DP & Pelunasan</h3>
 
@@ -218,7 +205,6 @@ const policies = {
                 kesepakatan project.
             </p>
 
-
             <h3>Biaya Tambahan</h3>
 
             <p>
@@ -226,17 +212,14 @@ const policies = {
                 memiliki biaya tambahan setelah mendapatkan
                 persetujuan client.
             </p>
-
         `
     },
 
 
     revision: {
-
         title: "Kebijakan Revisi",
 
         html: `
-
             <h3>Revisi Minor</h3>
 
             <p>
@@ -244,7 +227,6 @@ const policies = {
                 visual kecil yang masih berada dalam konsep
                 yang telah disepakati.
             </p>
-
 
             <h3>Revisi Major</h3>
 
@@ -254,7 +236,6 @@ const policies = {
                 dapat dianggap sebagai perubahan scope.
             </p>
 
-
             <h3>Approval</h3>
 
             <p>
@@ -262,24 +243,20 @@ const policies = {
                 yang terarah dan tepat waktu agar timeline
                 tetap terjaga.
             </p>
-
         `
     },
 
 
     cancellation: {
-
         title: "Kebijakan Pembatalan",
 
         html: `
-
             <h3>Pembatalan oleh Client</h3>
 
             <p>
                 Pembatalan dibahas berdasarkan status pekerjaan,
                 pembayaran, dan biaya yang telah dikeluarkan.
             </p>
-
 
             <h3>Pembatalan oleh Developer</h3>
 
@@ -289,7 +266,6 @@ const policies = {
                 dapat dilanjutkan secara wajar.
             </p>
 
-
             <h3>Refund</h3>
 
             <p>
@@ -297,17 +273,14 @@ const policies = {
                 dan memperhitungkan pekerjaan yang telah
                 dikerjakan serta biaya non-refundable.
             </p>
-
         `
     },
 
 
     ip: {
-
         title: "Intellectual Property",
 
         html: `
-
             <h3>Source Code</h3>
 
             <p>
@@ -315,14 +288,12 @@ const policies = {
                 kesepakatan project dan status pembayaran.
             </p>
 
-
             <h3>Desain & Asset</h3>
 
             <p>
                 Desain custom dan asset yang dibuat khusus
                 dapat dialihkan sesuai kesepakatan.
             </p>
-
 
             <h3>Font, Image & Library</h3>
 
@@ -332,7 +303,6 @@ const policies = {
                 mengikuti lisensi masing-masing.
             </p>
 
-
             <h3>Disclaimer</h3>
 
             <p>
@@ -341,12 +311,10 @@ const policies = {
                 Untuk kebutuhan hukum khusus, konsultasikan
                 dengan profesional hukum.
             </p>
-
         `
     }
 
 };
-
 
 
 /* =====================================================
@@ -355,6 +323,8 @@ const policies = {
 
 function openModal(modal) {
 
+    if (!modal) return;
+
     modal.classList.add("open");
 
     modal.setAttribute(
@@ -362,11 +332,13 @@ function openModal(modal) {
         "false"
     );
 
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
 }
 
 
 function closeModal(modal) {
+
+    if (!modal) return;
 
     modal.classList.remove("open");
 
@@ -375,27 +347,43 @@ function closeModal(modal) {
         "true"
     );
 
-    document.body.style.overflow = "";
+    const anotherModalOpen =
+        document.querySelector(
+            ".modal-overlay.open"
+        );
+
+    if (!anotherModalOpen) {
+        document.body.classList.remove("modal-open");
+    }
 }
 
 
-
 /* =====================================================
-   OPEN CONSULTATION
+   CONSULTATION
 ===================================================== */
 
 document
     .querySelectorAll(".open-consult")
     .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            openModal(consultModal);
+                openModal(consultModal);
 
-        });
+                const firstInput =
+                    document.getElementById("clientName");
+
+                if (firstInput) {
+                    setTimeout(() => {
+                        firstInput.focus();
+                    }, 120);
+                }
+            }
+        );
 
     });
-
 
 
 /* =====================================================
@@ -406,30 +394,38 @@ document
     .querySelectorAll("[data-close]")
     .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            const modal =
-                document.getElementById(
-                    button.dataset.close
-                );
+                const modal =
+                    document.getElementById(
+                        button.dataset.close
+                    );
 
-            closeModal(modal);
-
-        });
+                closeModal(modal);
+            }
+        );
 
     });
 
 
 [consultModal, policyModal]
+    .filter(Boolean)
     .forEach(modal => {
 
-        modal.addEventListener("click", event => {
+        modal.addEventListener(
+            "click",
+            event => {
 
-            if (event.target === modal) {
-                closeModal(modal);
+                if (
+                    event.target === modal
+                ) {
+                    closeModal(modal);
+                }
+
             }
-
-        });
+        );
 
     });
 
@@ -442,12 +438,10 @@ document.addEventListener(
 
             closeModal(consultModal);
             closeModal(policyModal);
-
         }
 
     }
 );
-
 
 
 /* =====================================================
@@ -458,118 +452,148 @@ document
     .querySelectorAll("[data-policy]")
     .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            const key =
-                button.dataset.policy;
+                const key =
+                    button.dataset.policy;
 
-            const policy =
-                policies[key];
+                const policy =
+                    policies[key];
 
-            if (!policy) return;
+                if (!policy) return;
 
-            document
-                .getElementById("policyTitle")
-                .textContent =
-                policy.title;
+                const title =
+                    document.getElementById(
+                        "policyTitle"
+                    );
 
-            document
-                .getElementById("policyContent")
-                .innerHTML =
-                policy.html;
+                const content =
+                    document.getElementById(
+                        "policyContent"
+                    );
 
-            openModal(policyModal);
+                if (title) {
+                    title.textContent =
+                        policy.title;
+                }
 
-        });
+                if (content) {
+                    content.innerHTML =
+                        policy.html;
+                }
+
+                openModal(policyModal);
+            }
+        );
 
     });
-
 
 
 /* =====================================================
    WHATSAPP AGREEMENT
 ===================================================== */
 
-agreement.addEventListener(
-    "change",
-    () => {
+if (
+    agreement &&
+    whatsappButton
+) {
 
-        whatsappButton.disabled =
-            !agreement.checked;
+    agreement.addEventListener(
+        "change",
+        () => {
 
-        if (agreement.checked) {
-            formError.textContent = "";
+            whatsappButton.disabled =
+                !agreement.checked;
+
+            if (
+                agreement.checked &&
+                formError
+            ) {
+                formError.textContent = "";
+            }
+
         }
+    );
 
-    }
-);
-
+}
 
 
 /* =====================================================
    WHATSAPP FORM
 ===================================================== */
 
-form.addEventListener(
-    "submit",
-    event => {
+if (form) {
 
-        event.preventDefault();
+    form.addEventListener(
+        "submit",
+        event => {
 
-        formError.textContent = "";
+            event.preventDefault();
 
+            if (formError) {
+                formError.textContent = "";
+            }
 
-        if (!agreement.checked) {
+            if (
+                !agreement ||
+                !agreement.checked
+            ) {
 
-            formError.textContent =
-                "Centang persetujuan terlebih dahulu.";
+                if (formError) {
+                    formError.textContent =
+                        "Centang persetujuan terlebih dahulu.";
+                }
 
-            return;
-        }
-
-
-        const name =
-            document
-                .getElementById("clientName")
-                .value
-                .trim();
-
-
-        const phone =
-            document
-                .getElementById("clientPhone")
-                .value
-                .trim();
+                return;
+            }
 
 
-        const need =
-            document
-                .getElementById("clientNeed")
-                .value;
+            const name =
+                document
+                    .getElementById("clientName")
+                    ?.value
+                    .trim() || "";
 
 
-        const message =
-            document
-                .getElementById("clientMessage")
-                .value
-                .trim();
+            const phone =
+                document
+                    .getElementById("clientPhone")
+                    ?.value
+                    .trim() || "";
 
 
-        if (
-            !name ||
-            !phone ||
-            !need ||
-            !message
-        ) {
-
-            formError.textContent =
-                "Lengkapi semua field terlebih dahulu.";
-
-            return;
-        }
+            const need =
+                document
+                    .getElementById("clientNeed")
+                    ?.value || "";
 
 
-        const whatsappMessage =
+            const message =
+                document
+                    .getElementById("clientMessage")
+                    ?.value
+                    .trim() || "";
+
+
+            if (
+                !name ||
+                !phone ||
+                !need ||
+                !message
+            ) {
+
+                if (formError) {
+                    formError.textContent =
+                        "Lengkapi semua field terlebih dahulu.";
+                }
+
+                return;
+            }
+
+
+            const whatsappMessage =
 `Halo Noctis, saya ingin berkonsultasi mengenai pembuatan website.
 
 Nama: ${name}
@@ -582,122 +606,265 @@ ${message}
 Saya telah membaca dan menyetujui Ketentuan Layanan dan Kebijakan.`;
 
 
-        const encodedMessage =
-            encodeURIComponent(
-                whatsappMessage
+            const encodedMessage =
+                encodeURIComponent(
+                    whatsappMessage
+                );
+
+
+            const whatsappURL =
+                `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener,noreferrer"
             );
 
+        }
+    );
 
-        const whatsappURL =
-            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-
-        window.open(
-            whatsappURL,
-            "_blank",
-            "noopener,noreferrer"
-        );
-
-    }
-);
-
+}
 
 
 /* =====================================================
-   PHOTO TOGGLE
+   PHOTO — CURSOR INTERACTION
 ===================================================== */
 
-photoToggle.addEventListener(
-    "click",
-    () => {
+if (photoWrapper) {
 
-        photoWrapper.classList.toggle(
-            "masked"
-        );
+    /*
+       Default position.
+    */
 
-    }
-);
+    photoWrapper.style.setProperty(
+        "--mx",
+        "50%"
+    );
+
+    photoWrapper.style.setProperty(
+        "--my",
+        "50%"
+    );
 
 
-/*
-   Hover desktop.
-   Pada mobile toggle menggunakan tombol.
-*/
+    /*
+       Desktop cursor tracking.
+    */
 
-photoWrapper.addEventListener(
-    "mouseenter",
-    () => {
+    photoWrapper.addEventListener(
+        "pointermove",
+        event => {
 
-        if (window.innerWidth > 900) {
+            if (
+                prefersReducedMotion ||
+                window.innerWidth <= 900
+            ) {
+                return;
+            }
 
-            photoWrapper.classList.add(
-                "masked"
+            const rect =
+                photoWrapper.getBoundingClientRect();
+
+            const x =
+                ((event.clientX - rect.left) / rect.width) * 100;
+
+            const y =
+                ((event.clientY - rect.top) / rect.height) * 100;
+
+
+            const clampedX =
+                Math.max(
+                    0,
+                    Math.min(100, x)
+                );
+
+            const clampedY =
+                Math.max(
+                    0,
+                    Math.min(100, y)
+                );
+
+
+            photoWrapper.style.setProperty(
+                "--mx",
+                `${clampedX}%`
+            );
+
+            photoWrapper.style.setProperty(
+                "--my",
+                `${clampedY}%`
+            );
+
+
+            /*
+               Subtle 3D tilt.
+            */
+
+            const rotateY =
+                (clampedX - 50) * .10;
+
+            const rotateX =
+                (50 - clampedY) * .07;
+
+
+            photoWrapper.style.setProperty(
+                "--tilt-y",
+                `${rotateY}deg`
+            );
+
+            photoWrapper.style.setProperty(
+                "--tilt-x",
+                `${rotateX}deg`
             );
 
         }
-
-    }
-);
+    );
 
 
-photoWrapper.addEventListener(
-    "mouseleave",
-    () => {
+    /*
+       Reset when cursor leaves.
+    */
 
-        if (window.innerWidth > 900) {
+    photoWrapper.addEventListener(
+        "pointerleave",
+        () => {
 
-            photoWrapper.classList.remove(
-                "masked"
+            if (
+                prefersReducedMotion ||
+                window.innerWidth <= 900
+            ) {
+                return;
+            }
+
+            photoWrapper.style.setProperty(
+                "--mx",
+                "50%"
+            );
+
+            photoWrapper.style.setProperty(
+                "--my",
+                "50%"
+            );
+
+            photoWrapper.style.setProperty(
+                "--tilt-x",
+                "0deg"
+            );
+
+            photoWrapper.style.setProperty(
+                "--tilt-y",
+                "0deg"
             );
 
         }
+    );
 
-    }
-);
+}
 
+
+/* =====================================================
+   PHOTO TOGGLE — MOBILE
+===================================================== */
+
+if (
+    photoToggle &&
+    photoWrapper
+) {
+
+    photoToggle.addEventListener(
+        "click",
+        () => {
+
+            photoWrapper.classList.toggle(
+                "masked"
+            );
+
+            const isMasked =
+                photoWrapper.classList.contains(
+                    "masked"
+                );
+
+            photoToggle.setAttribute(
+                "aria-label",
+                isMasked
+                    ? "Tampilkan foto asli"
+                    : "Tampilkan foto topeng"
+            );
+
+        }
+    );
+
+}
 
 
 /* =====================================================
    SCROLL REVEAL
 ===================================================== */
 
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
+const revealElements =
+    document.querySelectorAll(".reveal");
 
-            entries.forEach(entry => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+if (
+    "IntersectionObserver" in window
+) {
 
-                    entry.target.classList.add(
-                        "visible"
-                    );
+    const revealObserver =
+        new IntersectionObserver(
+            entries => {
 
-                    revealObserver.unobserve(
-                        entry.target
-                    );
+                entries.forEach(
+                    entry => {
 
-                }
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-            });
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-        },
-        {
-            threshold: .1
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: .1
+            }
+        );
+
+
+    revealElements.forEach(
+        element => {
+
+            revealObserver.observe(
+                element
+            );
+
         }
     );
 
+} else {
 
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
+    revealElements.forEach(
+        element => {
 
-        revealObserver.observe(element);
+            element.classList.add(
+                "visible"
+            );
 
-    });
+        }
+    );
 
+}
 
 
 /* =====================================================
@@ -705,62 +872,76 @@ document
 ===================================================== */
 
 const navItems =
-    [...document.querySelectorAll(".nav-item")];
+    [
+        ...document.querySelectorAll(
+            ".nav-item"
+        )
+    ];
+
 
 const trackedSections =
     [
         document.getElementById("home"),
         document.getElementById("services"),
         document.getElementById("about")
-    ];
+    ]
+    .filter(Boolean);
 
 
-const navObserver =
-    new IntersectionObserver(
-        entries => {
+if (
+    "IntersectionObserver" in window &&
+    trackedSections.length
+) {
 
-            entries.forEach(entry => {
+    const navObserver =
+        new IntersectionObserver(
+            entries => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+                entries.forEach(
+                    entry => {
 
-                    navItems.forEach(
-                        item => {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                            item.classList.toggle(
-                                "active",
-                                item.getAttribute(
-                                    "href"
-                                ) ===
-                                `#${entry.target.id}`
+                            navItems.forEach(
+                                item => {
+
+                                    item.classList.toggle(
+                                        "active",
+                                        item.getAttribute(
+                                            "href"
+                                        ) ===
+                                        `#${entry.target.id}`
+                                    );
+
+                                }
                             );
 
                         }
-                    );
 
-                }
+                    }
+                );
 
-            });
+            },
+            {
+                rootMargin:
+                    "-45% 0px -45% 0px"
+            }
+        );
 
-        },
-        {
-            rootMargin:
-                "-45% 0px -45% 0px"
+
+    trackedSections.forEach(
+        section => {
+
+            navObserver.observe(
+                section
+            );
+
         }
     );
 
-
-trackedSections.forEach(
-    section => {
-
-        if (section) {
-            navObserver.observe(section);
-        }
-
-    }
-);
-
+}
 
 
 /* =====================================================
@@ -768,7 +949,9 @@ trackedSections.forEach(
 ===================================================== */
 
 document
-    .querySelectorAll('a[href^="#"]')
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
     .forEach(link => {
 
         link.addEventListener(
@@ -776,24 +959,39 @@ document
             event => {
 
                 const targetID =
-                    link.getAttribute("href");
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    !targetID ||
+                    targetID === "#"
+                ) {
+                    return;
+                }
+
 
                 const target =
                     document.querySelector(
                         targetID
                     );
 
-                if (!target) return;
+
+                if (!target) {
+                    return;
+                }
+
 
                 event.preventDefault();
 
+
                 target.scrollIntoView({
                     behavior:
-                        window.matchMedia(
-                            "(prefers-reduced-motion: reduce)"
-                        ).matches
+                        prefersReducedMotion
                             ? "auto"
                             : "smooth",
+
                     block: "start"
                 });
 
@@ -801,3 +999,125 @@ document
         );
 
     });
+
+
+/* =====================================================
+   BUTTON CURSOR LIGHT
+===================================================== */
+
+document
+    .querySelectorAll(".btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "pointermove",
+            event => {
+
+                if (
+                    prefersReducedMotion
+                ) {
+                    return;
+                }
+
+                const rect =
+                    button.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+
+                button.style.setProperty(
+                    "--btn-x",
+                    `${x}px`
+                );
+
+                button.style.setProperty(
+                    "--btn-y",
+                    `${y}px`
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   HERO MICRO PARALLAX
+===================================================== */
+
+const hero =
+    document.querySelector(".hero");
+
+
+if (
+    hero &&
+    !prefersReducedMotion
+) {
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (
+                window.innerWidth <= 900
+            ) {
+                return;
+            }
+
+            const scroll =
+                window.scrollY;
+
+            const photo =
+                document.querySelector(
+                    ".photo-wrapper"
+                );
+
+            if (
+                photo &&
+                scroll < window.innerHeight
+            ) {
+
+                const amount =
+                    Math.min(
+                        scroll * .035,
+                        24
+                    );
+
+                photo.style.marginTop =
+                    `${amount}px`;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   INITIAL FORM STATE
+===================================================== */
+
+if (
+    agreement &&
+    whatsappButton
+) {
+
+    whatsappButton.disabled =
+        !agreement.checked;
+
+}
+
+
+/* =====================================================
+   END
+===================================================== */
