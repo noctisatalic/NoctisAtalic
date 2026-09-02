@@ -1,404 +1,242 @@
 "use strict";
 
 
-/* ================= CONFIG ================= */
+/* =========================================================
+   CONFIG
+========================================================= */
 
 const WHATSAPP_NUMBER = "6281318048885";
 
 
-/* ================= ELEMENTS ================= */
+/* =========================================================
+   DOM
+========================================================= */
+
+const body = document.body;
 
 const consultModal = document.getElementById("consultModal");
 const policyModal = document.getElementById("policyModal");
 
 const consultForm = document.getElementById("consultForm");
+
+const clientName = document.getElementById("clientName");
+const clientPhone = document.getElementById("clientPhone");
+const clientNeed = document.getElementById("clientNeed");
+const clientMessage = document.getElementById("clientMessage");
+
 const agreement = document.getElementById("agreement");
-const whatsappButton = document.getElementById("whatsappButton");
-const formError = document.getElementById("formError");
+const submitConsult = document.getElementById("submitConsult");
 
-const photoWrapper = document.querySelector(".photo-wrapper");
-const photoToggle = document.querySelector(".photo-toggle");
+const currentYear = document.getElementById("current-year");
 
 
-/* ================= POLICY DATA ================= */
+/* =========================================================
+   YEAR
+========================================================= */
 
-const policies = {
-
-  terms: {
-    title: "Ketentuan Layanan",
-    content: `
-      <p>
-        Konsultasi awal dilakukan untuk memahami kebutuhan,
-        scope, tujuan, dan estimasi project.
-      </p>
-
-      <h3>Scope Project</h3>
-      <p>
-        Detail pekerjaan akan disepakati sebelum proses development
-        dimulai.
-      </p>
-
-      <h3>Komunikasi</h3>
-      <p>
-        Komunikasi project dilakukan melalui channel yang telah
-        disepakati bersama.
-      </p>
-    `
-  },
-
-  privacy: {
-    title: "Kebijakan Privasi",
-    content: `
-      <p>
-        Data yang diberikan melalui form konsultasi digunakan
-        untuk keperluan komunikasi terkait project.
-      </p>
-
-      <h3>Data</h3>
-      <p>
-        Informasi seperti nama, nomor WhatsApp, kebutuhan,
-        dan pesan digunakan untuk merespons permintaan konsultasi.
-      </p>
-    `
-  },
-
-  payment: {
-    title: "Pembayaran",
-    content: `
-      <p>
-        Detail pembayaran, termin, dan metode pembayaran
-        akan disepakati berdasarkan scope project.
-      </p>
-
-      <h3>Kesepakatan</h3>
-      <p>
-        Pekerjaan dimulai setelah ketentuan project dan pembayaran
-        awal yang disepakati telah dipenuhi.
-      </p>
-    `
-  },
-
-  revision: {
-    title: "Kebijakan Revisi",
-    content: `
-      <p>
-        Revisi mengikuti scope dan kesepakatan project.
-      </p>
-
-      <h3>Perubahan Scope</h3>
-      <p>
-        Permintaan baru yang berada di luar scope awal
-        dapat membutuhkan penyesuaian waktu dan biaya.
-      </p>
-    `
-  },
-
-  cancellation: {
-    title: "Pembatalan Project",
-    content: `
-      <p>
-        Pembatalan project dibahas berdasarkan tahap pengerjaan
-        dan kesepakatan yang telah dibuat sebelumnya.
-      </p>
-
-      <h3>Komunikasi</h3>
-      <p>
-        Setiap pembatalan sebaiknya dikomunikasikan sesegera mungkin
-        untuk menentukan langkah berikutnya.
-      </p>
-    `
-  },
-
-  ip: {
-    title: "Hak Kekayaan Intelektual",
-    content: `
-      <p>
-        Kepemilikan hasil akhir project mengikuti kesepakatan
-        antara client dan Noctis Atalic.
-      </p>
-
-      <h3>Asset</h3>
-      <p>
-        Asset, library, font, gambar, atau layanan pihak ketiga
-        tetap mengikuti lisensi masing-masing.
-      </p>
-    `
-  }
-
-};
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
+}
 
 
-/* ================= MODAL ================= */
+/* =========================================================
+   MODAL
+========================================================= */
 
 function openModal(modal) {
   if (!modal) return;
 
   modal.classList.add("active");
-  document.body.classList.add("modal-open");
+  modal.setAttribute("aria-hidden", "false");
+
+  body.classList.add("modal-open");
+
+  const firstInput = modal.querySelector("input, select, textarea");
+
+  if (firstInput) {
+    setTimeout(() => firstInput.focus(), 100);
+  }
 }
+
 
 function closeModal(modal) {
   if (!modal) return;
 
   modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
 
   if (
-    !consultModal?.classList.contains("active") &&
-    !policyModal?.classList.contains("active")
+    !document.querySelector(".modal.active")
   ) {
-    document.body.classList.remove("modal-open");
+    body.classList.remove("modal-open");
   }
 }
 
 
-/* ================= CONSULTATION ================= */
-
 document.querySelectorAll(".open-consult").forEach((button) => {
-
   button.addEventListener("click", () => {
-
-    if (!consultModal) return;
-
-    formError.textContent = "";
-
     openModal(consultModal);
-
-    setTimeout(() => {
-      document.getElementById("clientName")?.focus();
-    }, 100);
-
   });
-
 });
 
 
-/* ================= CLOSE BUTTONS ================= */
+document.querySelector(".policy-trigger")?.addEventListener("click", () => {
+  openModal(policyModal);
+});
 
-document.querySelectorAll("[data-close]").forEach((element) => {
 
+document.querySelectorAll("[data-close-modal]").forEach((element) => {
   element.addEventListener("click", () => {
 
-    closeModal(consultModal);
-    closeModal(policyModal);
+    closeModal(
+      element.closest(".modal")
+    );
 
   });
-
 });
 
 
-/* ================= ESCAPE ================= */
+document.querySelectorAll(".modal-close").forEach((button) => {
+  button.addEventListener("click", () => {
+
+    closeModal(
+      button.closest(".modal")
+    );
+
+  });
+});
+
 
 document.addEventListener("keydown", (event) => {
 
   if (event.key !== "Escape") return;
 
-  closeModal(consultModal);
-  closeModal(policyModal);
+  document
+    .querySelectorAll(".modal.active")
+    .forEach((modal) => {
+      closeModal(modal);
+    });
 
 });
 
 
-/* ================= POLICY ================= */
+/* =========================================================
+   FORM STATE
+========================================================= */
 
-document.querySelectorAll("[data-policy]").forEach((button) => {
+function updateSubmitState() {
 
-  button.addEventListener("click", () => {
+  if (!submitConsult) return;
 
-    const type = button.dataset.policy;
-    const policy = policies[type];
-
-    if (!policy) return;
-
-    const content = document.getElementById("policyContent");
-
-    if (!content) return;
-
-    content.innerHTML = `
-      <div class="section-label">
-        NOCTIS ATALIC
-      </div>
-
-      <h2>${policy.title}</h2>
-
-      ${policy.content}
-    `;
-
-    openModal(policyModal);
-
-  });
-
-});
-
-
-/* ================= AGREEMENT ================= */
-
-if (agreement && whatsappButton) {
-
-  agreement.addEventListener("change", () => {
-
-    whatsappButton.disabled = !agreement.checked;
-
-  });
+  submitConsult.disabled = !agreement.checked;
 
 }
 
 
-/* ================= WHATSAPP FORM ================= */
+agreement?.addEventListener(
+  "change",
+  updateSubmitState
+);
 
-if (consultForm) {
-
-  consultForm.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    if (!agreement?.checked) {
-
-      formError.textContent =
-        "Centang persetujuan terlebih dahulu.";
-
-      return;
-
-    }
-
-    const name =
-      document.getElementById("clientName")?.value.trim() || "";
-
-    const phone =
-      document.getElementById("clientPhone")?.value.trim() || "";
-
-    const need =
-      document.getElementById("clientNeed")?.value.trim() || "";
-
-    const message =
-      document.getElementById("clientMessage")?.value.trim() || "";
+updateSubmitState();
 
 
-    if (!name || !phone || !need || !message) {
+/* =========================================================
+   PHONE FORMAT
+========================================================= */
 
-      formError.textContent =
-        "Lengkapi semua data terlebih dahulu.";
+clientPhone?.addEventListener("input", () => {
 
-      return;
+  let value = clientPhone.value;
 
-    }
+  value = value.replace(/[^\d+]/g, "");
+
+  if (value.startsWith("+62")) {
+    value = "0" + value.slice(3);
+  }
+
+  if (value.startsWith("62")) {
+    value = "0" + value.slice(2);
+  }
+
+  clientPhone.value = value;
+
+});
 
 
-    const text = `
-Halo Noctis Atalic,
+/* =========================================================
+   WHATSAPP FORM
+========================================================= */
 
-Saya ingin berkonsultasi mengenai project website.
+consultForm?.addEventListener("submit", (event) => {
+
+  event.preventDefault();
+
+  if (!agreement.checked) {
+    return;
+  }
+
+
+  const name = clientName.value.trim();
+  const phone = clientPhone.value.trim();
+  const need = clientNeed.value.trim();
+  const message = clientMessage.value.trim();
+
+
+  if (!name || !phone || !need || !message) {
+
+    alert(
+      "Mohon lengkapi semua informasi terlebih dahulu."
+    );
+
+    return;
+  }
+
+
+  const whatsappMessage =
+`Halo Noctis Atalic, saya ingin berkonsultasi mengenai project website.
 
 Nama: ${name}
 WhatsApp: ${phone}
 Kebutuhan: ${need}
 
-Pesan:
+Detail project:
 ${message}
 
-Saya memahami bahwa konsultasi awal dilakukan melalui WhatsApp.
-    `.trim();
+Saya siap melanjutkan diskusi melalui WhatsApp.`;
 
 
-    const whatsappURL =
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  const whatsappURL =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
 
 
-    window.open(
-      whatsappURL,
-      "_blank",
-      "noopener,noreferrer"
-    );
+  window.open(
+    whatsappURL,
+    "_blank",
+    "noopener,noreferrer"
+  );
 
 
-    consultForm.reset();
+  consultForm.reset();
 
-    if (whatsappButton) {
-      whatsappButton.disabled = true;
-    }
+  updateSubmitState();
 
-    closeModal(consultModal);
+  closeModal(consultModal);
 
-  });
-
-}
+});
 
 
-/* ================= PHOTO INTERACTION ================= */
-
-/*
-  Desktop:
-  Mask photo mengikuti posisi cursor.
-
-  Mobile:
-  Tap tombol untuk berganti mode.
-*/
-
-if (photoWrapper) {
-
-  photoWrapper.addEventListener("pointermove", (event) => {
-
-    if (event.pointerType === "touch") return;
-
-    const rect = photoWrapper.getBoundingClientRect();
-
-    const x =
-      ((event.clientX - rect.left) / rect.width) * 100;
-
-    const y =
-      ((event.clientY - rect.top) / rect.height) * 100;
-
-    photoWrapper.style.setProperty(
-      "--mouse-x",
-      `${x}%`
-    );
-
-    photoWrapper.style.setProperty(
-      "--mouse-y",
-      `${y}%`
-    );
-
-  });
-
-
-  photoWrapper.addEventListener("pointerleave", () => {
-
-    photoWrapper.style.setProperty(
-      "--mouse-x",
-      "50%"
-    );
-
-    photoWrapper.style.setProperty(
-      "--mouse-y",
-      "50%"
-    );
-
-  });
-
-}
-
-
-/* ================= PHOTO TOGGLE ================= */
-
-if (photoToggle && photoWrapper) {
-
-  photoToggle.addEventListener("click", (event) => {
-
-    event.stopPropagation();
-
-    photoWrapper.classList.toggle("masked");
-
-  });
-
-}
-
-
-/* ================= REVEAL ================= */
+/* =========================================================
+   REVEAL
+========================================================= */
 
 const revealElements =
   document.querySelectorAll(".reveal");
 
 
-if ("IntersectionObserver" in window) {
+if (
+  "IntersectionObserver" in window
+) {
 
   const revealObserver =
     new IntersectionObserver(
@@ -406,7 +244,9 @@ if ("IntersectionObserver" in window) {
 
         entries.forEach((entry) => {
 
-          if (!entry.isIntersecting) return;
+          if (!entry.isIntersecting) {
+            return;
+          }
 
           entry.target.classList.add("visible");
 
@@ -417,137 +257,202 @@ if ("IntersectionObserver" in window) {
       },
       {
         threshold: 0.12,
-        rootMargin: "0px 0px -30px 0px"
+        rootMargin: "0px 0px -40px 0px"
       }
     );
 
 
   revealElements.forEach((element) => {
-
     revealObserver.observe(element);
-
   });
 
 } else {
 
   revealElements.forEach((element) => {
-
     element.classList.add("visible");
+  });
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const navigationLinks =
+  document.querySelectorAll(
+    ".nav-link, .mobile-nav-item"
+  );
+
+
+const sections = [
+  document.getElementById("home"),
+  document.getElementById("services"),
+  document.getElementById("portfolio"),
+  document.getElementById("about")
+].filter(Boolean);
+
+
+function setActiveNavigation(id) {
+
+  navigationLinks.forEach((link) => {
+
+    const href =
+      link.getAttribute("href");
+
+    if (!href) return;
+
+    link.classList.toggle(
+      "active",
+      href === `#${id}`
+    );
 
   });
 
 }
 
 
-/* ================= ACTIVE NAV ================= */
-
-const sections = [
-  document.getElementById("home"),
-  document.getElementById("services"),
-  document.getElementById("about")
-].filter(Boolean);
-
-const bottomLinks =
-  document.querySelectorAll(".bottom-nav a");
-
-
-if ("IntersectionObserver" in window && sections.length) {
+if (
+  "IntersectionObserver" in window
+) {
 
   const navObserver =
     new IntersectionObserver(
       (entries) => {
 
-        entries.forEach((entry) => {
+        const visible =
+          entries
+            .filter(
+              (entry) =>
+                entry.isIntersecting
+            )
+            .sort(
+              (a, b) =>
+                b.intersectionRatio -
+                a.intersectionRatio
+            )[0];
 
-          if (!entry.isIntersecting) return;
 
-          const id = entry.target.id;
-
-          bottomLinks.forEach((link) => {
-
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === `#${id}`
-            );
-
-          });
-
-        });
+        if (visible?.target?.id) {
+          setActiveNavigation(
+            visible.target.id
+          );
+        }
 
       },
       {
-        threshold: 0.45
+        threshold: [0.2, 0.4, 0.6],
+        rootMargin: "-20% 0px -55% 0px"
       }
     );
 
 
   sections.forEach((section) => {
-
     navObserver.observe(section);
-
   });
 
 }
 
 
-/* ================= INTERNAL NAV ================= */
+/* =========================================================
+   SMOOTH INTERNAL LINKS
+========================================================= */
 
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach((link) => {
 
-  link.addEventListener("click", (event) => {
+    link.addEventListener("click", (event) => {
 
-    const targetID =
-      link.getAttribute("href");
+      const targetId =
+        link.getAttribute("href");
 
-    if (!targetID || targetID === "#") return;
+      if (
+        !targetId ||
+        targetId === "#"
+      ) {
+        return;
+      }
 
-    const target =
-      document.querySelector(targetID);
 
-    if (!target) return;
+      const target =
+        document.querySelector(targetId);
 
-    event.preventDefault();
 
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+      if (!target) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      target.scrollIntoView({
+        behavior:
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches
+            ? "auto"
+            : "smooth",
+        block: "start"
+      });
+
     });
 
   });
 
-});
 
+/* =========================================================
+   BUTTON MICRO INTERACTION
+========================================================= */
 
-/* ================= PHONE CLEANUP ================= */
+document
+  .querySelectorAll(
+    ".button, .header-cta, .price-button, .project-link, .service-link"
+  )
+  .forEach((element) => {
 
-const phoneInput =
-  document.getElementById("clientPhone");
+    element.addEventListener(
+      "pointerenter",
+      () => {
+        element.dataset.hover = "true";
+      }
+    );
 
-
-if (phoneInput) {
-
-  phoneInput.addEventListener("input", () => {
-
-    phoneInput.value =
-      phoneInput.value.replace(/[^\d+\-\s]/g, "");
+    element.addEventListener(
+      "pointerleave",
+      () => {
+        delete element.dataset.hover;
+      }
+    );
 
   });
 
-}
+
+/* =========================================================
+   PREVENT DOUBLE SUBMISSION
+========================================================= */
+
+consultForm?.addEventListener(
+  "invalid",
+  () => {
+
+    const firstInvalid =
+      consultForm.querySelector(":invalid");
+
+    firstInvalid?.focus();
+
+  },
+  true
+);
 
 
-/* ================= INITIAL PHOTO STATE ================= */
+/* =========================================================
+   INITIAL STATE
+========================================================= */
 
-if (photoWrapper) {
+setActiveNavigation("home");
 
-  photoWrapper.style.setProperty(
-    "--mouse-x",
-    "50%"
-  );
-
-  photoWrapper.style.setProperty(
-    "--mouse-y",
-    "50%"
-  );
-
-}
+console.log(
+  "Noctis Atalic portfolio initialized."
+);
