@@ -1,3121 +1,4064 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f3f3ef">
-<meta name="description" content="Noctis Atalic — Fullstack Web Developer & Digital Builder.">
-<title>Noctis Atalic — Fullstack Web Developer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Noctis Atalic — Fullstack Web Developer untuk website bisnis modern, cepat, dan profesional.">
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+  <title>Noctis Atalic — Fullstack Web Developer</title>
 
-:root{
-  --red:#e50914;
-  --red-dark:#b8060e;
-  --black:#080808;
-  --black-2:#111111;
-  --white:#ffffff;
-  --paper:#f3f3ef;
-  --soft:#e9e9e4;
-  --line:rgba(8,8,8,.11);
-  --muted:#707070;
-  --radius:24px;
-  --radius-sm:16px;
-  --shadow:0 18px 50px rgba(0,0,0,.08);
-  --ease:cubic-bezier(.2,.8,.2,1);
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+:root {
+  --red: #d71920;
+  --red-dark: #a90f15;
+
+  --black: #111111;
+  --text: #161616;
+  --muted: #747474;
+
+  --white: #ffffff;
+  --gray-1: #f7f7f7;
+  --gray-2: #eeeeee;
+  --gray-3: #dddddd;
+
+  --glass: rgba(255,255,255,.72);
+
+  --container: 1180px;
+
+  --ease: cubic-bezier(.2,.8,.2,1);
+
+  --shadow: 0 25px 70px rgba(0,0,0,.08);
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-body{
-  font-family:"DM Sans",sans-serif;
-  background:var(--paper);
-  color:var(--black);
-  overflow-x:hidden;
-  line-height:1.5;
+body {
+  min-width: 320px;
+  margin: 0;
+
+  overflow-x: hidden;
+
+  color: var(--text);
+  background: var(--white);
+
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-body.modal-open{
-  overflow:hidden;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
+body.modal-open {
+  overflow: hidden;
 }
 
 button,
 input,
-textarea{
-  font:inherit;
+textarea,
+select {
+  font: inherit;
 }
 
-button{
-  border:0;
-  cursor:pointer;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-img{
-  display:block;
-  max-width:100%;
+button {
+  cursor: pointer;
 }
 
-.container{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* ================= HEADER ================= */
-
-.site-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:1000;
-  padding:18px 0;
-  pointer-events:none;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.header-inner{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 12px 10px 18px;
-  background:rgba(255,255,255,.82);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:999px;
-  box-shadow:0 10px 30px rgba(0,0,0,.05);
-  pointer-events:auto;
+section {
+  scroll-margin-top: 100px;
 }
 
-.logo{
-  font-family:"Manrope",sans-serif;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:-.04em;
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.section-shell {
+  width: min(calc(100% - 32px), var(--container));
+  margin-inline: auto;
 }
 
-.logo span{
-  color:var(--red);
+.ambient {
+  position: fixed;
+
+  width: 320px;
+  height: 320px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(100px);
+
+  z-index: -1;
 }
 
-.desktop-nav{
-  display:flex;
-  align-items:center;
-  gap:6px;
+.ambient-red {
+  top: 4%;
+  right: -220px;
+  background: rgba(215,25,32,.12);
 }
 
-.desktop-nav a{
-  font-size:13px;
-  font-weight:600;
-  padding:10px 15px;
-  border-radius:999px;
-  transition:.25s var(--ease);
+.ambient-gray {
+  bottom: 8%;
+  left: -230px;
+  background: rgba(0,0,0,.06);
 }
 
-.desktop-nav a:hover{
-  background:var(--black);
-  color:white;
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 0;
 }
 
-.header-cta{
-  background:var(--black);
-  color:white!important;
-  padding:11px 17px!important;
+.brand-symbol {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  border-radius: 13px;
+
+  background: var(--black);
+  color: #fff;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  box-shadow: 0 12px 35px rgba(0,0,0,.14);
 }
 
-.header-cta:hover{
-  background:var(--red)!important;
+.brand-text {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  line-height: 1.1;
 }
 
-/* ================= HERO ================= */
-
-.hero{
-  min-height:100svh;
-  padding:130px 0 70px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
+.brand-text strong {
+  font-size: 13px;
+  letter-spacing: -.02em;
+  white-space: nowrap;
 }
 
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
+.brand-text small {
+  margin-top: 4px;
+
+  color: #999;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: .14em;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  width: min(calc(100% - 32px), var(--container));
+
+  min-height: 68px;
+
+  margin: 15px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  position: relative;
+  z-index: 50;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.availability {
+  display: none;
+
+  align-items: center;
+  gap: 7px;
+
+  color: #777;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.availability i {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #25b76b;
+
+  box-shadow: 0 0 0 5px rgba(37,183,107,.08);
+}
+
+.header-cta {
+  display: none;
+
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 15px;
+
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.72);
+
+  backdrop-filter: blur(18px);
+
+  color: var(--text);
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.header-cta span {
+  color: var(--red);
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  min-height: auto;
+
+  padding-top: 62px;
+  padding-bottom: 65px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 55px;
+
+  align-items: center;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: var(--red);
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .16em;
+}
+
+.hero-kicker .line {
+  width: 30px;
+  height: 1px;
+
+  background: var(--red);
+}
+
+.hero-title {
+  max-width: 780px;
+
+  margin: 20px 0 0;
+
+  font-size: clamp(52px, 15vw, 105px);
+
+  line-height: .9;
+
+  letter-spacing: -.085em;
+
+  font-weight: 900;
+}
+
+.hero-title span {
+  display: block;
+
+  color: var(--red);
+
+  padding-left: 7%;
+}
+
+.hero-description {
+  max-width: 580px;
+
+  margin-top: 27px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  line-height: 1.85;
+}
+
+.hero-actions {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.button {
+  min-height: 50px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 0 19px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: .02em;
+
+  transition:
+    transform .25s var(--ease),
+    box-shadow .25s var(--ease),
+    background .25s var(--ease);
+}
+
+.button:hover {
+  transform: translateY(-3px);
+}
+
+.button b {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.button-primary {
+  border: 1px solid var(--red);
+
+  background: var(--red);
+  color: #fff;
+
+  box-shadow: 0 15px 35px rgba(215,25,32,.18);
+}
+
+.button-primary:hover {
+  background: var(--red-dark);
+  box-shadow: 0 20px 45px rgba(215,25,32,.23);
+}
+
+.button-secondary {
+  border: 1px solid #dedede;
+
+  background: #fff;
+
+  color: var(--text);
+}
+
+.button-secondary b {
+  color: var(--red);
+}
+
+.hero-meta {
+  margin-top: 45px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.hero-meta div {
+  min-width: 0;
+
+  padding: 15px 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-meta div + div {
+  border-left: 1px solid #e8e8e8;
+}
+
+.hero-meta strong {
+  color: var(--red);
+
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.hero-meta span {
+  color: #666;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   HERO PHOTO
+   IMPORTANT: NO CARD / NO BORDER
+========================================================= */
+
+.hero-portrait {
+  width: 100%;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  min-width: 0;
+
+  overflow: visible;
+}
+
+.identity-photo {
+  width: min(100%, 390px);
+  height: auto;
+
+  max-height: 620px;
+
+  object-fit: contain;
+
+  position: relative;
+  z-index: 2;
+
+  border: 0;
+  border-radius: 0;
+
+  box-shadow: none;
+
+  filter: drop-shadow(0 28px 45px rgba(0,0,0,.16));
+
+  user-select: none;
+
+  transition:
+    transform .6s var(--ease),
+    filter .6s var(--ease);
+}
+
+.hero-portrait:hover .identity-photo {
+  transform: translateY(-7px);
+  filter: drop-shadow(0 38px 55px rgba(0,0,0,.18));
+}
+
+.portrait-light {
+  position: absolute;
+
+  width: 65%;
+  aspect-ratio: 1;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%,-50%);
+
+  border-radius: 50%;
+
+  background: rgba(215,25,32,.09);
+
+  filter: blur(75px);
+
+  pointer-events: none;
+}
+
+.portrait-caption {
+  position: absolute;
+
+  left: 0;
+  bottom: 8px;
+
+  z-index: 4;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding: 10px 12px;
+
+  border-left: 2px solid var(--red);
+
+  background: rgba(255,255,255,.7);
+
+  backdrop-filter: blur(18px);
+}
+
+.portrait-caption span {
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: .1em;
+}
+
+.portrait-caption small {
+  color: #888;
+
+  font-size: 6px;
+  font-weight: 700;
+
+  letter-spacing: .1em;
+}
+
+.portrait-number {
+  position: absolute;
+
+  right: 0;
+  top: 8px;
+
+  color: #e4e4e4;
+
+  font-size: 70px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: -.1em;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+  padding-top: 65px;
+  padding-bottom: 80px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 28px;
+
+  border-top: 1px solid #e9e9e9;
+}
+
+.intro-label,
+.section-number {
+  color: var(--red);
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: .15em;
+}
+
+.intro-label {
+  display: flex;
+  gap: 12px;
+}
+
+.intro-label span {
+  color: #aaa;
+}
+
+.intro-content h2 {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size: clamp(34px, 8vw, 75px);
+
+  line-height: .98;
+
+  letter-spacing: -.065em;
+}
+
+.intro-content h2 em {
+  color: var(--red);
+  font-style: normal;
+}
+
+.intro-content p {
+  max-width: 560px;
+
+  margin-top: 25px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  line-height: 1.85;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
+.section-heading {
+  margin-bottom: 35px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 20px;
+}
+
+.section-heading h2 {
+  max-width: 760px;
+
+  margin: 14px 0 0;
+
+  font-size: clamp(39px, 8vw, 80px);
+
+  line-height: .95;
+
+  letter-spacing: -.07em;
+}
+
+.section-heading h2 span {
+  color: var(--red);
+}
+
+.section-heading > p {
+  max-width: 380px;
+
+  align-self: end;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 10px;
+}
+
+.service-card {
+  min-width: 0;
+
+  min-height: 310px;
+
+  padding: 23px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid #e7e7e7;
+  border-radius: 25px;
+
+  background: #fff;
+
+  box-shadow: 0 15px 45px rgba(0,0,0,.045);
+
+  transition:
+    transform .3s var(--ease),
+    box-shadow .3s var(--ease),
+    border-color .3s var(--ease);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(215,25,32,.25);
+
+  box-shadow: 0 25px 60px rgba(0,0,0,.08);
+}
+
+.service-featured {
+  background:
+    linear-gradient(
+      145deg,
+      #fff,
+      #fafafa
+    );
+
+  border-color: #dedede;
+}
+
+.service-dark {
+  background: var(--black);
+  border-color: var(--black);
+  color: #fff;
+}
+
+.service-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  color: #aaa;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .15em;
+}
+
+.service-top span:first-child {
+  color: var(--red);
+}
+
+.service-body {
+  margin-top: auto;
+}
+
+.service-icon {
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 45px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #f4f4f4;
+
+  color: var(--red);
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.service-dark .service-icon {
+  background: rgba(255,255,255,.08);
+}
+
+.service-body h3 {
+  margin: 0;
+
+  font-size: 22px;
+
+  line-height: 1.05;
+
+  letter-spacing: -.05em;
+}
+
+.service-body p {
+  max-width: 440px;
+
+  margin: 12px 0 0;
+
+  color: #777;
+
+  font-size: 10px;
+
+  line-height: 1.75;
+}
+
+.service-dark .service-body p {
+  color: #aaa;
+}
+
+.service-link {
+  width: fit-content;
+
+  margin-top: 28px;
+
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--red);
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.service-link span {
+  font-size: 14px;
+
+  transition: transform .2s ease;
+}
+
+.service-link:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.portfolio-list {
+  display: grid;
+  gap: 55px;
+}
+
+.project {
+  min-width: 0;
+}
+
+.project-visual {
+  min-height: 330px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-visual.spr {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(215,25,32,.25),
+      transparent 30%
+    ),
+    #121212;
+}
+
+.project-visual.koi {
+  background:
+    radial-gradient(
+      circle at 55% 50%,
+      rgba(215,25,32,.25),
+      transparent 25%
+    ),
+    #f0f0f0;
+}
+
+.project-visual.cyrus {
+  background: #111;
+  color: #fff;
+}
+
+.project-index {
+  position: absolute;
+
+  right: 20px;
+  top: 18px;
+
+  color: rgba(255,255,255,.45);
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: .1em;
+}
+
+.koi .project-index {
+  color: #999;
+}
+
+.project-browser {
+  width: 80%;
+  max-width: 650px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #202020;
+
+  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+
+  transform: perspective(900px) rotateX(4deg) rotateY(-4deg);
+
+  transition: transform .5s var(--ease);
+}
+
+.project:hover .project-browser {
+  transform: perspective(900px) rotateX(0) rotateY(0) translateY(-5px);
+}
+
+.browser-bar {
+  height: 26px;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  background: #292929;
+}
+
+.browser-bar span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #666;
+}
+
+.browser-content {
+  min-height: 230px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.browser-label {
+  color: var(--red);
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .18em;
+}
+
+.browser-content strong {
+  margin-top: 15px;
+
+  color: #fff;
+
+  font-size: clamp(32px, 8vw, 70px);
+
+  line-height: .88;
+
+  letter-spacing: -.07em;
+}
+
+.browser-line {
+  width: 35%;
+
+  height: 1px;
+
+  margin-top: 25px;
+
+  background: var(--red);
+}
+
+.visual-word {
+  color: #191919;
+
+  font-size: clamp(65px, 18vw, 170px);
+
+  font-weight: 900;
+
+  line-height: .8;
+
+  letter-spacing: -.1em;
+}
+
+.cyrus-grid {
+  position: absolute;
+  inset: 0;
+
   background-image:
-    linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px);
-  background-size:70px 70px;
-  mask-image:linear-gradient(to bottom,black,transparent 90%);
-  pointer-events:none;
-}
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
 
-.hero-layout{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-  gap:50px;
-  align-items:center;
+  background-size: 30px 30px;
 }
 
-.hero-copy{
-  max-width:720px;
-}
+.cyrus-title {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
 
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:8px 12px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:rgba(255,255,255,.72);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  margin-bottom:22px;
+  line-height: .8;
 }
 
-.eyebrow::before{
-  content:"";
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 0 5px rgba(229,9,20,.1);
-}
-
-.hero h1{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(52px,8vw,108px);
-  line-height:.91;
-  letter-spacing:-.075em;
-  max-width:850px;
-}
-
-.hero h1 em{
-  color:var(--red);
-  font-style:normal;
-}
-
-.hero-description{
-  margin-top:27px;
-  max-width:600px;
-  font-size:17px;
-  color:#4f4f4f;
-  line-height:1.7;
-}
-
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:30px;
-}
-
-.btn{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  min-height:50px;
-  padding:0 20px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:700;
-  transition:.3s var(--ease);
-}
-
-.btn-dark{
-  background:var(--black);
-  color:white;
-}
-
-.btn-dark:hover{
-  transform:translateY(-3px);
-  background:var(--red);
-}
-
-.btn-light{
-  background:white;
-  border:1px solid var(--line);
-}
-
-.btn-light:hover{
-  transform:translateY(-3px);
-  border-color:var(--black);
-}
-
-.hero-visual{
-  min-height:570px;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.hero-card{
-  width:min(100%,440px);
-  min-height:560px;
-  background:var(--black);
-  border-radius:34px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 35px 80px rgba(0,0,0,.2);
-}
-
-.hero-card::before{
-  content:"";
-  position:absolute;
-  width:310px;
-  height:310px;
-  background:var(--red);
-  border-radius:50%;
-  right:-100px;
-  top:-90px;
-}
-
-.hero-card::after{
-  content:"NOCTIS";
-  position:absolute;
-  left:-22px;
-  bottom:80px;
-  font-family:"Manrope",sans-serif;
-  font-size:105px;
-  font-weight:800;
-  color:rgba(255,255,255,.035);
-  letter-spacing:-.08em;
-}
+.cyrus-title small {
+  color: var(--red);
 
-.portrait{
-  position:absolute;
-  z-index:3;
-  width:min(74%,330px);
-  aspect-ratio:3/4;
-  object-fit:contain;
-  object-position:center bottom;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  filter:drop-shadow(0 30px 25px rgba(0,0,0,.3));
-  transition:transform .25s ease-out;
-}
+  font-size: 11px;
+  font-weight: 900;
 
-.hero-meta{
-  position:absolute;
-  z-index:5;
-  left:22px;
-  bottom:22px;
-  right:22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  color:white;
+  letter-spacing: .18em;
 }
 
-.hero-meta strong{
-  font-family:"Manrope",sans-serif;
-  font-size:18px;
-}
+.cyrus-title strong {
+  margin-top: 8px;
 
-.hero-meta small{
-  display:block;
-  color:rgba(255,255,255,.55);
-  font-size:11px;
-  margin-top:3px;
-}
+  font-size: clamp(65px, 18vw, 170px);
 
-.available{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:8px 11px;
-  border-radius:999px;
-  background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.12);
-  font-size:10px;
+  letter-spacing: -.1em;
 }
 
-.available i{
-  width:6px;
-  height:6px;
-  background:#52d273;
-  border-radius:50%;
-}
+.project-details {
+  padding: 22px 3px 0;
 
-/* ================= SECTION ================= */
+  display: flex;
+  flex-direction: column;
 
-section{
-  padding:100px 0;
+  gap: 25px;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:30px;
-  margin-bottom:35px;
-}
+.project-category {
+  color: #999;
 
-.section-kicker{
-  color:var(--red);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  margin-bottom:9px;
-}
+  font-size: 7px;
+  font-weight: 900;
 
-.section-title{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(35px,5vw,62px);
-  line-height:.98;
-  letter-spacing:-.06em;
+  letter-spacing: .13em;
 }
 
-.section-description{
-  max-width:440px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.7;
-}
+.project-details h3 {
+  margin: 8px 0 0;
 
-/* ================= INTRO ================= */
+  font-size: 28px;
 
-.intro-section{
-  padding-top:70px;
-}
+  line-height: 1;
 
-.intro-grid{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:16px;
+  letter-spacing: -.055em;
 }
 
-.intro-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:38px;
-  box-shadow:var(--shadow);
-}
+.project-details p {
+  max-width: 600px;
 
-.intro-card.dark{
-  background:var(--black);
-  color:white;
-}
+  margin: 10px 0 0;
+
+  color: var(--muted);
 
-.intro-card h3{
-  font-family:"Manrope",sans-serif;
-  font-size:30px;
-  letter-spacing:-.05em;
-  margin-bottom:17px;
+  font-size: 10px;
+
+  line-height: 1.8;
 }
+
+.project-link {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 
-.intro-card p{
-  color:#626262;
-  font-size:15px;
-  line-height:1.75;
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--red);
+
+  font-size: 9px;
+  font-weight: 900;
 }
 
-.intro-card.dark p{
-  color:#aaa;
+.project-link span {
+  font-size: 15px;
 }
 
-.mini-stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:28px;
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process-section {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 55px;
 }
+
+.process-intro h2 {
+  max-width: 650px;
 
-.stat{
-  padding:18px;
-  background:rgba(0,0,0,.035);
-  border-radius:16px;
+  margin: 15px 0 0;
+
+  font-size: clamp(40px, 8vw, 75px);
+
+  line-height: .95;
+
+  letter-spacing: -.07em;
 }
 
-.dark .stat{
-  background:rgba(255,255,255,.07);
+.process-intro h2 span {
+  color: var(--red);
 }
+
+.process-intro p {
+  max-width: 430px;
 
-.stat strong{
-  display:block;
-  font-family:"Manrope",sans-serif;
-  font-size:27px;
-  letter-spacing:-.05em;
+  margin-top: 25px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.8;
 }
 
-.stat span{
-  display:block;
-  margin-top:4px;
-  font-size:11px;
-  color:var(--muted);
+.process-list {
+  border-top: 1px solid #e3e3e3;
 }
+
+.process-row {
+  min-width: 0;
+
+  padding: 22px 0;
 
-.dark .stat span{
-  color:#888;
+  display: grid;
+  grid-template-columns: 35px 1fr 20px;
+
+  gap: 15px;
+
+  align-items: start;
+
+  border-bottom: 1px solid #e3e3e3;
 }
 
-/* ================= PORTFOLIO ================= */
+.process-row > span {
+  color: var(--red);
 
-.portfolio-section{
-  background:var(--black);
-  color:white;
+  font-size: 8px;
+  font-weight: 900;
 }
+
+.process-row h3 {
+  margin: 0;
 
-.portfolio-section .section-description{
-  color:#898989;
+  font-size: 17px;
+
+  letter-spacing: -.035em;
 }
+
+.process-row p {
+  max-width: 500px;
+
+  margin: 6px 0 0;
+
+  color: #888;
 
-.projects{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:16px;
+  font-size: 9px;
+
+  line-height: 1.7;
 }
+
+.process-row > b {
+  color: #aaa;
 
-.project-card{
-  grid-column:span 7;
-  min-height:500px;
-  border-radius:var(--radius);
-  overflow:hidden;
-  position:relative;
-  background:#151515;
-  border:1px solid rgba(255,255,255,.08);
-  transition:.45s var(--ease);
+  font-size: 13px;
 }
+
+
+/* =========================================================
+   PRICING
+========================================================= */
 
-.project-card:nth-child(2){
-  grid-column:span 5;
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 10px;
 }
+
+.price-card {
+  min-width: 0;
+
+  padding: 27px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid #e6e6e6;
+  border-radius: 25px;
 
-.project-card:nth-child(3){
-  grid-column:span 5;
+  background: #fff;
+
+  box-shadow: 0 15px 45px rgba(0,0,0,.04);
 }
+
+.price-featured {
+  color: #fff;
+
+  background: #111;
+
+  border-color: #111;
 
-.project-card:nth-child(4){
-  grid-column:span 7;
+  box-shadow: 0 25px 60px rgba(0,0,0,.15);
 }
 
-.project-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(255,255,255,.2);
+.price-head {
+  display: flex;
+  justify-content: space-between;
+
+  color: #999;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: .15em;
 }
 
-.project-visual{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 70% 20%,rgba(229,9,20,.32),transparent 35%),
-    linear-gradient(135deg,#222,#0c0c0c);
+.price-featured .price-head {
+  color: #aaa;
 }
 
-.project-card:nth-child(2) .project-visual{
-  background:
-    radial-gradient(circle at 30% 30%,rgba(255,255,255,.13),transparent 32%),
-    linear-gradient(145deg,#181818,#050505);
+.price-head span {
+  color: var(--red);
 }
+
+.recommended {
+  width: fit-content;
 
-.project-card:nth-child(3) .project-visual{
-  background:
-    radial-gradient(circle at 70% 70%,rgba(229,9,20,.28),transparent 35%),
-    linear-gradient(145deg,#080808,#1b1b1b);
+  margin-top: 20px;
+
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  background: rgba(215,25,32,.12);
+
+  color: var(--red);
+
+  font-size: 6px;
+  font-weight: 900;
+
+  letter-spacing: .12em;
 }
+
+.price-card h3 {
+  margin: 25px 0 0;
+
+  font-size: 27px;
+
+  line-height: 1;
 
-.project-card:nth-child(4) .project-visual{
-  background:
-    radial-gradient(circle at 30% 20%,rgba(229,9,20,.25),transparent 35%),
-    linear-gradient(145deg,#1a1a1a,#080808);
+  letter-spacing: -.055em;
 }
 
-.browser{
-  position:absolute;
-  width:72%;
-  height:55%;
-  left:50%;
-  top:45%;
-  transform:translate(-50%,-50%);
-  background:#f5f5f2;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 25px 60px rgba(0,0,0,.35);
+.price-card > p {
+  min-height: 70px;
+
+  margin: 14px 0 0;
+
+  color: #777;
+
+  font-size: 10px;
+
+  line-height: 1.75;
 }
 
-.browser-top{
-  height:25px;
-  background:#deded9;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  padding-left:9px;
+.price-featured > p {
+  color: #aaa;
 }
 
-.browser-top i{
-  width:5px;
-  height:5px;
-  background:#888;
-  border-radius:50%;
+.price {
+  margin-top: 28px;
+
+  display: flex;
+  flex-direction: column;
 }
+
+.price small {
+  color: #999;
 
-.browser-content{
-  height:calc(100% - 25px);
-  padding:16px;
-  color:#111;
+  font-size: 8px;
 }
+
+.price strong {
+  margin-top: 2px;
+
+  font-size: 39px;
 
-.browser-content .fake-logo{
-  font-family:"Manrope";
-  font-weight:800;
-  font-size:14px;
+  line-height: 1;
+
+  letter-spacing: -.07em;
 }
 
-.fake-lines{
-  margin-top:35px;
-  display:grid;
-  gap:8px;
+.price-featured .price strong {
+  color: #fff;
 }
+
+.price-card ul {
+  list-style: none;
 
-.fake-lines span{
-  display:block;
-  height:8px;
-  background:#d5d5d0;
-  border-radius:99px;
+  margin: 25px 0 30px;
+  padding: 0;
 }
+
+.price-card li {
+  padding: 9px 0;
+
+  border-bottom: 1px solid #eeeeee;
 
-.fake-lines span:nth-child(1){width:70%;}
-.fake-lines span:nth-child(2){width:48%;}
-.fake-lines span:nth-child(3){width:60%;}
+  color: #555;
 
-.project-info{
-  position:absolute;
-  z-index:3;
-  left:24px;
-  right:24px;
-  bottom:24px;
+  font-size: 9px;
 }
 
-.project-type{
-  color:#ff6b70;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.1em;
-  text-transform:uppercase;
+.price-featured li {
+  border-color: rgba(255,255,255,.1);
+  color: #ccc;
 }
+
+.price-button {
+  width: 100%;
+
+  min-height: 46px;
+
+  margin-top: auto;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.project-info h3{
-  margin-top:6px;
-  font-family:"Manrope",sans-serif;
-  font-size:30px;
-  letter-spacing:-.05em;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+
+  background: #fff;
+
+  color: #111;
+
+  font-size: 9px;
+  font-weight: 900;
 }
+
+.price-button span {
+  color: var(--red);
 
-.project-info p{
-  color:#a0a0a0;
-  font-size:12px;
-  margin-top:5px;
+  font-size: 15px;
 }
 
-.project-link{
-  display:inline-flex;
-  margin-top:16px;
-  padding:9px 13px;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:11px;
-  font-weight:700;
+.price-featured .price-button {
+  border-color: var(--red);
+
+  background: var(--red);
+
+  color: #fff;
 }
+
+
+/* =========================================================
+   TECHNOLOGY
+========================================================= */
 
-/* ================= SERVICES ================= */
+.tech-section {
+  padding-top: 75px;
+  padding-bottom: 75px;
 
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  border-top: 1px solid #e8e8e8;
 }
 
-.service-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:30px;
-  min-height:250px;
-  box-shadow:var(--shadow);
-  transition:.35s var(--ease);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+.tech-header h2 {
+  max-width: 600px;
+
+  margin: 14px 0 0;
+
+  font-size: clamp(38px, 8vw, 70px);
+
+  line-height: .95;
+
+  letter-spacing: -.07em;
 }
 
-.service-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(229,9,20,.35);
+.tech-header h2 span {
+  color: var(--red);
 }
 
-.service-card h3{
-  font-family:"Manrope",sans-serif;
-  font-size:24px;
-  letter-spacing:-.05em;
+.tech-list {
+  margin-top: 35px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
 }
+
+.tech-list span {
+  padding: 9px 12px;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 999px;
+
+  color: #555;
 
-.service-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-  margin-top:8px;
+  background: #fff;
+
+  font-size: 8px;
+  font-weight: 700;
 }
+
 
-.service-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:20px;
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+  padding-top: 90px;
 }
+
+.about-top {
+  display: grid;
+  grid-template-columns: 1fr;
 
-.service-tags span{
-  padding:7px 10px;
-  border-radius:999px;
-  background:#f0f0ec;
-  font-size:10px;
-  font-weight:700;
+  gap: 35px;
 }
 
-/* ================= PROCESS ================= */
+.about-top h2 {
+  max-width: 800px;
 
-.process-section{
-  background:#e8e8e3;
+  margin: 15px 0 0;
+
+  font-size: clamp(48px, 11vw, 100px);
+
+  line-height: .88;
+
+  letter-spacing: -.085em;
 }
 
-.process-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+.about-top h2 span {
+  color: var(--red);
 }
+
+.about-copy {
+  max-width: 500px;
 
-.process-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:25px;
-  min-height:210px;
+  align-self: end;
 }
 
-.process-card h3{
-  font-family:"Manrope";
-  font-size:19px;
-  letter-spacing:-.04em;
+.about-copy p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 11px;
+
+  line-height: 1.85;
 }
 
-.process-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  margin-top:7px;
+.about-copy p + p {
+  margin-top: 17px;
 }
+
+.about-copy .about-lead {
+  color: #222;
 
-/* ================= PRICING ================= */
+  font-size: 15px;
+  font-weight: 600;
 
-.pricing-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  line-height: 1.6;
 }
 
-.price-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:30px;
-  position:relative;
-  box-shadow:var(--shadow);
+.about-panels {
+  margin-top: 65px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  border-top: 1px solid #dedede;
+  border-left: 1px solid #dedede;
 }
+
+.about-panels article {
+  min-width: 0;
+
+  min-height: 205px;
+
+  padding: 25px;
 
-.price-card.featured{
-  background:var(--black);
-  color:white;
-  transform:translateY(-10px);
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+
+  background: #fff;
 }
+
+.about-panels article > span {
+  color: var(--red);
 
-.price-badge{
-  position:absolute;
-  right:18px;
-  top:18px;
-  background:var(--red);
-  color:white;
-  border-radius:999px;
-  padding:6px 9px;
-  font-size:9px;
-  font-weight:800;
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .14em;
 }
+
+.about-panels h3 {
+  margin: 45px 0 0;
 
-.price-card h3{
-  font-family:"Manrope";
-  font-size:23px;
-  letter-spacing:-.05em;
+  font-size: 20px;
+
+  line-height: 1.1;
+
+  letter-spacing: -.045em;
 }
+
+.about-panels p {
+  max-width: 390px;
+
+  margin: 9px 0 0;
 
-.price-card .price{
-  margin-top:22px;
-  font-family:"Manrope";
-  font-size:39px;
-  letter-spacing:-.06em;
+  color: #777;
+
+  font-size: 9px;
+
+  line-height: 1.8;
 }
+
+.manifesto {
+  margin-top: 55px;
+
+  padding: 30px 22px;
 
-.price-card .price small{
-  font-family:"DM Sans";
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:0;
+  border-radius: 27px;
+
+  background: #111;
+  color: #fff;
 }
+
+.manifesto > span {
+  color: var(--red);
 
-.price-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  margin-top:8px;
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .15em;
 }
+
+.manifesto blockquote {
+  max-width: 800px;
+
+  margin: 24px 0 0;
 
-.featured p,
-.featured .price small{
-  color:#888;
+  font-size: clamp(26px, 6vw, 50px);
+
+  line-height: 1.08;
+
+  letter-spacing: -.055em;
 }
 
-.features{
-  list-style:none;
-  margin:25px 0;
-  display:grid;
-  gap:11px;
+.manifesto blockquote em {
+  color: var(--red);
+  font-style: normal;
 }
 
-.features li{
-  font-size:12px;
-  display:flex;
-  gap:9px;
-  align-items:flex-start;
+.manifesto-sign {
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
 }
+
+.manifesto-sign span {
+  font-size: 8px;
+  font-weight: 900;
 
-.features li::before{
-  content:"✓";
-  color:var(--red);
-  font-weight:900;
+  letter-spacing: .1em;
 }
 
-.price-card .btn{
-  width:100%;
+.manifesto-sign small {
+  margin-top: 3px;
+
+  color: #777;
+
+  font-size: 6px;
+  font-weight: 700;
+
+  letter-spacing: .12em;
 }
+
 
-/* ================= ABOUT ================= */
+/* =========================================================
+   FINAL CTA
+========================================================= */
 
-.about-grid{
-  display:grid;
-  grid-template-columns:.85fr 1.15fr;
-  gap:16px;
+.final-section {
+  padding-top: 100px;
+  padding-bottom: 125px;
+
+  text-align: center;
 }
 
-.profile-card,
-.info-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:32px;
-  box-shadow:var(--shadow);
+.final-section > .section-number {
+  display: block;
 }
+
+.final-section h2 {
+  max-width: 850px;
+
+  margin: 20px auto 0;
+
+  font-size: clamp(54px, 12vw, 110px);
 
-.profile-card{
-  background:var(--black);
-  color:white;
-  min-height:480px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  line-height: .88;
+
+  letter-spacing: -.085em;
 }
+
+.final-section h2 span {
+  display: block;
 
-.profile-label{
-  color:#888;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.1em;
+  color: var(--red);
 }
+
+.final-section > p {
+  max-width: 470px;
+
+  margin: 25px auto 30px;
+
+  color: #777;
 
-.profile-name{
-  font-family:"Manrope";
-  font-size:45px;
-  line-height:.95;
-  letter-spacing:-.07em;
-  margin-top:10px;
+  font-size: 11px;
+
+  line-height: 1.8;
 }
+
+.button-large {
+  min-width: 210px;
 
-.profile-name span{
-  color:var(--red);
+  justify-content: center;
+
+  padding-inline: 20px;
 }
+
+.cta-note {
+  margin-top: 15px;
 
-.profile-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+  color: #999;
+
+  font-size: 7px;
+  font-weight: 700;
 }
+
+.cta-note span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
 
-.profile-location{
-  font-size:12px;
-  color:#888;
+  background: #25b76b;
 }
 
-.profile-status{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  background:var(--red);
-  display:grid;
-  place-items:center;
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  padding-top: 35px;
+  padding-bottom: 105px;
+
+  border-top: 1px solid #e8e8e8;
 }
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1fr;
 
-.info-stack{
-  display:grid;
-  gap:16px;
+  gap: 45px;
 }
 
-.info-card h3{
-  font-family:"Manrope";
-  font-size:24px;
-  letter-spacing:-.05em;
-  margin-bottom:13px;
+.footer-brand p {
+  max-width: 230px;
+
+  margin: 17px 0 0;
+
+  color: #999;
+
+  font-size: 10px;
+
+  line-height: 1.7;
 }
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
-.info-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.75;
+  gap: 30px;
 }
 
-.skill-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
+.footer-links div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.skill{
-  padding:13px;
-  background:#f0f0ec;
-  border-radius:13px;
-  font-size:11px;
-  font-weight:700;
+.footer-links span {
+  margin-bottom: 12px;
+
+  color: #aaa;
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .14em;
 }
+
+.footer-links a,
+.footer-links button {
+  margin-bottom: 8px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #555;
 
-/* ================= TIMELINE ================= */
+  font-size: 9px;
 
-.timeline-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  text-align: left;
 }
 
-.timeline-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:25px;
-  min-height:220px;
+.footer-links a:hover,
+.footer-links button:hover {
+  color: var(--red);
 }
 
-.timeline-card small{
-  color:var(--red);
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
+.footer-bottom {
+  margin-top: 45px;
+  padding-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+
+  border-top: 1px solid #eeeeee;
+
+  color: #aaa;
+
+  font-size: 7px;
 }
+
+.policy-trigger {
+  width: fit-content;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
 
-.timeline-card h3{
-  font-family:"Manrope";
-  font-size:20px;
-  margin-top:30px;
-  letter-spacing:-.04em;
+  color: #999;
+
+  font-size: 7px;
 }
 
-.timeline-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  margin-top:8px;
+.policy-trigger:hover {
+  color: var(--red);
 }
 
-/* ================= FINAL CTA ================= */
 
-.final-section{
-  padding:70px 0;
-}
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.mobile-nav {
+  position: fixed;
+
+  left: 50%;
+  bottom: 13px;
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 28px);
+  max-width: 390px;
+
+  padding: 6px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-.final-card{
-  min-height:450px;
-  border-radius:32px;
-  background:var(--red);
-  color:white;
-  padding:55px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.78);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  box-shadow: 0 18px 55px rgba(0,0,0,.12);
+
+  z-index: 100;
 }
+
+.mobile-nav-item {
+  min-width: 0;
+
+  min-height: 44px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  border-radius: 999px;
 
-.final-card::after{
-  content:"LET'S BUILD";
-  position:absolute;
-  right:-40px;
-  bottom:-25px;
-  font-family:"Manrope";
-  font-size:110px;
-  font-weight:800;
-  letter-spacing:-.09em;
-  color:rgba(0,0,0,.08);
-  white-space:nowrap;
+  color: #888;
+
+  font-size: 7px;
+  font-weight: 800;
 }
 
-.final-card h2{
-  max-width:720px;
-  font-family:"Manrope";
-  font-size:clamp(42px,6vw,76px);
-  line-height:.95;
-  letter-spacing:-.07em;
-  position:relative;
-  z-index:2;
+.mobile-nav-item span {
+  font-size: 13px;
+  line-height: 1;
 }
 
-.final-card p{
-  max-width:530px;
-  color:rgba(255,255,255,.78);
-  margin-top:20px;
-  font-size:15px;
-  line-height:1.7;
-  position:relative;
-  z-index:2;
+.mobile-nav-item.active {
+  background: #111;
+  color: #fff;
 }
 
-.final-card .btn{
-  width:max-content;
-  margin-top:27px;
-  background:white;
-  color:var(--black);
-  position:relative;
-  z-index:2;
+.mobile-nav-item.active span {
+  color: var(--red);
 }
 
-/* ================= FOOTER ================= */
 
-footer{
-  background:var(--black);
-  color:white;
-  padding:50px 0 95px;
-}
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
 
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr .8fr;
-  gap:40px;
+  padding: 12px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 200;
 }
 
-.footer-brand{
-  font-family:"Manrope";
-  font-size:27px;
-  font-weight:800;
-  letter-spacing:-.06em;
+.modal.active {
+  display: flex;
 }
+
+.modal-backdrop {
+  position: absolute;
 
-.footer-brand span{
-  color:var(--red);
+  inset: 0;
+
+  background: rgba(10,10,10,.52);
+
+  backdrop-filter: blur(9px);
 }
+
+.modal-dialog {
+  width: min(100%, 560px);
+  max-height: calc(100vh - 24px);
+
+  position: relative;
+
+  overflow-y: auto;
+
+  padding: 30px 22px;
+
+  border-radius: 27px;
+
+  background: #fff;
+
+  box-shadow: 0 35px 100px rgba(0,0,0,.25);
 
-.footer-text{
-  max-width:350px;
-  color:#777;
-  font-size:12px;
-  line-height:1.7;
-  margin-top:12px;
+  z-index: 2;
 }
 
-.footer-column h4{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.1em;
-  color:#777;
-  margin-bottom:15px;
+.modal-close {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+
+  background: #fff;
+
+  color: #555;
+
+  font-size: 20px;
+  line-height: 1;
 }
+
+.modal-kicker {
+  color: var(--red);
 
-.footer-column a{
-  display:block;
-  font-size:12px;
-  color:#ccc;
-  margin-bottom:10px;
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: .16em;
 }
+
+.modal-dialog h2 {
+  max-width: 430px;
+
+  margin: 15px 0 0;
+
+  font-size: 42px;
 
-.footer-column a:hover{
-  color:white;
+  line-height: .95;
+
+  letter-spacing: -.07em;
 }
 
-.footer-bottom{
-  margin-top:45px;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:#666;
-  font-size:10px;
-  display:flex;
-  justify-content:space-between;
+.modal-dialog h2 span {
+  color: var(--red);
 }
+
+.modal-intro {
+  max-width: 430px;
 
-/* ================= MOBILE NAV ================= */
+  margin: 15px 0 25px;
 
-.mobile-dock{
-  display:none;
-  position:fixed;
-  z-index:900;
-  bottom:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:calc(100% - 24px);
-  max-width:430px;
-  padding:7px;
-  background:rgba(8,8,8,.9);
-  backdrop-filter:blur(18px);
-  border-radius:999px;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
+  color: #777;
+
+  font-size: 10px;
+
+  line-height: 1.75;
 }
 
-.mobile-dock a{
-  flex:1;
-  text-align:center;
-  padding:11px 8px;
-  color:#777;
-  font-size:10px;
-  font-weight:700;
-  border-radius:999px;
+#consultForm {
+  display: grid;
+  gap: 15px;
 }
 
-.mobile-dock a.active{
-  background:white;
-  color:#111;
+#consultForm label:not(.agreement) {
+  display: grid;
+  gap: 7px;
 }
 
-/* ================= MODAL ================= */
+#consultForm label > span {
+  color: #555;
 
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.68);
-  backdrop-filter:blur(12px);
+  font-size: 8px;
+  font-weight: 800;
 }
 
-.modal.show{
-  display:flex;
-}
+#consultForm input,
+#consultForm textarea,
+#consultForm select {
+  width: 100%;
 
-.modal-box{
-  width:min(520px,100%);
-  max-height:90svh;
-  overflow:auto;
-  background:white;
-  border-radius:28px;
-  padding:30px;
-  position:relative;
-  box-shadow:0 30px 100px rgba(0,0,0,.3);
+  padding: 13px 14px;
+
+  border: 1px solid #dedede;
+  border-radius: 13px;
+
+  outline: none;
+
+  background: #fafafa;
+
+  color: #111;
+
+  font-size: 11px;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
 }
 
-.modal-close{
-  position:absolute;
-  right:18px;
-  top:18px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#eee;
-  font-size:20px;
+#consultForm textarea {
+  min-height: 110px;
+
+  resize: vertical;
 }
+
+#consultForm input:focus,
+#consultForm textarea:focus,
+#consultForm select:focus {
+  border-color: var(--red);
 
-.modal-box h2{
-  font-family:"Manrope";
-  font-size:32px;
-  letter-spacing:-.06em;
+  background: #fff;
+
+  box-shadow: 0 0 0 4px rgba(215,25,32,.07);
 }
+
+.agreement {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
 
-.modal-box>p{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:6px;
-  margin-bottom:25px;
+  cursor: pointer;
 }
 
-.form-group{
-  margin-bottom:14px;
+.agreement input {
+  width: 15px !important;
+  height: 15px;
+
+  margin-top: 1px;
+
+  accent-color: var(--red);
 }
 
-.form-group label{
-  display:block;
-  font-size:11px;
-  font-weight:700;
-  margin-bottom:6px;
+.agreement span {
+  color: #777 !important;
+
+  font-size: 8px !important;
+  font-weight: 500 !important;
+
+  line-height: 1.5;
 }
+
+.submit-button {
+  min-height: 50px;
 
-.form-group input,
-.form-group textarea{
-  width:100%;
-  border:1px solid #ddd;
-  background:#f7f7f4;
-  border-radius:13px;
-  padding:12px 13px;
-  outline:none;
-  font-size:13px;
+  margin-top: 5px;
+
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid var(--red);
+  border-radius: 999px;
+
+  background: var(--red);
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 900;
 }
+
+.submit-button:disabled {
+  cursor: not-allowed;
 
-.form-group input:focus,
-.form-group textarea:focus{
-  border-color:var(--red);
+  border-color: #ddd;
+
+  background: #eee;
+
+  color: #aaa;
 }
 
-.form-group textarea{
-  min-height:100px;
-  resize:vertical;
+.submit-button b {
+  font-size: 15px;
 }
 
-.agreement{
-  display:flex;
-  gap:9px;
-  align-items:flex-start;
-  font-size:10px;
-  color:#666;
-  margin:16px 0;
+.policy-dialog {
+  max-width: 620px;
 }
 
-.agreement input{
-  margin-top:2px;
-  accent-color:var(--red);
+.policy-content {
+  margin-top: 30px;
 }
+
+.policy-content h3 {
+  margin: 22px 0 5px;
 
-.submit-btn{
-  width:100%;
-  background:var(--black);
-  color:white;
-  min-height:50px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:12px;
+  font-size: 14px;
+
+  letter-spacing: -.03em;
 }
+
+.policy-content p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 10px;
 
-.submit-btn:disabled{
-  opacity:.35;
-  cursor:not-allowed;
+  line-height: 1.8;
 }
 
-/* ================= REVEAL ================= */
 
-.reveal{
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity .8s var(--ease),transform .8s var(--ease);
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(22px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s var(--ease);
 }
 
-.reveal.visible{
-  opacity:1;
-  transform:none;
+.reveal.visible {
+  opacity: 1;
+
+  transform: translateY(0);
 }
+
 
-/* ================= RESPONSIVE ================= */
+/* =========================================================
+   TABLET
+========================================================= */
 
-@media(max-width:900px){
+@media (min-width: 681px) {
 
-  .desktop-nav{
-    display:none;
+  .section-shell {
+    width: min(calc(100% - 48px), var(--container));
   }
 
-  .mobile-dock{
-    display:flex;
+  .site-header {
+    width: min(calc(100% - 48px), var(--container));
   }
 
-  .header-inner{
-    padding:10px 14px;
+  .header-cta {
+    display: inline-flex;
   }
 
-  .hero-layout,
-  .intro-grid,
-  .about-grid{
-    grid-template-columns:1fr;
+  .hero {
+    padding-top: 85px;
+    padding-bottom: 100px;
+
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, .75fr);
+
+    gap: 50px;
   }
 
-  .hero{
-    padding-top:115px;
+  .hero-actions {
+    flex-direction: row;
   }
 
-  .hero-visual{
-    min-height:510px;
+  .hero-actions .button {
+    min-width: 165px;
   }
 
-  .hero-card{
-    min-height:500px;
+  .hero-meta {
+    max-width: 470px;
   }
 
-  .projects{
-    grid-template-columns:1fr;
+  .hero-portrait {
+    min-height: 520px;
   }
 
-  .project-card,
-  .project-card:nth-child(2),
-  .project-card:nth-child(3),
-  .project-card:nth-child(4){
-    grid-column:auto;
-    min-height:430px;
+  .identity-photo {
+    width: min(100%, 430px);
+    max-height: 600px;
   }
 
-  .process-grid{
-    grid-template-columns:repeat(2,1fr);
+  .portrait-caption {
+    left: 0;
+    bottom: 20px;
   }
 
-  .pricing-grid{
-    grid-template-columns:1fr;
+  .portrait-number {
+    top: 25px;
   }
 
-  .price-card.featured{
-    transform:none;
+  .intro {
+    padding-top: 100px;
+    padding-bottom: 110px;
+
+    grid-template-columns: 150px 1fr;
+
+    gap: 45px;
   }
 
-  .timeline-grid{
-    grid-template-columns:1fr;
+  .section {
+    padding-top: 105px;
+    padding-bottom: 105px;
   }
 
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
+  .section-heading {
+    margin-bottom: 50px;
+
+    grid-template-columns: minmax(0, 1fr) 300px;
+
+    gap: 50px;
   }
 
-  .footer-grid>div:first-child{
-    grid-column:1/-1;
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card {
+    min-height: 340px;
+  }
+
+  .portfolio-list {
+    gap: 85px;
+  }
+
+  .project-visual {
+    min-height: 500px;
+  }
+
+  .project-details {
+    padding-top: 28px;
+
+    flex-direction: row;
+
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .project-details > div {
+    min-width: 0;
+  }
+
+  .process-section {
+    grid-template-columns: minmax(250px, .65fr) minmax(0, 1fr);
+
+    gap: 80px;
+  }
+
+  .process-intro {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .price-card {
+    min-height: 550px;
+  }
+
+  .about-top {
+    grid-template-columns: minmax(0, 1fr) 380px;
+
+    gap: 80px;
+  }
+
+  .about-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .manifesto {
+    padding: 50px;
+  }
+
+  .footer {
+    padding-bottom: 45px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-bottom {
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-nav {
+    display: none;
   }
 }
 
-@media(max-width:600px){
 
-  .container{
-    width:min(100% - 24px,500px);
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 981px) {
+
+  .site-header {
+    margin-top: 22px;
   }
 
-  section{
-    padding:72px 0;
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
   }
 
-  .site-header{
-    padding:10px 0;
+  .nav-link {
+    position: relative;
+
+    color: #888;
+
+    font-size: 9px;
+    font-weight: 800;
   }
 
-  .header-inner{
-    width:calc(100% - 24px);
+  .nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 100%;
+    height: 1px;
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    background: var(--red);
+
+    transition: transform .25s ease;
   }
 
-  .logo{
-    font-size:14px;
+  .nav-link:hover,
+  .nav-link.active {
+    color: #111;
   }
 
-  .header-cta{
-    padding:9px 13px!important;
-    font-size:11px!important;
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
   }
 
-  .hero{
-    padding:100px 0 50px;
+  .availability {
+    display: flex;
   }
 
-  .hero h1{
-    font-size:clamp(48px,16vw,76px);
+  .hero {
+    min-height: calc(100svh - 90px);
+
+    padding-top: 55px;
+    padding-bottom: 80px;
+
+    grid-template-columns: minmax(0, 1fr) minmax(430px, .72fr);
+
+    gap: 80px;
   }
 
-  .hero-description{
-    font-size:14px;
+  .hero-title {
+    font-size: clamp(75px, 8.2vw, 112px);
   }
 
-  .hero-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+  .hero-description {
+    font-size: 13px;
   }
 
-  .btn{
-    min-height:47px;
-    padding:0 14px;
-    font-size:11px;
+  .hero-portrait {
+    min-height: 650px;
   }
 
-  .hero-visual{
-    min-height:440px;
+  .identity-photo {
+    width: min(100%, 500px);
+    max-height: 690px;
   }
 
-  .hero-card{
-    min-height:430px;
-    border-radius:26px;
+  .portrait-caption {
+    left: 15px;
+    bottom: 35px;
   }
 
-  .portrait{
-    width:78%;
+  .portrait-number {
+    right: 20px;
+    top: 35px;
+
+    font-size: 100px;
   }
 
-  .hero-meta{
-    left:17px;
-    right:17px;
-    bottom:17px;
+  .intro {
+    grid-template-columns: 180px minmax(0, 1fr);
+
+    gap: 100px;
   }
 
-  .section-head{
-    display:block;
-    margin-bottom:24px;
+  .service-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .section-description{
-    margin-top:15px;
+  .service-card {
+    min-height: 365px;
   }
 
-  .intro-card,
-  .profile-card,
-  .info-card,
+  .portfolio-list {
+    gap: 110px;
+  }
+
+  .project-visual {
+    min-height: 600px;
+  }
+
+  .project-details h3 {
+    font-size: 35px;
+  }
+
+  .process-section {
+    gap: 130px;
+  }
+
+  .about-top {
+    gap: 120px;
+  }
+
+  .about-panels article {
+    min-height: 260px;
+
+    padding: 32px;
+  }
+
+  .final-section {
+    padding-top: 150px;
+    padding-bottom: 170px;
+  }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1280px) {
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(470px, .7fr);
+
+    gap: 100px;
+  }
+
+  .identity-photo {
+    width: 520px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .section-shell,
+  .site-header {
+    width: calc(100% - 24px);
+  }
+
+  .brand-text small {
+    display: none;
+  }
+
+  .brand-symbol {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero {
+    padding-top: 48px;
+  }
+
+  .hero-title {
+    font-size: 49px;
+  }
+
+  .hero-description {
+    font-size: 12px;
+  }
+
+  .hero-meta span {
+    font-size: 7px;
+  }
+
+  .identity-photo {
+    width: min(100%, 310px);
+  }
+
+  .portrait-number {
+    font-size: 50px;
+  }
+
+  .portrait-caption {
+    left: 0;
+  }
+
   .service-card,
-  .price-card{
-    padding:24px;
+  .price-card {
+    padding: 21px;
   }
 
-  .intro-card h3{
-    font-size:25px;
+  .project-visual {
+    min-height: 270px;
   }
 
-  .services-grid{
-    grid-template-columns:1fr;
+  .browser-content {
+    padding: 20px;
   }
 
-  .service-card{
-    min-height:230px;
+  .project-details h3 {
+    font-size: 25px;
   }
 
-  .process-grid{
-    grid-template-columns:1fr;
+  .about-top h2 {
+    font-size: 48px;
   }
 
-  .process-card{
-    min-height:180px;
+  .manifesto {
+    padding: 25px 19px;
   }
 
-  .project-card,
-  .project-card:nth-child(2),
-  .project-card:nth-child(3),
-  .project-card:nth-child(4){
-    min-height:390px;
-  }
-
-  .browser{
-    width:82%;
-    height:48%;
-  }
-
-  .project-info h3{
-    font-size:25px;
-  }
-
-  .skill-grid{
-    grid-template-columns:1fr;
-  }
-
-  .final-card{
-    min-height:400px;
-    padding:32px 25px;
-    border-radius:25px;
-  }
-
-  .final-card::after{
-    font-size:70px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:30px;
-  }
-
-  .footer-grid>div:first-child{
-    grid-column:auto;
-  }
-
-  .footer-bottom{
-    display:block;
-    line-height:1.7;
-  }
-
-  .footer-bottom span{
-    display:block;
-  }
-
-  .modal-box{
-    padding:25px 20px;
-    border-radius:22px;
-  }
-
-  .modal-box h2{
-    font-size:28px;
+  .manifesto blockquote {
+    font-size: 25px;
   }
 }
 
-@media(prefers-reduced-motion:reduce){
 
-  html{
-    scroll-behavior:auto;
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
   }
 
   *,
   *::before,
-  *::after{
-    animation:none!important;
-    transition:none!important;
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 
-  .reveal{
-    opacity:1;
-    transform:none;
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
+
+</style>
+<style>
+
+/* =========================================================
+   NOCTIS — FREE PORTRAIT / PREMIUM HERO OVERRIDE
+   ========================================================= */
+
+.hero-visual{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+
+.hero-visual::before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(229,9,20,.20) 0%,
+    rgba(229,9,20,.09) 35%,
+    rgba(229,9,20,0) 72%
+  );
+  filter:blur(18px);
+  z-index:-2;
+  pointer-events:none;
+}
+
+.portrait-shadow{
+  position:absolute !important;
+  width:360px !important;
+  height:360px !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-42%) !important;
+  border-radius:50% !important;
+  background:radial-gradient(
+    circle,
+    rgba(229,9,20,.18) 0%,
+    rgba(229,9,20,.07) 38%,
+    transparent 72%
+  ) !important;
+  filter:blur(25px) !important;
+  box-shadow:none !important;
+  z-index:-1 !important;
+  pointer-events:none !important;
+}
+
+.portrait{
+  position:relative !important;
+  width:min(78%,380px) !important;
+  height:auto !important;
+  min-height:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:center !important;
+  z-index:2 !important;
+}
+
+.portrait img{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:3 / 4 !important;
+  object-fit:contain !important;
+  object-position:center bottom !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  filter:
+    drop-shadow(0 28px 35px rgba(0,0,0,.16))
+    drop-shadow(0 0 38px rgba(229,9,20,.10)) !important;
+}
+
+@media (max-width:700px){
+  .hero-visual{
+    min-height:480px;
+    margin-top:10px;
+  }
+
+  .hero-visual::before{
+    width:330px;
+    height:330px;
+  }
+
+  .portrait-shadow{
+    width:280px !important;
+    height:280px !important;
+  }
+
+  .portrait{
+    width:min(82%,320px) !important;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
+  <div class="site">
 
-    <a href="#home" class="logo">
-      NOCTIS<span>.</span>
-    </a>
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-    <nav class="desktop-nav">
-      <a href="#home">Home</a>
-      <a href="#layanan">Layanan</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#tentang">Tentang Saya</a>
-      <a href="#harga">Harga</a>
-    </nav>
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="header">
+      <a href="#home" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">NOCTIS<span>ATALIC</span></span>
+      </a>
 
-    <button class="btn header-cta open-modal">
-      Konsultasi
-    </button>
+      <nav class="top-nav" aria-label="Navigasi utama">
+        <a href="#layanan">Layanan</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#tentang">Tentang Saya</a>
+      </nav>
 
-  </div>
-</header>
+      <button class="header-cta open-consult" type="button">
+        <span>Mulai Proyek</span>
+        <span class="arrow">↗</span>
+      </button>
+    </header>
 
-<main>
+    <main>
 
-<!-- ================= HERO ================= -->
+      <!-- =========================
+           HERO
+      ========================== -->
+      <section class="hero section" id="home">
 
-<section class="hero" id="home">
+        <div class="hero-copy">
 
-  <div class="container hero-layout">
+          <div class="eyebrow reveal">
+            <span class="eyebrow-dot"></span>
+            FULLSTACK WEB DEVELOPER
+          </div>
 
-    <div class="hero-copy reveal">
+          <h1 class="hero-title reveal">
+            Bangun sesuatu yang
+            <span>terlihat bernilai.</span>
+            <br>
+            Bekerja lebih jauh.
+          </h1>
 
-      <div class="eyebrow">
-        Fullstack Web Developer
-      </div>
+          <p class="hero-description reveal">
+            Saya membangun website modern untuk bisnis dan brand yang ingin terlihat
+            lebih profesional, dipercaya lebih cepat, dan memiliki digital presence
+            yang benar-benar bekerja.
+          </p>
 
-      <h1>
-        Website yang<br>
-        terlihat <em>serius.</em>
-      </h1>
+          <div class="hero-actions reveal">
+            <button class="button button-primary open-consult" type="button">
+              <span>Mulai Konsultasi</span>
+              <span class="button-arrow">↗</span>
+            </button>
 
-      <p class="hero-description">
-        Saya membantu bisnis, brand, dan individu membangun website
-        modern yang bukan cuma bagus dilihat, tetapi juga dirancang
-        untuk membangun kepercayaan dan mendorong tindakan.
-      </p>
+            <a href="#portfolio" class="button button-ghost">
+              <span>Lihat Portfolio</span>
+              <span class="button-arrow">↓</span>
+            </a>
+          </div>
 
-      <div class="hero-actions">
+          <div class="hero-proof reveal">
+            <div class="proof-avatars">
+              <span>W</span>
+              <span>S</span>
+              <span>I</span>
+            </div>
 
-        <button class="btn btn-dark open-modal">
-          Mulai Konsultasi
-        </button>
+            <div>
+              <strong>Web untuk bisnis nyata.</strong>
+              <small>Design · Development · Maintenance</small>
+            </div>
+          </div>
 
-        <a href="#portfolio" class="btn btn-light">
-          Lihat Portfolio
-        </a>
+        </div>
 
-      </div>
+        <!-- FOTO BEBAS — HANYA SATU FOTO -->
+        <div class="hero-visual reveal">
 
-    </div>
+          <div class="visual-grid"></div>
 
-    <div class="hero-visual reveal">
+          <div class="visual-number">01</div>
 
-      <div class="hero-card">
+          <div class="visual-line line-one"></div>
+          <div class="visual-line line-two"></div>
 
-        <img
-          src="./foto-asli.png"
-          alt="Noctis Atalic"
-          class="portrait"
-          id="heroPortrait"
-        >
+          <div class="portrait-shadow"></div>
 
-        <div class="hero-meta">
+          <div class="portrait">
+            <img
+              src="./foto-asli.png"
+              alt="Noctis Atalic"
+              width="600"
+              height="800"
+              fetchpriority="high"
+            >
+          </div>
+
+          <div class="floating-note note-top">
+            <span class="note-icon">✦</span>
+            <div>
+              <small>FOCUS</small>
+              <strong>Digital Experience</strong>
+            </div>
+          </div>
+
+          <div class="floating-note note-bottom">
+            <strong>AVAILABLE</strong>
+            <span>for selected projects</span>
+          </div>
+
+          <div class="scroll-label">
+            <span></span>
+            SCROLL TO EXPLORE
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           MARQUEE
+      ========================== -->
+      <section class="ticker" aria-label="Keahlian">
+        <div class="ticker-track">
+          <span>WEB DEVELOPMENT</span>
+          <i>✦</i>
+          <span>FULLSTACK</span>
+          <i>✦</i>
+          <span>UI EXPERIENCE</span>
+          <i>✦</i>
+          <span>BUSINESS WEBSITE</span>
+          <i>✦</i>
+          <span>WEB DEVELOPMENT</span>
+          <i>✦</i>
+          <span>FULLSTACK</span>
+          <i>✦</i>
+          <span>UI EXPERIENCE</span>
+          <i>✦</i>
+          <span>BUSINESS WEBSITE</span>
+          <i>✦</i>
+        </div>
+      </section>
+
+
+      <!-- =========================
+           SERVICES
+      ========================== -->
+      <section class="section services-section" id="layanan">
+
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-kicker">01 / LAYANAN</span>
+            <h2>
+              Bukan sekadar<br>
+              <em>website.</em>
+            </h2>
+          </div>
+
+          <p>
+            Setiap proyek dibuat dengan tujuan yang jelas:
+            membuat bisnis terlihat lebih profesional sekaligus
+            memberi pengalaman digital yang nyaman bagi pelanggan.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card service-feature reveal">
+            <div class="service-top">
+              <span class="service-number">01</span>
+              <span class="service-icon">↗</span>
+            </div>
+
+            <div class="service-content">
+              <span class="service-label">CORE SERVICE</span>
+              <h3>Business<br>Website</h3>
+              <p>
+                Website profesional untuk memperkuat identitas,
+                meningkatkan kepercayaan, dan mengubah pengunjung
+                menjadi calon pelanggan.
+              </p>
+            </div>
+
+            <div class="service-footer">
+              <span>Landing Page</span>
+              <span>Company Profile</span>
+              <span>Business System</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-top">
+              <span class="service-number">02</span>
+              <span class="service-icon">⌁</span>
+            </div>
+
+            <div class="service-content">
+              <span class="service-label">EXPERIENCE</span>
+              <h3>Modern<br>Interface</h3>
+              <p>
+                Tampilan clean, premium, responsif dan dirancang
+                agar brand kamu punya karakter yang kuat.
+              </p>
+            </div>
+
+            <div class="service-footer">
+              <span>Responsive</span>
+              <span>Interaction</span>
+            </div>
+          </article>
+
+          <article class="service-card service-dark reveal">
+            <div class="service-top">
+              <span class="service-number">03</span>
+              <span class="service-icon">⌘</span>
+            </div>
+
+            <div class="service-content">
+              <span class="service-label">SYSTEM</span>
+              <h3>Fullstack<br>Development</h3>
+              <p>
+                Tidak berhenti di tampilan. Sistem backend,
+                database, dashboard dan API dapat dibangun
+                sesuai kebutuhan proyek.
+              </p>
+            </div>
+
+            <div class="service-footer">
+              <span>API</span>
+              <span>Database</span>
+              <span>Admin Panel</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- =========================
+           PORTFOLIO
+      ========================== -->
+      <section class="section portfolio-section" id="portfolio">
+
+        <div class="section-heading portfolio-heading reveal">
+          <div>
+            <span class="section-kicker">02 / SELECTED WORK</span>
+            <h2>
+              Beberapa karya<br>
+              <em>yang pernah dibuat.</em>
+            </h2>
+          </div>
+
+          <span class="project-count">03 PROJECTS</span>
+        </div>
+
+        <div class="portfolio-list">
+
+          <article class="project project-red reveal">
+            <div class="project-visual">
+              <div class="browser browser-light">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <b>SPR AUDIO</b>
+                </div>
+
+                <div class="browser-content">
+                  <small>PROFESSIONAL SOUND SYSTEM</small>
+                  <strong>
+                    Sound for<br>
+                    every moment.
+                  </strong>
+                  <div class="fake-buttons">
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+              </div>
+
+              <span class="project-index">01</span>
+            </div>
+
+            <div class="project-info">
+              <div>
+                <span class="project-type">BUSINESS WEBSITE</span>
+                <h3>SPR Audio</h3>
+                <p>
+                  Website bisnis sound system dengan katalog,
+                  informasi layanan, paket dan alur konsultasi pelanggan.
+                </p>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://spraudio.github.io/SPR-Audio/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Visit Website</span>
+                <b>↗</b>
+              </a>
+            </div>
+          </article>
+
+
+          <article class="project project-black reveal">
+            <div class="project-visual">
+              <div class="browser browser-dark">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <b>CYRUS WEB</b>
+                </div>
+
+                <div class="browser-content">
+                  <small>WEB DEVELOPMENT STUDIO</small>
+                  <strong>
+                    Digital products<br>
+                    with purpose.
+                  </strong>
+                  <div class="fake-code">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+              </div>
+
+              <span class="project-index">02</span>
+            </div>
+
+            <div class="project-info">
+              <div>
+                <span class="project-type">WEB DEVELOPMENT</span>
+                <h3>Cyrus Web</h3>
+                <p>
+                  Platform portfolio dan layanan pembuatan website
+                  dengan fokus pada pengalaman digital modern.
+                </p>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://spraudio.github.io/Cyrus-Web/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Visit Website</span>
+                <b>↗</b>
+              </a>
+            </div>
+          </article>
+
+
+          <article class="project project-white reveal">
+            <div class="project-visual">
+              <div class="browser browser-koi">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <b>IHSAN KOI</b>
+                </div>
+
+                <div class="koi-layout">
+                  <div class="koi-circle"></div>
+                  <div class="koi-lines"></div>
+                  <strong>KOI<br>COLLECTION</strong>
+                </div>
+              </div>
+
+              <span class="project-index">03</span>
+            </div>
+
+            <div class="project-info">
+              <div>
+                <span class="project-type">COMMERCE EXPERIENCE</span>
+                <h3>IHSAN KOI</h3>
+                <p>
+                  Konsep website premium untuk katalog ikan koi
+                  dengan pengalaman browsing dan alur order yang sederhana.
+                </p>
+              </div>
+
+              <button class="project-link open-consult" type="button">
+                <span>Discuss Project</span>
+                <b>↗</b>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           PROCESS
+      ========================== -->
+      <section class="section process-section">
+
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-kicker">03 / PROCESS</span>
+            <h2>
+              Dari ide menjadi<br>
+              <em>sesuatu yang nyata.</em>
+            </h2>
+          </div>
+
+          <p>
+            Proses dibuat sederhana supaya kamu tidak perlu
+            pusing dengan hal teknis.
+          </p>
+        </div>
+
+        <div class="process-list">
+
+          <div class="process-item reveal">
+            <span class="process-no">01</span>
+            <div class="process-main">
+              <h3>Discover</h3>
+              <p>
+                Memahami bisnis, target pelanggan, kebutuhan,
+                tujuan dan karakter brand.
+              </p>
+            </div>
+            <span class="process-symbol">+</span>
+          </div>
+
+          <div class="process-item reveal">
+            <span class="process-no">02</span>
+            <div class="process-main">
+              <h3>Design</h3>
+              <p>
+                Menentukan struktur, visual, layout dan
+                pengalaman pengguna sebelum development.
+              </p>
+            </div>
+            <span class="process-symbol">+</span>
+          </div>
+
+          <div class="process-item reveal">
+            <span class="process-no">03</span>
+            <div class="process-main">
+              <h3>Build</h3>
+              <p>
+                Mengubah rancangan menjadi website yang
+                responsif, interaktif dan siap digunakan.
+              </p>
+            </div>
+            <span class="process-symbol">+</span>
+          </div>
+
+          <div class="process-item reveal">
+            <span class="process-no">04</span>
+            <div class="process-main">
+              <h3>Launch</h3>
+              <p>
+                Testing, deployment dan memastikan semuanya
+                berjalan dengan baik di berbagai perangkat.
+              </p>
+            </div>
+            <span class="process-symbol">↗</span>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- =========================
+           PRICING
+      ========================== -->
+      <section class="section pricing-section">
+
+        <div class="pricing-head reveal">
+          <div>
+            <span class="section-kicker">04 / INVESTMENT</span>
+            <h2>
+              Pilih level<br>
+              <em>yang sesuai.</em>
+            </h2>
+          </div>
+
+          <p>
+            Harga bukan hanya tentang jumlah halaman.
+            Yang dibangun adalah aset digital untuk bisnis kamu.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <article class="price-card reveal">
+            <div class="price-top">
+              <span>STARTER</span>
+              <small>01</small>
+            </div>
+
+            <h3>Rp800K<span>–2JT</span></h3>
+
+            <p>
+              Cocok untuk personal brand,
+              usaha kecil dan kebutuhan sederhana.
+            </p>
+
+            <ul>
+              <li>✓ Landing page profesional</li>
+              <li>✓ Responsive mobile & desktop</li>
+              <li>✓ WhatsApp integration</li>
+              <li>✓ Basic SEO structure</li>
+              <li>✓ Deployment</li>
+            </ul>
+
+            <button class="price-button open-consult" type="button">
+              Konsultasikan <span>↗</span>
+            </button>
+          </article>
+
+
+          <article class="price-card price-featured reveal">
+            <div class="popular">MOST REQUESTED</div>
+
+            <div class="price-top">
+              <span>BUSINESS</span>
+              <small>02</small>
+            </div>
+
+            <h3>Rp3JT<span>–8JT</span></h3>
+
+            <p>
+              Untuk bisnis yang membutuhkan website
+              lebih serius, lengkap dan siap berkembang.
+            </p>
+
+            <ul>
+              <li>✓ Custom modern UI/UX</li>
+              <li>✓ Multi-section / multi-page</li>
+              <li>✓ Form & WhatsApp flow</li>
+              <li>✓ CMS / admin panel sesuai kebutuhan</li>
+              <li>✓ Database & API bila diperlukan</li>
+              <li>✓ Deployment & testing</li>
+            </ul>
+
+            <button class="price-button open-consult" type="button">
+              Mulai Diskusi <span>↗</span>
+            </button>
+          </article>
+
+
+          <article class="price-card reveal">
+            <div class="price-top">
+              <span>PREMIUM</span>
+              <small>03</small>
+            </div>
+
+            <h3>Rp10JT<span>–15JT+</span></h3>
+
+            <p>
+              Sistem digital custom untuk bisnis yang
+              membutuhkan experience dan functionality lebih jauh.
+            </p>
+
+            <ul>
+              <li>✓ Custom product experience</li>
+              <li>✓ Fullstack architecture</li>
+              <li>✓ Authentication & dashboard</li>
+              <li>✓ Database & API</li>
+              <li>✓ Advanced interaction</li>
+              <li>✓ Deployment & maintenance option</li>
+            </ul>
+
+            <button class="price-button open-consult" type="button">
+              Bahas Kebutuhan <span>↗</span>
+            </button>
+          </article>
+
+        </div>
+
+        <div class="pricing-note reveal">
+          <span>✦</span>
+          Harga final disesuaikan dengan scope, kompleksitas dan kebutuhan sistem.
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           ABOUT
+      ========================== -->
+      <section class="section about-section" id="tentang">
+
+        <div class="about-label reveal">
+          <span class="section-kicker">05 / ABOUT</span>
+          <span>NOCTIS ATALIC</span>
+        </div>
+
+        <div class="about-content">
+
+          <div class="about-statement reveal">
+            <span class="quote-mark">“</span>
+            <h2>
+              Saya percaya website
+              bukan hanya tempat
+              menaruh informasi.
+            </h2>
+          </div>
+
+          <div class="about-text reveal">
+            <p class="large">
+              Website adalah cara pertama seseorang
+              mengenal sebuah bisnis di dunia digital.
+            </p>
+
+            <p>
+              Karena itu saya tidak hanya mengejar tampilan.
+              Saya memikirkan bagaimana sebuah halaman terasa,
+              bagaimana informasi disampaikan, bagaimana
+              pengunjung mengambil keputusan, dan bagaimana
+              sistem bekerja di baliknya.
+            </p>
+
+            <p>
+              Saya terus mengembangkan kemampuan di bidang
+              front-end, fullstack development, problem solving
+              dan AI-assisted development untuk menciptakan
+              solusi digital yang semakin baik.
+            </p>
+
+            <div class="about-signature">
+              <span>NOCTIS</span>
+              <small>FULLSTACK WEB DEVELOPER</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-facts reveal">
+          <div>
+            <span>FOCUS</span>
+            <strong>Web Development</strong>
+          </div>
 
           <div>
-            <strong>Noctis Atalic</strong>
-            <small>Web Developer · Digital Builder</small>
+            <span>APPROACH</span>
+            <strong>Design × Technology</strong>
           </div>
 
-          <div class="available">
-            <i></i>
-            Available
+          <div>
+            <span>STACK</span>
+            <strong>Frontend × Backend</strong>
           </div>
 
+          <div>
+            <span>MODE</span>
+            <strong>Remote / Project Based</strong>
+          </div>
         </div>
 
-      </div>
+      </section>
 
-    </div>
 
-  </div>
+      <!-- =========================
+           FINAL CTA
+      ========================== -->
+      <section class="final-cta section reveal">
 
-</section>
-
-<!-- ================= INTRO ================= -->
-
-<section class="intro-section">
-
-  <div class="container">
-
-    <div class="intro-grid">
-
-      <article class="intro-card dark reveal">
-
-        <div class="section-kicker">
-          Digital Presence
+        <div class="cta-decoration">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
 
-        <h3>
-          Website bukan sekadar halaman internet.
-        </h3>
+        <span class="section-kicker">LET'S BUILD</span>
+
+        <h2>
+          Punya ide?
+          <br>
+          <em>Jadikan nyata.</em>
+        </h2>
 
         <p>
-          Website adalah tempat pertama seseorang menilai sebuah
-          bisnis. Karena itu saya menggabungkan visual, struktur,
-          pengalaman pengguna, dan teknologi agar website terasa
-          profesional sejak interaksi pertama.
+          Ceritakan kebutuhan website kamu.
+          Kita mulai dari percakapan sederhana.
         </p>
 
-        <div class="mini-stats">
-
-          <div class="stat">
-            <strong>UI</strong>
-            <span>Modern Interface</span>
-          </div>
-
-          <div class="stat">
-            <strong>UX</strong>
-            <span>Clear Experience</span>
-          </div>
-
-          <div class="stat">
-            <strong>WEB</strong>
-            <span>Responsive Build</span>
-          </div>
-
-          <div class="stat">
-            <strong>AI</strong>
-            <span>Assisted Workflow</span>
-          </div>
-
-        </div>
-
-      </article>
-
-      <article class="intro-card reveal">
-
-        <div class="section-kicker">
-          What I Build
-        </div>
-
-        <h3>
-          Digital experience yang terasa premium.
-        </h3>
-
-        <p>
-          Mulai dari company profile, portfolio, landing page,
-          sampai website bisnis dengan sistem yang lebih kompleks.
-          Setiap proyek disusun sesuai kebutuhan dan karakter brand.
-        </p>
-
-        <button
-          class="btn btn-dark open-modal"
-          style="margin-top:25px"
-        >
-          Diskusikan Project
+        <button class="cta-big open-consult" type="button">
+          <span>Mulai Proyek</span>
+          <b>↗</b>
         </button>
 
-      </article>
+      </section>
 
-    </div>
+    </main>
 
-  </div>
 
-</section>
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
 
-<!-- ================= PORTFOLIO ================= -->
+      <div class="footer-main">
+        <a href="#home" class="footer-brand">
+          <span class="brand-mark">N</span>
+          <span>
+            <strong>NOCTIS ATALIC</strong>
+            <small>FULLSTACK WEB DEVELOPER</small>
+          </span>
+        </a>
 
-<section class="portfolio-section" id="portfolio">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Selected Work
-        </div>
-
-        <h2 class="section-title">
-          Project yang<br>
-          pernah dibangun.
-        </h2>
-
+        <p>
+          Membangun pengalaman digital
+          yang punya tujuan.
+        </p>
       </div>
 
-      <p class="section-description">
-        Beberapa project yang menunjukkan bagaimana desain,
-        struktur, dan teknologi diterapkan menjadi sebuah
-        pengalaman website.
-      </p>
-
-    </div>
-
-    <div class="projects">
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                SPR AUDIO
-              </div>
-
-              <div class="fake-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            Sound System · Business Website
-          </div>
-
-          <h3>
-            SPR Audio
-          </h3>
-
-          <p>
-            Website untuk layanan sound system dan audio production.
-          </p>
-
-          <a
-            href="https://spraudio.github.io/SPR-Audio/"
-            target="_blank"
-            rel="noopener"
-            class="project-link"
-          >
-            Buka Website
-          </a>
-
-        </div>
-
-      </article>
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                CYRUS WEB
-              </div>
-
-              <div class="fake-lines">
-                <span style="width:80%"></span>
-                <span style="width:55%"></span>
-                <span style="width:65%"></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            Web Development · Digital Service
-          </div>
-
-          <h3>
-            Cyrus Web
-          </h3>
-
-          <p>
-            Platform showcase untuk layanan pembuatan website.
-          </p>
-
-          <a
-            href="https://spraudio.github.io/Cyrus-Web/"
-            target="_blank"
-            rel="noopener"
-            class="project-link"
-          >
-            Buka Website
-          </a>
-
-        </div>
-
-      </article>
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                IHSAN KOI
-              </div>
-
-              <div class="fake-lines">
-                <span style="width:60%"></span>
-                <span style="width:75%"></span>
-                <span style="width:45%"></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            E-Commerce · Koi Business
-          </div>
-
-          <h3>
-            IHSAN KOI
-          </h3>
-
-          <p>
-            Konsep website bisnis aquarium dan koi dengan fokus conversion.
-          </p>
-
-          <button class="project-link open-modal">
-            Konsultasikan Project
-          </button>
-
-        </div>
-
-      </article>
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                YOUR BRAND
-              </div>
-
-              <div class="fake-lines">
-                <span style="width:75%"></span>
-                <span style="width:50%"></span>
-                <span style="width:70%"></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            Custom Website
-          </div>
-
-          <h3>
-            Project Berikutnya?
-          </h3>
-
-          <p>
-            Website untuk bisnis atau brand Anda bisa dimulai dari sini.
-          </p>
-
-          <button class="project-link open-modal">
-            Mulai Project
-          </button>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= SERVICES ================= -->
-
-<section id="layanan">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Services
-        </div>
-
-        <h2 class="section-title">
-          Yang bisa<br>
-          saya bangun.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Fokus pada website yang memiliki tujuan jelas,
-        bukan sekadar tampilan yang terlihat ramai.
-      </p>
-
-    </div>
-
-    <div class="services-grid">
-
-      <article class="service-card reveal">
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Noctis Atalic</span>
 
         <div>
-
-          <h3>
-            Company Profile
-          </h3>
-
-          <p>
-            Website profesional untuk memperkenalkan bisnis,
-            layanan, perusahaan, maupun organisasi.
-          </p>
-
+          <a href="#home">Home</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#tentang">Tentang Saya</a>
         </div>
-
-        <div class="service-tags">
-          <span>Responsive</span>
-          <span>Modern UI</span>
-          <span>SEO Ready</span>
-        </div>
-
-      </article>
-
-      <article class="service-card reveal">
-
-        <div>
-
-          <h3>
-            Landing Page
-          </h3>
-
-          <p>
-            Halaman khusus yang dibuat untuk campaign,
-            promosi produk, iklan, maupun mendapatkan leads.
-          </p>
-
-        </div>
-
-        <div class="service-tags">
-          <span>Conversion</span>
-          <span>CTA</span>
-          <span>Fast</span>
-        </div>
-
-      </article>
-
-      <article class="service-card reveal">
-
-        <div>
-
-          <h3>
-            Business Website
-          </h3>
-
-          <p>
-            Website bisnis dengan struktur lebih lengkap,
-            katalog, layanan, portfolio, FAQ, dan integrasi.
-          </p>
-
-        </div>
-
-        <div class="service-tags">
-          <span>Business</span>
-          <span>CMS</span>
-          <span>Integration</span>
-        </div>
-
-      </article>
-
-      <article class="service-card reveal">
-
-        <div>
-
-          <h3>
-            Custom Web System
-          </h3>
-
-          <p>
-            Sistem website yang membutuhkan database,
-            dashboard, authentication, API, dan fitur custom.
-          </p>
-
-        </div>
-
-        <div class="service-tags">
-          <span>Backend</span>
-          <span>Database</span>
-          <span>API</span>
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= PROCESS ================= -->
-
-<section class="process-section">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Workflow
-        </div>
-
-        <h2 class="section-title">
-          Dari ide menjadi<br>
-          website.
-        </h2>
-
       </div>
 
-      <p class="section-description">
-        Proses dibuat sederhana supaya Anda bisa memahami
-        apa yang sedang dikerjakan tanpa dibuat bingung
-        dengan istilah teknis.
-      </p>
-
-    </div>
-
-    <div class="process-grid">
-
-      <article class="process-card reveal">
-
-        <h3>
-          Diskusi
-        </h3>
-
-        <p>
-          Memahami bisnis, kebutuhan, target pengguna,
-          dan tujuan website.
-        </p>
-
-      </article>
-
-      <article class="process-card reveal">
-
-        <h3>
-          Perancangan
-        </h3>
-
-        <p>
-          Menentukan struktur halaman, visual direction,
-          dan pengalaman pengguna.
-        </p>
-
-      </article>
-
-      <article class="process-card reveal">
-
-        <h3>
-          Development
-        </h3>
-
-        <p>
-          Desain diterjemahkan menjadi website responsive
-          dengan teknologi yang sesuai.
-        </p>
-
-      </article>
-
-      <article class="process-card reveal">
-
-        <h3>
-          Launch
-        </h3>
-
-        <p>
-          Testing, optimasi, deployment, dan memastikan
-          website siap digunakan.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= PRICING ================= -->
-
-<section id="harga">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Investment
-        </div>
-
-        <h2 class="section-title">
-          Paket website<br>
-          untuk kebutuhanmu.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Harga dapat menyesuaikan kompleksitas, jumlah halaman,
-        fitur, integrasi, dan kebutuhan bisnis.
-      </p>
-
-    </div>
-
-    <div class="pricing-grid">
-
-      <article class="price-card reveal">
-
-        <h3>
-          Starter
-        </h3>
-
-        <div class="price">
-          Rp800K
-          <small>— mulai</small>
-        </div>
-
-        <p>
-          Cocok untuk personal, UMKM, atau kebutuhan
-          website sederhana.
-        </p>
-
-        <ul class="features">
-          <li>Landing page</li>
-          <li>Responsive mobile</li>
-          <li>Modern visual design</li>
-          <li>CTA WhatsApp</li>
-          <li>Deployment website</li>
-        </ul>
-
-        <button class="btn btn-dark open-modal">
-          Konsultasikan
-        </button>
-
-      </article>
-
-      <article class="price-card featured reveal">
-
-        <div class="price-badge">
-          POPULER
-        </div>
-
-        <h3>
-          Business
-        </h3>
-
-        <div class="price">
-          Rp5JT
-          <small>— mulai</small>
-        </div>
-
-        <p>
-          Untuk bisnis yang membutuhkan website profesional
-          dengan struktur dan fitur lebih lengkap.
-        </p>
-
-        <ul class="features">
-          <li>Multi-section website</li>
-          <li>Premium UI/UX</li>
-          <li>Portfolio / katalog</li>
-          <li>Form & WhatsApp integration</li>
-          <li>Basic SEO</li>
-          <li>Deployment</li>
-        </ul>
-
-        <button
-          class="btn"
-          style="background:white;color:#111"
-          onclick="openConsultation()"
-        >
-          Pilih Paket
-        </button>
-
-      </article>
-
-      <article class="price-card reveal">
-
-        <h3>
-          Custom
-        </h3>
-
-        <div class="price">
-          Rp10JT+
-          <small>— mulai</small>
-        </div>
-
-        <p>
-          Untuk bisnis atau project yang membutuhkan
-          sistem website custom.
-        </p>
-
-        <ul class="features">
-          <li>Custom UI/UX</li>
-          <li>Dashboard admin</li>
-          <li>Database</li>
-          <li>Authentication</li>
-          <li>API / integration</li>
-          <li>Custom feature</li>
-        </ul>
-
-        <button class="btn btn-dark open-modal">
-          Bahas Project
-        </button>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= ABOUT ================= -->
-
-<section id="tentang">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          About
-        </div>
-
-        <h2 class="section-title">
-          Di balik<br>
-          pekerjaannya.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Bukan hanya soal menulis kode. Saya tertarik memahami
-        masalah lalu mencari cara paling masuk akal untuk
-        mengubahnya menjadi solusi digital.
-      </p>
-
-    </div>
-
-    <div class="about-grid">
-
-      <article class="profile-card reveal">
-
-        <div>
-
-          <div class="profile-label">
-            Independent Developer
-          </div>
-
-          <div class="profile-name">
-            Noctis<br>
-            <span>Atalic.</span>
-          </div>
-
-        </div>
-
-        <div class="profile-bottom">
-
-          <div class="profile-location">
-            Indonesia<br>
-            Available for projects
-          </div>
-
-          <div class="profile-status"></div>
-
-        </div>
-
-      </article>
-
-      <div class="info-stack">
-
-        <article class="info-card reveal">
-
-          <h3>
-            Mindset
-          </h3>
-
-          <p>
-            Saya memiliki semangat belajar tinggi, disiplin,
-            bertanggung jawab, mampu bekerja secara mandiri
-            maupun dalam tim, serta terus mengembangkan
-            kompetensi untuk menghasilkan pekerjaan yang lebih baik.
-          </p>
-
-        </article>
-
-        <article class="info-card reveal">
-
-          <h3>
-            Core Skills
-          </h3>
-
-          <div class="skill-grid">
-
-            <div class="skill">
-              Front-End Web Development
-            </div>
-
-            <div class="skill">
-              AI-Assisted Development
-            </div>
-
-            <div class="skill">
-              Problem Solving
-            </div>
-
-            <div class="skill">
-              Adaptasi
-            </div>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= EXPERIENCE ================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Background
-        </div>
-
-        <h2 class="section-title">
-          Pengalaman yang<br>
-          membentuk saya.
-        </h2>
-
-      </div>
-
-    </div>
-
-    <div class="timeline-grid">
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Web Development
-        </small>
-
-        <h3>
-          SPR Audio
-        </h3>
-
-        <p>
-          Mengembangkan, memonitor, memperbaiki bug,
-          melakukan update, dan menjaga website tetap berjalan.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Internship
-        </small>
-
-        <h3>
-          PT. Sarandi
-        </h3>
-
-        <p>
-          Pengalaman di bagian ASSY dengan aktivitas
-          perakitan dan packing peralatan rumah sakit.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Organization
-        </small>
-
-        <h3>
-          Yayasan Baitul Yatim
-        </h3>
-
-        <p>
-          Bertanggung jawab menjaga integritas,
-          kebersihan, dan kerapihan lingkungan yayasan.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= EDUCATION ================= -->
-
-<section style="padding-top:0">
-
-  <div class="container">
-
-    <div class="timeline-grid">
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Pendidikan
-        </small>
-
-        <h3>
-          SDN Cimahi
-        </h3>
-
-        <p>
-          Pendidikan dasar.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Pendidikan
-        </small>
-
-        <h3>
-          SMP Yayasan Nuurulhuda
-        </h3>
-
-        <p>
-          Pendidikan menengah pertama.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Pendidikan
-        </small>
-
-        <h3>
-          SMK Daarussalam
-        </h3>
-
-        <p>
-          Pendidikan menengah kejuruan.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= FINAL CTA ================= -->
-
-<section class="final-section">
-
-  <div class="container">
-
-    <div class="final-card reveal">
-
-      <div
-        class="section-kicker"
-        style="color:white"
-      >
-        Start Something
-      </div>
-
-      <h2>
-        Punya ide website?
-        Mari kita bangun.
-      </h2>
-
-      <p>
-        Ceritakan kebutuhanmu. Tidak harus sudah punya
-        konsep yang matang — kita bisa mulai dari masalah
-        yang ingin diselesaikan.
-      </p>
-
-      <button class="btn open-modal">
-        Konsultasi via WhatsApp
+    </footer>
+
+
+    <!-- =========================
+         BOTTOM DOCK
+    ========================== -->
+    <nav class="bottom-dock" aria-label="Navigasi cepat">
+
+      <a href="#home" class="dock-link active" data-section="home">
+        <span>01</span>
+        <b>Home</b>
+      </a>
+
+      <a href="#layanan" class="dock-link" data-section="layanan">
+        <span>02</span>
+        <b>Layanan</b>
+      </a>
+
+      <a href="#tentang" class="dock-link" data-section="tentang">
+        <span>03</span>
+        <b>Tentang Saya</b>
+      </a>
+
+      <button class="dock-contact open-consult" type="button">
+        <span>Start</span>
+        <b>↗</b>
       </button>
 
-    </div>
+    </nav>
 
   </div>
 
-</section>
 
-</main>
+  <!-- =========================
+       CONSULTATION MODAL
+  ========================== -->
+  <div class="modal" id="consultModal" aria-hidden="true">
 
-<!-- ================= FOOTER ================= -->
+    <div class="modal-backdrop" data-close-modal></div>
 
-<footer>
-
-  <div class="container">
-
-    <div class="footer-grid">
-
-      <div>
-
-        <div class="footer-brand">
-          NOCTIS<span>.</span>
-        </div>
-
-        <p class="footer-text">
-          Fullstack web development untuk bisnis, brand,
-          dan individu yang ingin memiliki digital presence
-          yang lebih profesional.
-        </p>
-
-      </div>
-
-      <div class="footer-column">
-
-        <h4>
-          Navigation
-        </h4>
-
-        <a href="#home">
-          Home
-        </a>
-
-        <a href="#layanan">
-          Layanan
-        </a>
-
-        <a href="#portfolio">
-          Portfolio
-        </a>
-
-        <a href="#tentang">
-          Tentang Saya
-        </a>
-
-        <a href="#harga">
-          Harga
-        </a>
-
-      </div>
-
-      <div class="footer-column">
-
-        <h4>
-          Contact
-        </h4>
-
-        <a href="mailto:noctisatalic@gmail.com">
-          Email
-        </a>
-
-        <a
-          href="https://wa.me/6281318048885"
-          target="_blank"
-          rel="noopener"
-        >
-          WhatsApp
-        </a>
-
-        <a
-          href="javascript:void(0)"
-          class="open-modal"
-        >
-          Konsultasi
-        </a>
-
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-
-      <span>
-        © 2026 Noctis Atalic. All rights reserved.
-      </span>
-
-      <span>
-        Built with intent.
-      </span>
-
-    </div>
-
-  </div>
-
-</footer>
-
-<!-- ================= MOBILE NAV ================= -->
-
-<nav class="mobile-dock">
-
-  <a href="#home" class="active">
-    Home
-  </a>
-
-  <a href="#layanan">
-    Layanan
-  </a>
-
-  <a href="#tentang">
-    Tentang Saya
-  </a>
-
-</nav>
-
-<!-- ================= CONSULTATION MODAL ================= -->
-
-<div class="modal" id="consultationModal">
-
-  <div class="modal-box">
-
-    <button
-      class="modal-close"
-      id="closeModal"
+    <div
+      class="modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
     >
-      ×
-    </button>
 
-    <h2>
-      Mulai konsultasi.
-    </h2>
+      <button class="modal-close" type="button" data-close-modal aria-label="Tutup">
+        ×
+      </button>
 
-    <p>
-      Isi kebutuhanmu supaya pembicaraan di WhatsApp
-      bisa langsung fokus ke project.
-    </p>
+      <div class="modal-heading">
+        <span class="section-kicker">START A PROJECT</span>
 
-    <form id="consultationForm">
+        <h2 id="modalTitle">
+          Ceritakan
+          <em>proyekmu.</em>
+        </h2>
 
-      <div class="form-group">
-
-        <label>
-          Nama
-        </label>
-
-        <input
-          type="text"
-          id="clientName"
-          placeholder="Nama kamu"
-          required
-        >
-
+        <p>
+          Isi beberapa informasi singkat.
+          Setelah dikirim, kamu akan diarahkan ke WhatsApp.
+        </p>
       </div>
 
-      <div class="form-group">
+      <form id="consultForm">
 
-        <label>
-          Nomor WhatsApp
-        </label>
+        <div class="form-row">
+          <label>
+            Nama
+            <input
+              id="clientName"
+              name="name"
+              type="text"
+              placeholder="Nama kamu"
+              required
+            >
+          </label>
 
-        <input
-          type="tel"
-          id="clientPhone"
-          placeholder="08xxxxxxxxxx"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
+          <label>
+            WhatsApp
+            <input
+              id="clientPhone"
+              name="phone"
+              type="tel"
+              placeholder="08xxxxxxxxxx"
+              required
+            >
+          </label>
+        </div>
 
         <label>
           Kebutuhan
+          <select id="clientNeed" name="need" required>
+            <option value="" disabled selected>Pilih kebutuhan</option>
+            <option value="Website Starter">Website Starter</option>
+            <option value="Website Business">Website Business</option>
+            <option value="Website Premium">Website Premium</option>
+            <option value="Web App / Fullstack">Web App / Fullstack</option>
+            <option value="Redesign Website">Redesign Website</option>
+            <option value="Konsultasi">Belum tahu / Konsultasi</option>
+          </select>
         </label>
-
-        <input
-          type="text"
-          id="clientNeed"
-          placeholder="Contoh: Website company profile"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
 
         <label>
-          Pesan
+          Ceritakan sedikit
+          <textarea
+            id="clientMessage"
+            name="message"
+            rows="4"
+            placeholder="Contoh: Saya punya bisnis sound system dan ingin website untuk katalog serta pemesanan..."
+            required
+          ></textarea>
         </label>
 
-        <textarea
-          id="clientMessage"
-          placeholder="Ceritakan sedikit tentang project kamu..."
-          required
-        ></textarea>
+        <label class="agreement">
+          <input id="agreement" type="checkbox" required>
+          <span>
+            Saya setuju informasi ini dikirim melalui WhatsApp
+            untuk keperluan konsultasi proyek.
+          </span>
+        </label>
 
-      </div>
+        <button class="submit-button" id="submitConsult" type="submit" disabled>
+          <span>Kirim ke WhatsApp</span>
+          <b>↗</b>
+        </button>
 
-      <label class="agreement">
+      </form>
 
-        <input
-          type="checkbox"
-          id="agreement"
-        >
-
-        <span>
-          Saya menyetujui informasi yang saya masukkan
-          digunakan untuk kebutuhan konsultasi project.
-        </span>
-
-      </label>
-
-      <button
-        type="submit"
-        class="submit-btn"
-        id="submitConsultation"
-        disabled
-      >
-        Lanjut ke WhatsApp
-      </button>
-
-    </form>
-
+    </div>
   </div>
 
-</div>
 
-<script>
-
-/* ================= WHATSAPP ================= */
-
-const WA_NUMBER = "6281318048885";
-
-const modal =
-  document.getElementById("consultationModal");
-
-const closeModalBtn =
-  document.getElementById("closeModal");
-
-const form =
-  document.getElementById("consultationForm");
-
-const agreement =
-  document.getElementById("agreement");
-
-const submitBtn =
-  document.getElementById("submitConsultation");
+  <script>
+"use strict";
 
 
-function openConsultation(){
+/* =========================================================
+   CONFIG
+========================================================= */
 
-  modal.classList.add("show");
+const WHATSAPP_NUMBER = "6281318048885";
 
-  document.body.classList.add("modal-open");
 
-  setTimeout(()=>{
+/* =========================================================
+   DOM
+========================================================= */
 
-    document
-      .getElementById("clientName")
-      ?.focus();
+const body = document.body;
 
-  },100);
+const consultModal = document.getElementById("consultModal");
+const policyModal = document.getElementById("policyModal");
 
+const consultForm = document.getElementById("consultForm");
+
+const clientName = document.getElementById("clientName");
+const clientPhone = document.getElementById("clientPhone");
+const clientNeed = document.getElementById("clientNeed");
+const clientMessage = document.getElementById("clientMessage");
+
+const agreement = document.getElementById("agreement");
+const submitConsult = document.getElementById("submitConsult");
+
+const currentYear = document.getElementById("current-year");
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
 }
 
 
-function closeConsultation(){
+/* =========================================================
+   MODAL
+========================================================= */
 
-  modal.classList.remove("show");
+function openModal(modal) {
+  if (!modal) return;
 
-  document.body.classList.remove("modal-open");
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
 
+  body.classList.add("modal-open");
+
+  const firstInput = modal.querySelector("input, select, textarea");
+
+  if (firstInput) {
+    setTimeout(() => firstInput.focus(), 100);
+  }
 }
 
 
-document
-  .querySelectorAll(".open-modal")
-  .forEach(button=>{
+function closeModal(modal) {
+  if (!modal) return;
 
-    button.addEventListener(
-      "click",
-      openConsultation
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+
+  if (
+    !document.querySelector(".modal.active")
+  ) {
+    body.classList.remove("modal-open");
+  }
+}
+
+
+document.querySelectorAll(".open-consult").forEach((button) => {
+  button.addEventListener("click", () => {
+    openModal(consultModal);
+  });
+});
+
+
+document.querySelector(".policy-trigger")?.addEventListener("click", () => {
+  openModal(policyModal);
+});
+
+
+document.querySelectorAll("[data-close-modal]").forEach((element) => {
+  element.addEventListener("click", () => {
+
+    closeModal(
+      element.closest(".modal")
     );
 
   });
+});
 
 
-closeModalBtn.addEventListener(
-  "click",
-  closeConsultation
+document.querySelectorAll(".modal-close").forEach((button) => {
+  button.addEventListener("click", () => {
+
+    closeModal(
+      button.closest(".modal")
+    );
+
+  });
+});
+
+
+document.addEventListener("keydown", (event) => {
+
+  if (event.key !== "Escape") return;
+
+  document
+    .querySelectorAll(".modal.active")
+    .forEach((modal) => {
+      closeModal(modal);
+    });
+
+});
+
+
+/* =========================================================
+   FORM STATE
+========================================================= */
+
+function updateSubmitState() {
+
+  if (!submitConsult) return;
+
+  submitConsult.disabled = !agreement.checked;
+
+}
+
+
+agreement?.addEventListener(
+  "change",
+  updateSubmitState
 );
 
+updateSubmitState();
 
-modal.addEventListener("click",e=>{
 
-  if(e.target === modal){
+/* =========================================================
+   PHONE FORMAT
+========================================================= */
 
-    closeConsultation();
+clientPhone?.addEventListener("input", () => {
 
+  let value = clientPhone.value;
+
+  value = value.replace(/[^\d+]/g, "");
+
+  if (value.startsWith("+62")) {
+    value = "0" + value.slice(3);
   }
 
-});
-
-
-document.addEventListener("keydown",e=>{
-
-  if(e.key === "Escape"){
-
-    closeConsultation();
-
+  if (value.startsWith("62")) {
+    value = "0" + value.slice(2);
   }
 
-});
-
-
-agreement.addEventListener("change",()=>{
-
-  submitBtn.disabled =
-    !agreement.checked;
+  clientPhone.value = value;
 
 });
 
 
-form.addEventListener("submit",e=>{
+/* =========================================================
+   WHATSAPP FORM
+========================================================= */
 
-  e.preventDefault();
+consultForm?.addEventListener("submit", (event) => {
 
-  if(!agreement.checked){
+  event.preventDefault();
+
+  if (!agreement.checked) {
     return;
   }
 
-  const name =
-    document
-      .getElementById("clientName")
-      .value
-      .trim();
 
-  const phone =
-    document
-      .getElementById("clientPhone")
-      .value
-      .trim();
+  const name = clientName.value.trim();
+  const phone = clientPhone.value.trim();
+  const need = clientNeed.value.trim();
+  const message = clientMessage.value.trim();
 
-  const need =
-    document
-      .getElementById("clientNeed")
-      .value
-      .trim();
 
-  const message =
-    document
-      .getElementById("clientMessage")
-      .value
-      .trim();
+  if (!name || !phone || !need || !message) {
 
-  const text =
-`Halo Noctis, saya ingin konsultasi website.
+    alert(
+      "Mohon lengkapi semua informasi terlebih dahulu."
+    );
+
+    return;
+  }
+
+
+  const whatsappMessage =
+`Halo Noctis Atalic, saya ingin berkonsultasi mengenai project website.
 
 Nama: ${name}
 WhatsApp: ${phone}
 Kebutuhan: ${need}
 
-Pesan:
+Detail project:
 ${message}
 
-Saya ingin mengetahui solusi dan estimasi untuk project saya.`;
+Saya siap melanjutkan diskusi melalui WhatsApp.`;
 
-  const url =
-    `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+
+  const whatsappURL =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+
 
   window.open(
-    url,
+    whatsappURL,
     "_blank",
-    "noopener"
+    "noopener,noreferrer"
   );
+
+
+  consultForm.reset();
+
+  updateSubmitState();
+
+  closeModal(consultModal);
 
 });
 
 
-/* ================= REVEAL ================= */
+/* =========================================================
+   REVEAL
+========================================================= */
 
-const revealObserver =
-  new IntersectionObserver(
-    entries=>{
+const revealElements =
+  document.querySelectorAll(".reveal");
 
-      entries.forEach(entry=>{
 
-        if(entry.isIntersecting){
+if (
+  "IntersectionObserver" in window
+) {
 
-          entry.target.classList.add(
-            "visible"
-          );
+  const revealObserver =
+    new IntersectionObserver(
+      (entries, observer) => {
 
-          revealObserver.unobserve(
-            entry.target
-          );
+        entries.forEach((entry) => {
 
-        }
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-      });
+          entry.target.classList.add("visible");
 
-    },
-    {
-      threshold:.08
-    }
+          observer.unobserve(entry.target);
+
+        });
+
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
+
+} else {
+
+  revealElements.forEach((element) => {
+    element.classList.add("visible");
+  });
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const navigationLinks =
+  document.querySelectorAll(
+    ".nav-link, .mobile-nav-item"
   );
 
 
-document
-  .querySelectorAll(".reveal")
-  .forEach(el=>{
+const sections = [
+  document.getElementById("home"),
+  document.getElementById("services"),
+  document.getElementById("portfolio"),
+  document.getElementById("about")
+].filter(Boolean);
 
-    revealObserver.observe(el);
+
+function setActiveNavigation(id) {
+
+  navigationLinks.forEach((link) => {
+
+    const href =
+      link.getAttribute("href");
+
+    if (!href) return;
+
+    link.classList.toggle(
+      "active",
+      href === `#${id}`
+    );
+
+  });
+
+}
+
+
+if (
+  "IntersectionObserver" in window
+) {
+
+  const navObserver =
+    new IntersectionObserver(
+      (entries) => {
+
+        const visible =
+          entries
+            .filter(
+              (entry) =>
+                entry.isIntersecting
+            )
+            .sort(
+              (a, b) =>
+                b.intersectionRatio -
+                a.intersectionRatio
+            )[0];
+
+
+        if (visible?.target?.id) {
+          setActiveNavigation(
+            visible.target.id
+          );
+        }
+
+      },
+      {
+        threshold: [0.2, 0.4, 0.6],
+        rootMargin: "-20% 0px -55% 0px"
+      }
+    );
+
+
+  sections.forEach((section) => {
+    navObserver.observe(section);
+  });
+
+}
+
+
+/* =========================================================
+   SMOOTH INTERNAL LINKS
+========================================================= */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      const targetId =
+        link.getAttribute("href");
+
+      if (
+        !targetId ||
+        targetId === "#"
+      ) {
+        return;
+      }
+
+
+      const target =
+        document.querySelector(targetId);
+
+
+      if (!target) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      target.scrollIntoView({
+        behavior:
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches
+            ? "auto"
+            : "smooth",
+        block: "start"
+      });
+
+    });
 
   });
 
 
-/* ================= HERO PARALLAX ================= */
+/* =========================================================
+   BUTTON MICRO INTERACTION
+========================================================= */
 
-const portrait =
-  document.getElementById("heroPortrait");
+document
+  .querySelectorAll(
+    ".button, .header-cta, .price-button, .project-link, .service-link"
+  )
+  .forEach((element) => {
 
+    element.addEventListener(
+      "pointerenter",
+      () => {
+        element.dataset.hover = "true";
+      }
+    );
 
-if(
-  portrait &&
-  !window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches
-){
+    element.addEventListener(
+      "pointerleave",
+      () => {
+        delete element.dataset.hover;
+      }
+    );
 
-  let ticking = false;
-
-  window.addEventListener(
-    "mousemove",
-    e=>{
-
-      if(ticking) return;
-
-      window.requestAnimationFrame(()=>{
-
-        const x =
-          (e.clientX /
-            window.innerWidth -
-            .5) * 14;
-
-        const y =
-          (e.clientY /
-            window.innerHeight -
-            .5) * 14;
-
-        portrait.style.transform =
-          `translateX(calc(-50% + ${x}px)) translateY(${y}px)`;
-
-        ticking = false;
-
-      });
-
-      ticking = true;
-
-    }
-  );
-
-}
+  });
 
 
-/* ================= MOBILE ACTIVE NAV ================= */
+/* =========================================================
+   PREVENT DOUBLE SUBMISSION
+========================================================= */
 
-const sections =
-  document.querySelectorAll(
-    "main section[id]"
-  );
+consultForm?.addEventListener(
+  "invalid",
+  () => {
 
-const mobileLinks =
-  document.querySelectorAll(
-    ".mobile-dock a"
-  );
+    const firstInvalid =
+      consultForm.querySelector(":invalid");
 
+    firstInvalid?.focus();
 
-const navObserver =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          mobileLinks.forEach(link=>{
-
-            link.classList.remove(
-              "active"
-            );
-
-          });
-
-          const active =
-            document.querySelector(
-              `.mobile-dock a[href="#${entry.target.id}"]`
-            );
-
-          if(active){
-
-            active.classList.add(
-              "active"
-            );
-
-          }
-
-        }
-
-      });
-
-    },
-    {
-      rootMargin:
-        "-35% 0px -55% 0px"
-    }
-  );
+  },
+  true
+);
 
 
-sections.forEach(section=>{
+/* =========================================================
+   INITIAL STATE
+========================================================= */
 
-  navObserver.observe(section);
+setActiveNavigation("home");
 
-});
-
-
-/* ================= PHOTO CHECK ================= */
-
-if(portrait){
-
-  portrait.addEventListener(
-    "error",
-    ()=>{
-
-      console.warn(
-        "foto-asli.png tidak ditemukan. Pastikan file berada di folder yang sama dengan index.html."
-      );
-
-    }
-  );
-
-}
+console.log(
+  "Noctis Atalic portfolio initialized."
+);
 
 </script>
 
 </body>
-      </html>
+</html>
