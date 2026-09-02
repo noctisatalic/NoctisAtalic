@@ -1808,3 +1808,140 @@ img {
     transform: none;
   }
 }
+
+/* =========================================================
+   FINAL RESPONSIVE / OVERFLOW FIX
+   ========================================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.container,
+.site-header {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.hero,
+.intro,
+.section,
+.about-section,
+.final-cta,
+.footer {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.hero-content,
+.hero-visual,
+.intro > *,
+.section-head,
+.section-head > *,
+.about-intro,
+.about-grid,
+.about-block,
+.manifesto,
+.footer-main,
+.footer-main > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.service-card,
+.portfolio-card,
+.pricing-card,
+.technology-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.service-card h3,
+.service-card p,
+.portfolio-info,
+.portfolio-info > *,
+.pricing-card h3,
+.pricing-card p,
+.pricing-card li,
+.technology-card strong,
+.about-block h3,
+.about-block p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 680px) {
+
+  .container {
+    width: calc(100% - 28px);
+    margin-inline: auto;
+  }
+
+  .site-header {
+    width: calc(100% - 28px);
+    margin-inline: auto;
+  }
+
+  .hero {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-content,
+  .hero-visual {
+    width: 100%;
+  }
+
+  .hero-services {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-services div {
+    min-width: 0;
+  }
+
+  .hero-services span {
+    white-space: normal;
+  }
+
+  .photo-wrapper {
+    width: min(100%, 350px);
+    margin-inline: auto;
+  }
+
+  .service-grid,
+  .portfolio-grid,
+  .pricing-grid,
+  .technology-grid,
+  .about-grid {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .portfolio-info {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .portfolio-info h3,
+  .portfolio-info p {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+  .footer-links div {
+    min-width: 0;
+  }
+
+  .modal-card {
+    max-width: calc(100vw - 24px);
+  }
+}
+
