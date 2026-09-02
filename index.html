@@ -4,1105 +4,873 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Noctis Atalic — Full-Stack Web Developer yang membangun website, web application, dan digital system untuk bisnis.">
+  <meta name="description" content="Noctis Atalic — Fullstack Web Developer untuk website bisnis modern, cepat, dan profesional.">
 
-  <title>Noctis Atalic — Full-Stack Web Developer</title>
+  <title>Noctis Atalic — Fullstack Web Developer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-  <!-- =====================================================
-       BACKGROUND
-  ====================================================== -->
+  <div class="site">
 
-  <div class="ambient ambient-red"></div>
-  <div class="ambient ambient-gray"></div>
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="header">
+      <a href="#home" class="brand">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">NOCTIS<span>ATALIC</span></span>
+      </a>
 
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
-
-  <header class="site-header">
-    <a href="#home" class="brand" aria-label="Noctis Atalic">
-      <span class="brand-symbol">N</span>
-
-      <span class="brand-text">
-        <strong>Noctis Atalic</strong>
-        <small>FULL-STACK WEB DEVELOPER</small>
-      </span>
-    </a>
-
-    <nav class="desktop-nav" aria-label="Navigasi utama">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#services" class="nav-link">Layanan</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#about" class="nav-link">Tentang</a>
-    </nav>
-
-    <div class="header-right">
-      <span class="availability">
-        <i></i>
-        Available for project
-      </span>
+      <nav class="top-nav" aria-label="Navigasi utama">
+        <a href="#layanan">Layanan</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#tentang">Tentang Saya</a>
+      </nav>
 
       <button class="header-cta open-consult" type="button">
-        Mulai Proyek
-        <span>↗</span>
+        <span>Mulai Proyek</span>
+        <span class="arrow">↗</span>
       </button>
-    </div>
-  </header>
+    </header>
 
+    <main>
 
-  <main id="home">
+      <!-- =========================
+           HERO
+      ========================== -->
+      <section class="hero section" id="home">
 
-    <!-- ===================================================
-         HERO
-    ==================================================== -->
+        <div class="hero-copy">
 
-    <section class="hero section-shell">
-
-      <div class="hero-copy">
-
-        <div class="hero-kicker reveal">
-          <span class="line"></span>
-          FULL-STACK WEB DEVELOPER
-        </div>
-
-        <h1 class="hero-title reveal">
-          Website yang
-          <span>bekerja.</span>
-        </h1>
-
-        <p class="hero-description reveal">
-          Saya membangun website, web application, dan digital system
-          yang dirancang bukan hanya untuk terlihat profesional,
-          tetapi juga membantu bisnis bergerak lebih cepat.
-        </p>
-
-        <div class="hero-actions reveal">
-          <button class="button button-primary open-consult" type="button">
-            <span>Mulai Konsultasi</span>
-            <b>↗</b>
-          </button>
-
-          <a class="button button-secondary" href="#portfolio">
-            <span>Lihat Portfolio</span>
-            <b>↓</b>
-          </a>
-        </div>
-
-        <div class="hero-meta reveal">
-          <div>
-            <strong>01</strong>
-            <span>Strategic<br>Development</span>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-dot"></span>
+            FULLSTACK WEB DEVELOPER
           </div>
 
-          <div>
-            <strong>02</strong>
-            <span>Clean<br>Interface</span>
-          </div>
-
-          <div>
-            <strong>03</strong>
-            <span>Scalable<br>System</span>
-          </div>
-        </div>
-
-      </div>
-
-
-      <!-- FOTO BEBAS — HANYA FOTO ASLI -->
-      <div class="hero-portrait reveal">
-
-        <div class="portrait-light"></div>
-
-        <img
-          src="./foto-asli.png"
-          alt="Noctis Atalic"
-          class="identity-photo"
-          width="600"
-          height="800"
-          fetchpriority="high"
-        >
-
-        <div class="portrait-caption">
-          <span>NOCTIS ATALIC</span>
-          <small>WEB DEVELOPMENT / DIGITAL EXPERIENCE</small>
-        </div>
-
-        <div class="portrait-number">01</div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         TRUST / INTRO
-    ==================================================== -->
-
-    <section class="intro section-shell">
-
-      <div class="intro-label">
-        <span>01</span>
-        WHAT I BUILD
-      </div>
-
-      <div class="intro-content">
-        <h2>
-          Dari ide sederhana
-          menjadi <em>digital experience</em>
-          yang nyata.
-        </h2>
-
-        <p>
-          Setiap bisnis punya kebutuhan yang berbeda. Karena itu,
-          saya tidak hanya membuat halaman yang terlihat bagus,
-          tetapi memikirkan struktur, pengalaman pengguna,
-          performa, dan bagaimana website tersebut digunakan
-          dalam aktivitas bisnis sehari-hari.
-        </p>
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         SERVICES
-    ==================================================== -->
-
-    <section class="section section-shell" id="services">
-
-      <div class="section-heading">
-
-        <div>
-          <span class="section-number">02 / SERVICES</span>
-
-          <h2>
-            Dibangun untuk
-            <span>kebutuhan nyata.</span>
-          </h2>
-        </div>
-
-        <p>
-          Dari website sederhana hingga sistem digital
-          yang membutuhkan alur kerja lebih kompleks.
-        </p>
-
-      </div>
-
-
-      <div class="service-grid">
-
-        <article class="service-card service-featured">
-          <div class="service-top">
-            <span>01</span>
-            <span>CORE</span>
-          </div>
-
-          <div class="service-body">
-            <div class="service-icon">↗</div>
-
-            <h3>Business Website</h3>
-
-            <p>
-              Website profesional untuk membangun kepercayaan,
-              memperkuat brand, dan mengubah pengunjung menjadi calon pelanggan.
-            </p>
-          </div>
-
-          <button class="service-link open-consult" type="button">
-            Bahas kebutuhan
-            <span>→</span>
-          </button>
-        </article>
-
-
-        <article class="service-card">
-          <div class="service-top">
-            <span>02</span>
-            <span>CONVERSION</span>
-          </div>
-
-          <div class="service-body">
-            <div class="service-icon">+</div>
-
-            <h3>Landing Page</h3>
-
-            <p>
-              Halaman fokus untuk campaign, produk, jasa,
-              promosi, atau kebutuhan pemasaran digital.
-            </p>
-          </div>
-
-          <button class="service-link open-consult" type="button">
-            Bahas kebutuhan
-            <span>→</span>
-          </button>
-        </article>
-
-
-        <article class="service-card">
-          <div class="service-top">
-            <span>03</span>
-            <span>APPLICATION</span>
-          </div>
-
-          <div class="service-body">
-            <div class="service-icon">□</div>
-
-            <h3>Web Application</h3>
-
-            <p>
-              Aplikasi berbasis web dengan autentikasi,
-              database, dashboard, CRUD, dan alur kerja sesuai kebutuhan.
-            </p>
-          </div>
-
-          <button class="service-link open-consult" type="button">
-            Bahas kebutuhan
-            <span>→</span>
-          </button>
-        </article>
-
-
-        <article class="service-card">
-          <div class="service-top">
-            <span>04</span>
-            <span>SYSTEM</span>
-          </div>
-
-          <div class="service-body">
-            <div class="service-icon">⌘</div>
-
-            <h3>Digital System</h3>
-
-            <p>
-              Sistem untuk membantu pengelolaan data,
-              operasional, informasi, dan proses bisnis.
-            </p>
-          </div>
-
-          <button class="service-link open-consult" type="button">
-            Bahas kebutuhan
-            <span>→</span>
-          </button>
-        </article>
-
-
-        <article class="service-card">
-          <div class="service-top">
-            <span>05</span>
-            <span>MAINTENANCE</span>
-          </div>
-
-          <div class="service-body">
-            <div class="service-icon">↻</div>
-
-            <h3>Website Maintenance</h3>
-
-            <p>
-              Perbaikan bug, update konten, monitoring,
-              pengembangan fitur, dan pemeliharaan website.
-            </p>
-          </div>
-
-          <button class="service-link open-consult" type="button">
-            Bahas kebutuhan
-            <span>→</span>
-          </button>
-        </article>
-
-
-        <article class="service-card service-dark">
-          <div class="service-top">
-            <span>06</span>
-            <span>AI ASSISTED</span>
-          </div>
-
-          <div class="service-body">
-            <div class="service-icon">AI</div>
-
-            <h3>AI-Assisted Development</h3>
-
-            <p>
-              Memanfaatkan AI sebagai akselerator development
-              tanpa menghilangkan kontrol terhadap struktur dan kualitas sistem.
-            </p>
-          </div>
-
-          <button class="service-link open-consult" type="button">
-            Bahas kebutuhan
-            <span>→</span>
-          </button>
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PORTFOLIO
-    ==================================================== -->
-
-    <section class="section section-shell portfolio-section" id="portfolio">
-
-      <div class="section-heading">
-
-        <div>
-          <span class="section-number">03 / SELECTED WORK</span>
-
-          <h2>
-            Beberapa hal yang
-            <span>sudah dibangun.</span>
-          </h2>
-        </div>
-
-        <p>
-          Project yang menunjukkan bagaimana desain,
-          development, dan kebutuhan bisnis bertemu.
-        </p>
-
-      </div>
-
-
-      <div class="portfolio-list">
-
-        <!-- SPR AUDIO -->
-        <article class="project project-main">
-
-          <div class="project-visual spr">
-
-            <div class="project-browser">
-              <div class="browser-bar">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div class="browser-content">
-                <div class="browser-label">SPR AUDIO</div>
-
-                <strong>
-                  SOUND.
-                  <br>
-                  EXPERIENCE.
-                </strong>
-
-                <div class="browser-line"></div>
-              </div>
-            </div>
-
-            <span class="project-index">01</span>
-          </div>
-
-          <div class="project-details">
-
-            <div>
-              <span class="project-category">SOUND SYSTEM / BUSINESS WEBSITE</span>
-
-              <h3>SPR Audio</h3>
-
-              <p>
-                Website untuk bisnis sound system dan audio production
-                dengan informasi layanan, portfolio, pricing,
-                kalkulator kebutuhan, dan alur booking.
-              </p>
-            </div>
-
-            <a
-              href="https://spraudio.github.io/SPR-Audio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              Visit project
-              <span>↗</span>
+          <h1 class="hero-title reveal">
+            Website yang
+            <span>terlihat mahal.</span>
+            <br>
+            Bekerja lebih jauh.
+          </h1>
+
+          <p class="hero-description reveal">
+            Saya membangun website modern untuk bisnis dan personal brand —
+            dari tampilan, pengalaman pengguna, sampai sistem di belakangnya.
+          </p>
+
+          <div class="hero-actions reveal">
+            <button class="button button-primary open-consult" type="button">
+              <span>Mulai Konsultasi</span>
+              <span class="button-arrow">↗</span>
+            </button>
+
+            <a href="#portfolio" class="button button-ghost">
+              <span>Lihat Portfolio</span>
+              <span class="button-arrow">↓</span>
             </a>
-
           </div>
 
-        </article>
-
-
-        <!-- IHSAN KOI -->
-        <article class="project">
-
-          <div class="project-visual koi">
-
-            <div class="visual-word">
-              KOI
+          <div class="hero-proof reveal">
+            <div class="proof-avatars">
+              <span>W</span>
+              <span>S</span>
+              <span>I</span>
             </div>
 
-            <span class="project-index">02</span>
+            <div>
+              <strong>Web untuk bisnis nyata.</strong>
+              <small>Design · Development · Maintenance</small>
+            </div>
           </div>
 
-          <div class="project-details">
+        </div>
 
+        <!-- FOTO BEBAS — HANYA SATU FOTO -->
+        <div class="hero-visual reveal">
+
+          <div class="visual-grid"></div>
+
+          <div class="visual-number">01</div>
+
+          <div class="visual-line line-one"></div>
+          <div class="visual-line line-two"></div>
+
+          <div class="portrait-shadow"></div>
+
+          <div class="portrait">
+            <img
+              src="./foto-asli.png"
+              alt="Noctis Atalic"
+              width="600"
+              height="800"
+              fetchpriority="high"
+            >
+          </div>
+
+          <div class="floating-note note-top">
+            <span class="note-icon">✦</span>
             <div>
-              <span class="project-category">AQUARIUM / DIGITAL COMMERCE</span>
+              <small>FOCUS</small>
+              <strong>Digital Experience</strong>
+            </div>
+          </div>
 
-              <h3>IHSAN KOI</h3>
+          <div class="floating-note note-bottom">
+            <strong>AVAILABLE</strong>
+            <span>for selected projects</span>
+          </div>
 
+          <div class="scroll-label">
+            <span></span>
+            SCROLL TO EXPLORE
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           MARQUEE
+      ========================== -->
+      <section class="ticker" aria-label="Keahlian">
+        <div class="ticker-track">
+          <span>WEB DEVELOPMENT</span>
+          <i>✦</i>
+          <span>FULLSTACK</span>
+          <i>✦</i>
+          <span>UI EXPERIENCE</span>
+          <i>✦</i>
+          <span>BUSINESS WEBSITE</span>
+          <i>✦</i>
+          <span>WEB DEVELOPMENT</span>
+          <i>✦</i>
+          <span>FULLSTACK</span>
+          <i>✦</i>
+          <span>UI EXPERIENCE</span>
+          <i>✦</i>
+          <span>BUSINESS WEBSITE</span>
+          <i>✦</i>
+        </div>
+      </section>
+
+
+      <!-- =========================
+           SERVICES
+      ========================== -->
+      <section class="section services-section" id="layanan">
+
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-kicker">01 / LAYANAN</span>
+            <h2>
+              Bukan sekadar<br>
+              <em>website.</em>
+            </h2>
+          </div>
+
+          <p>
+            Setiap proyek dibuat dengan tujuan yang jelas:
+            membuat bisnis terlihat lebih profesional sekaligus
+            memberi pengalaman digital yang nyaman bagi pelanggan.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card service-feature reveal">
+            <div class="service-top">
+              <span class="service-number">01</span>
+              <span class="service-icon">↗</span>
+            </div>
+
+            <div class="service-content">
+              <span class="service-label">CORE SERVICE</span>
+              <h3>Business<br>Website</h3>
               <p>
-                Konsep website premium untuk bisnis koi,
-                dengan gallery, katalog, informasi produk,
-                dan alur komunikasi pelanggan.
+                Website profesional untuk memperkuat identitas,
+                meningkatkan kepercayaan, dan mengubah pengunjung
+                menjadi calon pelanggan.
               </p>
             </div>
 
-            <button class="project-link open-consult" type="button">
-              Discuss project
-              <span>↗</span>
-            </button>
+            <div class="service-footer">
+              <span>Landing Page</span>
+              <span>Company Profile</span>
+              <span>Business System</span>
+            </div>
+          </article>
 
-          </div>
-
-        </article>
-
-
-        <!-- CYRUS WEB -->
-        <article class="project">
-
-          <div class="project-visual cyrus">
-
-            <div class="cyrus-grid"></div>
-
-            <div class="cyrus-title">
-              <small>CYRUS</small>
-              <strong>WEB</strong>
+          <article class="service-card reveal">
+            <div class="service-top">
+              <span class="service-number">02</span>
+              <span class="service-icon">⌁</span>
             </div>
 
-            <span class="project-index">03</span>
-          </div>
-
-          <div class="project-details">
-
-            <div>
-              <span class="project-category">WEB DEVELOPMENT / SERVICE PLATFORM</span>
-
-              <h3>Cyrus Web</h3>
-
+            <div class="service-content">
+              <span class="service-label">EXPERIENCE</span>
+              <h3>Modern<br>Interface</h3>
               <p>
-                Platform portfolio dan layanan web development
-                yang dikembangkan dengan pendekatan modern,
-                responsive, dan conversion-focused.
+                Tampilan clean, premium, responsif dan dirancang
+                agar brand kamu punya karakter yang kuat.
               </p>
             </div>
 
-            <button class="project-link open-consult" type="button">
-              Discuss project
-              <span>↗</span>
+            <div class="service-footer">
+              <span>Responsive</span>
+              <span>Interaction</span>
+            </div>
+          </article>
+
+          <article class="service-card service-dark reveal">
+            <div class="service-top">
+              <span class="service-number">03</span>
+              <span class="service-icon">⌘</span>
+            </div>
+
+            <div class="service-content">
+              <span class="service-label">SYSTEM</span>
+              <h3>Fullstack<br>Development</h3>
+              <p>
+                Tidak berhenti di tampilan. Sistem backend,
+                database, dashboard dan API dapat dibangun
+                sesuai kebutuhan proyek.
+              </p>
+            </div>
+
+            <div class="service-footer">
+              <span>API</span>
+              <span>Database</span>
+              <span>Admin Panel</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- =========================
+           PORTFOLIO
+      ========================== -->
+      <section class="section portfolio-section" id="portfolio">
+
+        <div class="section-heading portfolio-heading reveal">
+          <div>
+            <span class="section-kicker">02 / SELECTED WORK</span>
+            <h2>
+              Beberapa karya<br>
+              <em>yang pernah dibuat.</em>
+            </h2>
+          </div>
+
+          <span class="project-count">03 PROJECTS</span>
+        </div>
+
+        <div class="portfolio-list">
+
+          <article class="project project-red reveal">
+            <div class="project-visual">
+              <div class="browser browser-light">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <b>SPR AUDIO</b>
+                </div>
+
+                <div class="browser-content">
+                  <small>PROFESSIONAL SOUND SYSTEM</small>
+                  <strong>
+                    Sound for<br>
+                    every moment.
+                  </strong>
+                  <div class="fake-buttons">
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+              </div>
+
+              <span class="project-index">01</span>
+            </div>
+
+            <div class="project-info">
+              <div>
+                <span class="project-type">BUSINESS WEBSITE</span>
+                <h3>SPR Audio</h3>
+                <p>
+                  Website bisnis sound system dengan katalog,
+                  informasi layanan, paket dan alur konsultasi pelanggan.
+                </p>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://spraudio.github.io/SPR-Audio/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Visit Website</span>
+                <b>↗</b>
+              </a>
+            </div>
+          </article>
+
+
+          <article class="project project-black reveal">
+            <div class="project-visual">
+              <div class="browser browser-dark">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <b>CYRUS WEB</b>
+                </div>
+
+                <div class="browser-content">
+                  <small>WEB DEVELOPMENT STUDIO</small>
+                  <strong>
+                    Digital products<br>
+                    with purpose.
+                  </strong>
+                  <div class="fake-code">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+              </div>
+
+              <span class="project-index">02</span>
+            </div>
+
+            <div class="project-info">
+              <div>
+                <span class="project-type">WEB DEVELOPMENT</span>
+                <h3>Cyrus Web</h3>
+                <p>
+                  Platform portfolio dan layanan pembuatan website
+                  dengan fokus pada pengalaman digital modern.
+                </p>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://spraudio.github.io/Cyrus-Web/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Visit Website</span>
+                <b>↗</b>
+              </a>
+            </div>
+          </article>
+
+
+          <article class="project project-white reveal">
+            <div class="project-visual">
+              <div class="browser browser-koi">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <b>IHSAN KOI</b>
+                </div>
+
+                <div class="koi-layout">
+                  <div class="koi-circle"></div>
+                  <div class="koi-lines"></div>
+                  <strong>KOI<br>COLLECTION</strong>
+                </div>
+              </div>
+
+              <span class="project-index">03</span>
+            </div>
+
+            <div class="project-info">
+              <div>
+                <span class="project-type">COMMERCE EXPERIENCE</span>
+                <h3>IHSAN KOI</h3>
+                <p>
+                  Konsep website premium untuk katalog ikan koi
+                  dengan pengalaman browsing dan alur order yang sederhana.
+                </p>
+              </div>
+
+              <button class="project-link open-consult" type="button">
+                <span>Discuss Project</span>
+                <b>↗</b>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           PROCESS
+      ========================== -->
+      <section class="section process-section">
+
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-kicker">03 / PROCESS</span>
+            <h2>
+              Dari ide menjadi<br>
+              <em>sesuatu yang nyata.</em>
+            </h2>
+          </div>
+
+          <p>
+            Proses dibuat sederhana supaya kamu tidak perlu
+            pusing dengan hal teknis.
+          </p>
+        </div>
+
+        <div class="process-list">
+
+          <div class="process-item reveal">
+            <span class="process-no">01</span>
+            <div class="process-main">
+              <h3>Discover</h3>
+              <p>
+                Memahami bisnis, target pelanggan, kebutuhan,
+                tujuan dan karakter brand.
+              </p>
+            </div>
+            <span class="process-symbol">+</span>
+          </div>
+
+          <div class="process-item reveal">
+            <span class="process-no">02</span>
+            <div class="process-main">
+              <h3>Design</h3>
+              <p>
+                Menentukan struktur, visual, layout dan
+                pengalaman pengguna sebelum development.
+              </p>
+            </div>
+            <span class="process-symbol">+</span>
+          </div>
+
+          <div class="process-item reveal">
+            <span class="process-no">03</span>
+            <div class="process-main">
+              <h3>Build</h3>
+              <p>
+                Mengubah rancangan menjadi website yang
+                responsif, interaktif dan siap digunakan.
+              </p>
+            </div>
+            <span class="process-symbol">+</span>
+          </div>
+
+          <div class="process-item reveal">
+            <span class="process-no">04</span>
+            <div class="process-main">
+              <h3>Launch</h3>
+              <p>
+                Testing, deployment dan memastikan semuanya
+                berjalan dengan baik di berbagai perangkat.
+              </p>
+            </div>
+            <span class="process-symbol">↗</span>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- =========================
+           PRICING
+      ========================== -->
+      <section class="section pricing-section">
+
+        <div class="pricing-head reveal">
+          <div>
+            <span class="section-kicker">04 / INVESTMENT</span>
+            <h2>
+              Pilih level<br>
+              <em>yang sesuai.</em>
+            </h2>
+          </div>
+
+          <p>
+            Harga bukan hanya tentang jumlah halaman.
+            Yang dibangun adalah aset digital untuk bisnis kamu.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <article class="price-card reveal">
+            <div class="price-top">
+              <span>STARTER</span>
+              <small>01</small>
+            </div>
+
+            <h3>Rp800K<span>–2JT</span></h3>
+
+            <p>
+              Cocok untuk personal brand,
+              usaha kecil dan kebutuhan sederhana.
+            </p>
+
+            <ul>
+              <li>✓ Landing page profesional</li>
+              <li>✓ Responsive mobile & desktop</li>
+              <li>✓ WhatsApp integration</li>
+              <li>✓ Basic SEO structure</li>
+              <li>✓ Deployment</li>
+            </ul>
+
+            <button class="price-button open-consult" type="button">
+              Konsultasikan <span>↗</span>
             </button>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PROCESS
-    ==================================================== -->
-
-    <section class="section process-section section-shell">
-
-      <div class="process-intro">
-
-        <span class="section-number">04 / PROCESS</span>
-
-        <h2>
-          Dari percakapan
-          menuju <span>produk.</span>
-        </h2>
-
-        <p>
-          Proses dibuat sederhana supaya kebutuhan bisnis
-          tetap menjadi pusat dari development.
-        </p>
-
-      </div>
-
-
-      <div class="process-list">
-
-        <div class="process-row">
-          <span>01</span>
-          <div>
-            <h3>Discovery</h3>
-            <p>Memahami bisnis, target pengguna, kebutuhan, dan masalah yang ingin diselesaikan.</p>
-          </div>
-          <b>↗</b>
-        </div>
-
-        <div class="process-row">
-          <span>02</span>
-          <div>
-            <h3>Structure</h3>
-            <p>Menyusun halaman, user flow, fitur, konten, dan struktur teknis.</p>
-          </div>
-          <b>↗</b>
-        </div>
-
-        <div class="process-row">
-          <span>03</span>
-          <div>
-            <h3>Design & Build</h3>
-            <p>Menerjemahkan konsep menjadi interface dan sistem yang dapat digunakan.</p>
-          </div>
-          <b>↗</b>
-        </div>
-
-        <div class="process-row">
-          <span>04</span>
-          <div>
-            <h3>Test</h3>
-            <p>Memeriksa responsive layout, interaksi, validasi, dan berbagai kemungkinan error.</p>
-          </div>
-          <b>↗</b>
-        </div>
-
-        <div class="process-row">
-          <span>05</span>
-          <div>
-            <h3>Launch</h3>
-            <p>Deployment dan persiapan agar website siap digunakan secara nyata.</p>
-          </div>
-          <b>↗</b>
-        </div>
-
-        <div class="process-row">
-          <span>06</span>
-          <div>
-            <h3>Improve</h3>
-            <p>Pengembangan lanjutan berdasarkan kebutuhan dan perkembangan bisnis.</p>
-          </div>
-          <b>↗</b>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PRICING
-    ==================================================== -->
-
-    <section class="section pricing-section section-shell" id="pricing">
-
-      <div class="section-heading">
-
-        <div>
-          <span class="section-number">05 / INVESTMENT</span>
-
-          <h2>
-            Pilih titik
-            <span>mulainya.</span>
-          </h2>
-        </div>
-
-        <p>
-          Harga awal untuk membantu menentukan skala project.
-          Kebutuhan custom dapat dibahas melalui konsultasi.
-        </p>
-
-      </div>
-
-
-      <div class="pricing-grid">
-
-        <article class="price-card">
-
-          <div class="price-head">
-            <span>STARTER</span>
-            <small>01</small>
-          </div>
-
-          <h3>Website Starter</h3>
-
-          <p>
-            Untuk personal brand, UMKM, jasa,
-            portfolio, atau bisnis yang membutuhkan
-            kehadiran digital profesional.
-          </p>
-
-          <div class="price">
-            <small>mulai dari</small>
-            <strong>Rp800K</strong>
-          </div>
-
-          <ul>
-            <li>✓ Responsive website</li>
-            <li>✓ Landing / business page</li>
-            <li>✓ CTA WhatsApp</li>
-            <li>✓ Basic SEO structure</li>
-            <li>✓ Deployment</li>
-          </ul>
-
-          <button class="price-button open-consult" type="button">
-            Konsultasikan
-            <span>↗</span>
-          </button>
-
-        </article>
-
-
-        <article class="price-card price-featured">
-
-          <div class="price-head">
-            <span>BUSINESS</span>
-            <small>02</small>
-          </div>
-
-          <div class="recommended">MOST REQUESTED</div>
-
-          <h3>Business Website</h3>
-
-          <p>
-            Untuk bisnis yang membutuhkan website
-            lebih lengkap, profesional, dan siap berkembang.
-          </p>
-
-          <div class="price">
-            <small>kisaran</small>
-            <strong>Rp3–8JT</strong>
-          </div>
-
-          <ul>
-            <li>✓ Multi-section / multi-page</li>
-            <li>✓ Custom UI/UX</li>
-            <li>✓ Interactive components</li>
-            <li>✓ Form & business flow</li>
-            <li>✓ Deployment & optimization</li>
-          </ul>
-
-          <button class="price-button open-consult" type="button">
-            Mulai diskusi
-            <span>↗</span>
-          </button>
-
-        </article>
-
-
-        <article class="price-card">
-
-          <div class="price-head">
-            <span>PROFESSIONAL</span>
-            <small>03</small>
-          </div>
-
-          <h3>Custom System</h3>
-
-          <p>
-            Untuk aplikasi, dashboard, digital system,
-            database, authentication, dan kebutuhan khusus.
-          </p>
-
-          <div class="price">
-            <small>harga</small>
-            <strong>Custom</strong>
-          </div>
-
-          <ul>
-            <li>✓ Custom architecture</li>
-            <li>✓ Database integration</li>
-            <li>✓ Authentication</li>
-            <li>✓ Admin dashboard</li>
-            <li>✓ API / third-party integration</li>
-          </ul>
-
-          <button class="price-button open-consult" type="button">
-            Bahas sistem
-            <span>↗</span>
-          </button>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         TECHNOLOGY
-    ==================================================== -->
-
-    <section class="tech-section section-shell">
-
-      <div class="tech-header">
-        <span class="section-number">06 / STACK</span>
-
-        <h2>
-          Tools untuk
-          <span>membangun.</span>
-        </h2>
-      </div>
-
-      <div class="tech-list">
-
-        <span>HTML5</span>
-        <span>CSS3</span>
-        <span>JavaScript</span>
-        <span>TypeScript</span>
-        <span>React</span>
-        <span>Next.js</span>
-        <span>Node.js</span>
-        <span>PostgreSQL</span>
-        <span>Prisma</span>
-        <span>Git</span>
-        <span>GitHub</span>
-        <span>Vercel</span>
-        <span>Cloudinary</span>
-        <span>AI Tools</span>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         ABOUT
-    ==================================================== -->
-
-    <section class="section about-section section-shell" id="about">
-
-      <div class="about-top">
-
-        <div>
-          <span class="section-number">07 / ABOUT</span>
-
-          <h2>
-            Technology
-            should feel
-            <span>human.</span>
-          </h2>
-        </div>
-
-        <div class="about-copy">
-
-          <p class="about-lead">
-            Saya Noctis Atalic, Full-Stack Web Developer
-            yang terus belajar melalui eksplorasi dan project nyata.
-          </p>
-
-          <p>
-            Bagi saya, website bukan sekadar kumpulan halaman.
-            Website adalah bagian dari cara sebuah bisnis
-            memperkenalkan dirinya, melayani pelanggan,
-            dan bekerja setiap hari.
-          </p>
+          </article>
+
+
+          <article class="price-card price-featured reveal">
+            <div class="popular">MOST REQUESTED</div>
+
+            <div class="price-top">
+              <span>BUSINESS</span>
+              <small>02</small>
+            </div>
+
+            <h3>Rp3JT<span>–8JT</span></h3>
+
+            <p>
+              Untuk bisnis yang membutuhkan website
+              lebih serius, lengkap dan siap berkembang.
+            </p>
+
+            <ul>
+              <li>✓ Custom modern UI/UX</li>
+              <li>✓ Multi-section / multi-page</li>
+              <li>✓ Form & WhatsApp flow</li>
+              <li>✓ CMS / admin panel sesuai kebutuhan</li>
+              <li>✓ Database & API bila diperlukan</li>
+              <li>✓ Deployment & testing</li>
+            </ul>
+
+            <button class="price-button open-consult" type="button">
+              Mulai Diskusi <span>↗</span>
+            </button>
+          </article>
+
+
+          <article class="price-card reveal">
+            <div class="price-top">
+              <span>PREMIUM</span>
+              <small>03</small>
+            </div>
+
+            <h3>Rp10JT<span>–15JT+</span></h3>
+
+            <p>
+              Sistem digital custom untuk bisnis yang
+              membutuhkan experience dan functionality lebih jauh.
+            </p>
+
+            <ul>
+              <li>✓ Custom product experience</li>
+              <li>✓ Fullstack architecture</li>
+              <li>✓ Authentication & dashboard</li>
+              <li>✓ Database & API</li>
+              <li>✓ Advanced interaction</li>
+              <li>✓ Deployment & maintenance option</li>
+            </ul>
+
+            <button class="price-button open-consult" type="button">
+              Bahas Kebutuhan <span>↗</span>
+            </button>
+          </article>
 
         </div>
 
-      </div>
+        <div class="pricing-note reveal">
+          <span>✦</span>
+          Harga final disesuaikan dengan scope, kompleksitas dan kebutuhan sistem.
+        </div>
+
+      </section>
 
 
-      <div class="about-panels">
+      <!-- =========================
+           ABOUT
+      ========================== -->
+      <section class="section about-section" id="tentang">
 
-        <article>
-          <span>WHO I AM</span>
-          <h3>Builder yang terus belajar.</h3>
-          <p>
-            Saya memiliki semangat belajar tinggi, disiplin,
-            bertanggung jawab, dan terbiasa beradaptasi
-            dengan kebutuhan yang berubah.
-          </p>
-        </article>
-
-        <article>
-          <span>MY APPROACH</span>
-          <h3>Simple outside. Serious inside.</h3>
-          <p>
-            Interface dibuat sederhana agar mudah digunakan,
-            sementara struktur di belakangnya tetap dipikirkan
-            dengan serius.
-          </p>
-        </article>
-
-        <article>
-          <span>MY PRINCIPLE</span>
-          <h3>Build with purpose.</h3>
-          <p>
-            Setiap fitur harus memiliki alasan.
-            Saya lebih memilih solusi yang jelas dan berguna
-            daripada menambahkan kompleksitas tanpa kebutuhan.
-          </p>
-        </article>
-
-        <article>
-          <span>MY DIRECTION</span>
-          <h3>Grow through real work.</h3>
-          <p>
-            Tujuan saya adalah terus meningkatkan kemampuan
-            melalui pengalaman nyata dan memberikan kontribusi
-            yang semakin baik di setiap project.
-          </p>
-        </article>
-
-      </div>
-
-
-      <div class="manifesto">
-
-        <span>MANIFESTO</span>
-
-        <blockquote>
-          “Saya tidak hanya ingin membuat
-          website yang terlihat bagus.
-          Saya ingin membuat sesuatu
-          yang <em>berguna.</em>”
-        </blockquote>
-
-        <div class="manifesto-sign">
+        <div class="about-label reveal">
+          <span class="section-kicker">05 / ABOUT</span>
           <span>NOCTIS ATALIC</span>
-          <small>FULL-STACK WEB DEVELOPER</small>
         </div>
 
-      </div>
+        <div class="about-content">
 
-    </section>
+          <div class="about-statement reveal">
+            <span class="quote-mark">“</span>
+            <h2>
+              Saya percaya website
+              bukan hanya tempat
+              menaruh informasi.
+            </h2>
+          </div>
+
+          <div class="about-text reveal">
+            <p class="large">
+              Website adalah cara pertama seseorang
+              mengenal sebuah bisnis di dunia digital.
+            </p>
+
+            <p>
+              Karena itu saya tidak hanya mengejar tampilan.
+              Saya memikirkan bagaimana sebuah halaman terasa,
+              bagaimana informasi disampaikan, bagaimana
+              pengunjung mengambil keputusan, dan bagaimana
+              sistem bekerja di baliknya.
+            </p>
+
+            <p>
+              Saya terus mengembangkan kemampuan di bidang
+              front-end, fullstack development, problem solving
+              dan AI-assisted development untuk menciptakan
+              solusi digital yang semakin baik.
+            </p>
+
+            <div class="about-signature">
+              <span>NOCTIS</span>
+              <small>FULLSTACK WEB DEVELOPER</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="about-facts reveal">
+          <div>
+            <span>FOCUS</span>
+            <strong>Web Development</strong>
+          </div>
+
+          <div>
+            <span>APPROACH</span>
+            <strong>Design × Technology</strong>
+          </div>
+
+          <div>
+            <span>STACK</span>
+            <strong>Frontend × Backend</strong>
+          </div>
+
+          <div>
+            <span>MODE</span>
+            <strong>Remote / Project Based</strong>
+          </div>
+        </div>
+
+      </section>
 
 
-    <!-- ===================================================
-         FINAL CTA
-    ==================================================== -->
+      <!-- =========================
+           FINAL CTA
+      ========================== -->
+      <section class="final-cta section reveal">
 
-    <section class="final-section section-shell">
+        <div class="cta-decoration">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-      <span class="section-number">08 / START A PROJECT</span>
+        <span class="section-kicker">LET'S BUILD</span>
 
-      <h2>
-        Ada ide?
-        <span>Mari bangun.</span>
-      </h2>
+        <h2>
+          Punya ide?
+          <br>
+          <em>Jadikan nyata.</em>
+        </h2>
 
-      <p>
-        Ceritakan kebutuhan website atau sistem yang
-        ingin kamu buat. Kita mulai dari percakapan.
-      </p>
+        <p>
+          Ceritakan kebutuhan website kamu.
+          Kita mulai dari percakapan sederhana.
+        </p>
 
-      <button class="button button-primary button-large open-consult" type="button">
-        <span>Mulai Konsultasi</span>
-        <b>↗</b>
-      </button>
+        <button class="cta-big open-consult" type="button">
+          <span>Mulai Proyek</span>
+          <b>↗</b>
+        </button>
 
-      <div class="cta-note">
-        <span></span>
-        Response via WhatsApp
-      </div>
+      </section>
 
-    </section>
-
-  </main>
+    </main>
 
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
 
-  <footer class="footer section-shell">
-
-    <div class="footer-main">
-
-      <div class="footer-brand">
-
-        <a href="#home" class="brand">
-          <span class="brand-symbol">N</span>
-
-          <span class="brand-text">
-            <strong>Noctis Atalic</strong>
-            <small>FULL-STACK WEB DEVELOPER</small>
+      <div class="footer-main">
+        <a href="#home" class="footer-brand">
+          <span class="brand-mark">N</span>
+          <span>
+            <strong>NOCTIS ATALIC</strong>
+            <small>FULLSTACK WEB DEVELOPER</small>
           </span>
         </a>
 
         <p>
-          Building digital experiences
-          with purpose.
+          Membangun pengalaman digital
+          yang punya tujuan.
         </p>
-
       </div>
 
-
-      <div class="footer-links">
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Noctis Atalic</span>
 
         <div>
-          <span>NAVIGATION</span>
           <a href="#home">Home</a>
-          <a href="#services">Layanan</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#about">Tentang Saya</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#tentang">Tentang Saya</a>
         </div>
-
-        <div>
-          <span>CONTACT</span>
-          <button class="open-consult" type="button">Konsultasi</button>
-          <a href="mailto:noctisatalic@gmail.com">Email</a>
-          <a href="https://wa.me/6281318048885" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        </div>
-
       </div>
 
-    </div>
+    </footer>
 
 
-    <div class="footer-bottom">
+    <!-- =========================
+         BOTTOM DOCK
+    ========================== -->
+    <nav class="bottom-dock" aria-label="Navigasi cepat">
 
-      <span>
-        © <span id="current-year"></span> Noctis Atalic.
-        All rights reserved.
-      </span>
+      <a href="#home" class="dock-link active" data-section="home">
+        <span>01</span>
+        <b>Home</b>
+      </a>
 
-      <button class="policy-trigger" type="button">
-        Kebijakan & Ketentuan
+      <a href="#layanan" class="dock-link" data-section="layanan">
+        <span>02</span>
+        <b>Layanan</b>
+      </a>
+
+      <a href="#tentang" class="dock-link" data-section="tentang">
+        <span>03</span>
+        <b>Tentang Saya</b>
+      </a>
+
+      <button class="dock-contact open-consult" type="button">
+        <span>Start</span>
+        <b>↗</b>
       </button>
 
-    </div>
+    </nav>
 
-  </footer>
-
-
-  <!-- =====================================================
-       MOBILE NAV
-  ====================================================== -->
-
-  <nav class="mobile-nav" aria-label="Navigasi mobile">
-
-    <a href="#home" class="mobile-nav-item active">
-      <span>⌂</span>
-      Home
-    </a>
-
-    <a href="#services" class="mobile-nav-item">
-      <span>＋</span>
-      Layanan
-    </a>
-
-    <a href="#about" class="mobile-nav-item">
-      <span>◎</span>
-      Tentang
-    </a>
-
-  </nav>
+  </div>
 
 
-  <!-- =====================================================
+  <!-- =========================
        CONSULTATION MODAL
-  ====================================================== -->
-
+  ========================== -->
   <div class="modal" id="consultModal" aria-hidden="true">
 
     <div class="modal-backdrop" data-close-modal></div>
 
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="consultTitle">
+    <div
+      class="modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
 
       <button class="modal-close" type="button" data-close-modal aria-label="Tutup">
         ×
       </button>
 
-      <div class="modal-kicker">
-        START A CONVERSATION
+      <div class="modal-heading">
+        <span class="section-kicker">START A PROJECT</span>
+
+        <h2 id="modalTitle">
+          Ceritakan
+          <em>proyekmu.</em>
+        </h2>
+
+        <p>
+          Isi beberapa informasi singkat.
+          Setelah dikirim, kamu akan diarahkan ke WhatsApp.
+        </p>
       </div>
-
-      <h2 id="consultTitle">
-        Ceritakan
-        <span>project-mu.</span>
-      </h2>
-
-      <p class="modal-intro">
-        Isi beberapa informasi sederhana.
-        Setelah dikirim, kamu akan diarahkan ke WhatsApp
-        untuk melanjutkan konsultasi.
-      </p>
-
 
       <form id="consultForm">
 
-        <label>
-          <span>Nama</span>
-          <input
-            type="text"
-            id="clientName"
-            name="name"
-            placeholder="Nama kamu"
-            autocomplete="name"
-            required
-          >
-        </label>
+        <div class="form-row">
+          <label>
+            Nama
+            <input
+              id="clientName"
+              name="name"
+              type="text"
+              placeholder="Nama kamu"
+              required
+            >
+          </label>
 
-
-        <label>
-          <span>Nomor WhatsApp</span>
-          <input
-            type="tel"
-            id="clientPhone"
-            name="phone"
-            placeholder="08xxxxxxxxxx"
-            autocomplete="tel"
-            required
-          >
-        </label>
-
+          <label>
+            WhatsApp
+            <input
+              id="clientPhone"
+              name="phone"
+              type="tel"
+              placeholder="08xxxxxxxxxx"
+              required
+            >
+          </label>
+        </div>
 
         <label>
-          <span>Kebutuhan</span>
-
+          Kebutuhan
           <select id="clientNeed" name="need" required>
-            <option value="">Pilih kebutuhan</option>
-            <option value="Business Website">Business Website</option>
-            <option value="Landing Page">Landing Page</option>
-            <option value="Web Application">Web Application</option>
-            <option value="Digital System">Digital System</option>
-            <option value="Website Maintenance">Website Maintenance</option>
-            <option value="Lainnya">Lainnya</option>
+            <option value="" disabled selected>Pilih kebutuhan</option>
+            <option value="Website Starter">Website Starter</option>
+            <option value="Website Business">Website Business</option>
+            <option value="Website Premium">Website Premium</option>
+            <option value="Web App / Fullstack">Web App / Fullstack</option>
+            <option value="Redesign Website">Redesign Website</option>
+            <option value="Konsultasi">Belum tahu / Konsultasi</option>
           </select>
-
         </label>
 
-
         <label>
-          <span>Ceritakan project</span>
-
+          Ceritakan sedikit
           <textarea
             id="clientMessage"
             name="message"
             rows="4"
-            placeholder="Contoh: Saya membutuhkan website untuk bisnis..."
+            placeholder="Contoh: Saya punya bisnis sound system dan ingin website untuk katalog serta pemesanan..."
             required
           ></textarea>
-
         </label>
-
 
         <label class="agreement">
-
-          <input type="checkbox" id="agreement">
-
+          <input id="agreement" type="checkbox" required>
           <span>
-            Saya memahami bahwa konsultasi akan dilanjutkan
-            melalui WhatsApp.
+            Saya setuju informasi ini dikirim melalui WhatsApp
+            untuk keperluan konsultasi proyek.
           </span>
-
         </label>
 
-
-        <button
-          class="submit-button"
-          id="submitConsult"
-          type="submit"
-          disabled
-        >
+        <button class="submit-button" id="submitConsult" type="submit" disabled>
           <span>Kirim ke WhatsApp</span>
           <b>↗</b>
         </button>
@@ -1110,57 +878,6 @@
       </form>
 
     </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       POLICY MODAL
-  ====================================================== -->
-
-  <div class="modal" id="policyModal" aria-hidden="true">
-
-    <div class="modal-backdrop" data-close-modal></div>
-
-    <div class="modal-dialog policy-dialog" role="dialog" aria-modal="true">
-
-      <button class="modal-close" type="button" data-close-modal>
-        ×
-      </button>
-
-      <div class="modal-kicker">
-        INFORMATION
-      </div>
-
-      <h2>
-        Kebijakan &
-        <span>Ketentuan.</span>
-      </h2>
-
-      <div class="policy-content">
-
-        <h3>Konsultasi</h3>
-        <p>
-          Informasi yang dikirim melalui form digunakan
-          untuk memahami kebutuhan project dan melanjutkan komunikasi.
-        </p>
-
-        <h3>Project</h3>
-        <p>
-          Estimasi harga dapat berubah berdasarkan tingkat
-          kompleksitas, fitur, integrasi, dan kebutuhan khusus.
-        </p>
-
-        <h3>Komunikasi</h3>
-        <p>
-          Detail scope, timeline, revisi, dan pembayaran
-          akan dibicarakan sebelum project dimulai.
-        </p>
-
-      </div>
-
-    </div>
-
   </div>
 
 
