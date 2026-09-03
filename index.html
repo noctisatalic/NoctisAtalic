@@ -1,3121 +1,2279 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f3f3ef">
-<meta name="description" content="Noctis Atalic — Fullstack Web Developer & Digital Builder.">
-<title>Noctis Atalic — Fullstack Web Developer</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
-
-:root{
-  --red:#e50914;
-  --red-dark:#b8060e;
-  --black:#080808;
-  --black-2:#111111;
-  --white:#ffffff;
-  --paper:#f3f3ef;
-  --soft:#e9e9e4;
-  --line:rgba(8,8,8,.11);
-  --muted:#707070;
-  --radius:24px;
-  --radius-sm:16px;
-  --shadow:0 18px 50px rgba(0,0,0,.08);
-  --ease:cubic-bezier(.2,.8,.2,1);
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:"DM Sans",sans-serif;
-  background:var(--paper);
-  color:var(--black);
-  overflow-x:hidden;
-  line-height:1.5;
-}
-
-body.modal-open{
-  overflow:hidden;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,
-input,
-textarea{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-img{
-  display:block;
-  max-width:100%;
-}
-
-.container{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
-}
-
-/* ================= HEADER ================= */
-
-.site-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:1000;
-  padding:18px 0;
-  pointer-events:none;
-}
-
-.header-inner{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 12px 10px 18px;
-  background:rgba(255,255,255,.82);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:999px;
-  box-shadow:0 10px 30px rgba(0,0,0,.05);
-  pointer-events:auto;
-}
-
-.logo{
-  font-family:"Manrope",sans-serif;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:-.04em;
-}
-
-.logo span{
-  color:var(--red);
-}
-
-.desktop-nav{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.desktop-nav a{
-  font-size:13px;
-  font-weight:600;
-  padding:10px 15px;
-  border-radius:999px;
-  transition:.25s var(--ease);
-}
-
-.desktop-nav a:hover{
-  background:var(--black);
-  color:white;
-}
-
-.header-cta{
-  background:var(--black);
-  color:white!important;
-  padding:11px 17px!important;
-}
-
-.header-cta:hover{
-  background:var(--red)!important;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-  min-height:100svh;
-  padding:130px 0 70px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px);
-  background-size:70px 70px;
-  mask-image:linear-gradient(to bottom,black,transparent 90%);
-  pointer-events:none;
-}
-
-.hero-layout{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-  gap:50px;
-  align-items:center;
-}
-
-.hero-copy{
-  max-width:720px;
-}
-
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:8px 12px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:rgba(255,255,255,.72);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  margin-bottom:22px;
-}
-
-.eyebrow::before{
-  content:"";
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 0 5px rgba(229,9,20,.1);
-}
-
-.hero h1{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(52px,8vw,108px);
-  line-height:.91;
-  letter-spacing:-.075em;
-  max-width:850px;
-}
-
-.hero h1 em{
-  color:var(--red);
-  font-style:normal;
-}
-
-.hero-description{
-  margin-top:27px;
-  max-width:600px;
-  font-size:17px;
-  color:#4f4f4f;
-  line-height:1.7;
-}
-
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:30px;
-}
-
-.btn{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  min-height:50px;
-  padding:0 20px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:700;
-  transition:.3s var(--ease);
-}
-
-.btn-dark{
-  background:var(--black);
-  color:white;
-}
-
-.btn-dark:hover{
-  transform:translateY(-3px);
-  background:var(--red);
-}
-
-.btn-light{
-  background:white;
-  border:1px solid var(--line);
-}
-
-.btn-light:hover{
-  transform:translateY(-3px);
-  border-color:var(--black);
-}
-
-.hero-visual{
-  min-height:570px;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.hero-card{
-  width:min(100%,440px);
-  min-height:560px;
-  background:var(--black);
-  border-radius:34px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 35px 80px rgba(0,0,0,.2);
-}
-
-.hero-card::before{
-  content:"";
-  position:absolute;
-  width:310px;
-  height:310px;
-  background:var(--red);
-  border-radius:50%;
-  right:-100px;
-  top:-90px;
-}
-
-.hero-card::after{
-  content:"NOCTIS";
-  position:absolute;
-  left:-22px;
-  bottom:80px;
-  font-family:"Manrope",sans-serif;
-  font-size:105px;
-  font-weight:800;
-  color:rgba(255,255,255,.035);
-  letter-spacing:-.08em;
-}
-
-.portrait{
-  position:absolute;
-  z-index:3;
-  width:min(74%,330px);
-  aspect-ratio:3/4;
-  object-fit:contain;
-  object-position:center bottom;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  filter:drop-shadow(0 30px 25px rgba(0,0,0,.3));
-  transition:transform .25s ease-out;
-}
-
-.hero-meta{
-  position:absolute;
-  z-index:5;
-  left:22px;
-  bottom:22px;
-  right:22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  color:white;
-}
-
-.hero-meta strong{
-  font-family:"Manrope",sans-serif;
-  font-size:18px;
-}
-
-.hero-meta small{
-  display:block;
-  color:rgba(255,255,255,.55);
-  font-size:11px;
-  margin-top:3px;
-}
-
-.available{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:8px 11px;
-  border-radius:999px;
-  background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.12);
-  font-size:10px;
-}
-
-.available i{
-  width:6px;
-  height:6px;
-  background:#52d273;
-  border-radius:50%;
-}
-
-/* ================= SECTION ================= */
-
-section{
-  padding:100px 0;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:30px;
-  margin-bottom:35px;
-}
-
-.section-kicker{
-  color:var(--red);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  margin-bottom:9px;
-}
-
-.section-title{
-  font-family:"Manrope",sans-serif;
-  font-size:clamp(35px,5vw,62px);
-  line-height:.98;
-  letter-spacing:-.06em;
-}
-
-.section-description{
-  max-width:440px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.7;
-}
-
-/* ================= INTRO ================= */
-
-.intro-section{
-  padding-top:70px;
-}
-
-.intro-grid{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:16px;
-}
-
-.intro-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:38px;
-  box-shadow:var(--shadow);
-}
-
-.intro-card.dark{
-  background:var(--black);
-  color:white;
-}
-
-.intro-card h3{
-  font-family:"Manrope",sans-serif;
-  font-size:30px;
-  letter-spacing:-.05em;
-  margin-bottom:17px;
-}
-
-.intro-card p{
-  color:#626262;
-  font-size:15px;
-  line-height:1.75;
-}
-
-.intro-card.dark p{
-  color:#aaa;
-}
-
-.mini-stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:28px;
-}
-
-.stat{
-  padding:18px;
-  background:rgba(0,0,0,.035);
-  border-radius:16px;
-}
-
-.dark .stat{
-  background:rgba(255,255,255,.07);
-}
-
-.stat strong{
-  display:block;
-  font-family:"Manrope",sans-serif;
-  font-size:27px;
-  letter-spacing:-.05em;
-}
-
-.stat span{
-  display:block;
-  margin-top:4px;
-  font-size:11px;
-  color:var(--muted);
-}
-
-.dark .stat span{
-  color:#888;
-}
-
-/* ================= PORTFOLIO ================= */
-
-.portfolio-section{
-  background:var(--black);
-  color:white;
-}
-
-.portfolio-section .section-description{
-  color:#898989;
-}
-
-.projects{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:16px;
-}
-
-.project-card{
-  grid-column:span 7;
-  min-height:500px;
-  border-radius:var(--radius);
-  overflow:hidden;
-  position:relative;
-  background:#151515;
-  border:1px solid rgba(255,255,255,.08);
-  transition:.45s var(--ease);
-}
-
-.project-card:nth-child(2){
-  grid-column:span 5;
-}
-
-.project-card:nth-child(3){
-  grid-column:span 5;
-}
-
-.project-card:nth-child(4){
-  grid-column:span 7;
-}
-
-.project-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(255,255,255,.2);
-}
-
-.project-visual{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 70% 20%,rgba(229,9,20,.32),transparent 35%),
-    linear-gradient(135deg,#222,#0c0c0c);
-}
-
-.project-card:nth-child(2) .project-visual{
-  background:
-    radial-gradient(circle at 30% 30%,rgba(255,255,255,.13),transparent 32%),
-    linear-gradient(145deg,#181818,#050505);
-}
-
-.project-card:nth-child(3) .project-visual{
-  background:
-    radial-gradient(circle at 70% 70%,rgba(229,9,20,.28),transparent 35%),
-    linear-gradient(145deg,#080808,#1b1b1b);
-}
-
-.project-card:nth-child(4) .project-visual{
-  background:
-    radial-gradient(circle at 30% 20%,rgba(229,9,20,.25),transparent 35%),
-    linear-gradient(145deg,#1a1a1a,#080808);
-}
-
-.browser{
-  position:absolute;
-  width:72%;
-  height:55%;
-  left:50%;
-  top:45%;
-  transform:translate(-50%,-50%);
-  background:#f5f5f2;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 25px 60px rgba(0,0,0,.35);
-}
-
-.browser-top{
-  height:25px;
-  background:#deded9;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  padding-left:9px;
-}
-
-.browser-top i{
-  width:5px;
-  height:5px;
-  background:#888;
-  border-radius:50%;
-}
-
-.browser-content{
-  height:calc(100% - 25px);
-  padding:16px;
-  color:#111;
-}
-
-.browser-content .fake-logo{
-  font-family:"Manrope";
-  font-weight:800;
-  font-size:14px;
-}
-
-.fake-lines{
-  margin-top:35px;
-  display:grid;
-  gap:8px;
-}
-
-.fake-lines span{
-  display:block;
-  height:8px;
-  background:#d5d5d0;
-  border-radius:99px;
-}
-
-.fake-lines span:nth-child(1){width:70%;}
-.fake-lines span:nth-child(2){width:48%;}
-.fake-lines span:nth-child(3){width:60%;}
-
-.project-info{
-  position:absolute;
-  z-index:3;
-  left:24px;
-  right:24px;
-  bottom:24px;
-}
-
-.project-type{
-  color:#ff6b70;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-
-.project-info h3{
-  margin-top:6px;
-  font-family:"Manrope",sans-serif;
-  font-size:30px;
-  letter-spacing:-.05em;
-}
-
-.project-info p{
-  color:#a0a0a0;
-  font-size:12px;
-  margin-top:5px;
-}
-
-.project-link{
-  display:inline-flex;
-  margin-top:16px;
-  padding:9px 13px;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:11px;
-  font-weight:700;
-}
-
-/* ================= SERVICES ================= */
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
-}
-
-.service-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:30px;
-  min-height:250px;
-  box-shadow:var(--shadow);
-  transition:.35s var(--ease);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.service-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(229,9,20,.35);
-}
-
-.service-card h3{
-  font-family:"Manrope",sans-serif;
-  font-size:24px;
-  letter-spacing:-.05em;
-}
-
-.service-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-  margin-top:8px;
-}
-
-.service-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:20px;
-}
-
-.service-tags span{
-  padding:7px 10px;
-  border-radius:999px;
-  background:#f0f0ec;
-  font-size:10px;
-  font-weight:700;
-}
-
-/* ================= PROCESS ================= */
-
-.process-section{
-  background:#e8e8e3;
-}
-
-.process-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
-
-.process-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:25px;
-  min-height:210px;
-}
-
-.process-card h3{
-  font-family:"Manrope";
-  font-size:19px;
-  letter-spacing:-.04em;
-}
-
-.process-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  margin-top:7px;
-}
-
-/* ================= PRICING ================= */
-
-.pricing-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.price-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:30px;
-  position:relative;
-  box-shadow:var(--shadow);
-}
-
-.price-card.featured{
-  background:var(--black);
-  color:white;
-  transform:translateY(-10px);
-}
-
-.price-badge{
-  position:absolute;
-  right:18px;
-  top:18px;
-  background:var(--red);
-  color:white;
-  border-radius:999px;
-  padding:6px 9px;
-  font-size:9px;
-  font-weight:800;
-}
-
-.price-card h3{
-  font-family:"Manrope";
-  font-size:23px;
-  letter-spacing:-.05em;
-}
-
-.price-card .price{
-  margin-top:22px;
-  font-family:"Manrope";
-  font-size:39px;
-  letter-spacing:-.06em;
-}
-
-.price-card .price small{
-  font-family:"DM Sans";
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:0;
-}
-
-.price-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  margin-top:8px;
-}
-
-.featured p,
-.featured .price small{
-  color:#888;
-}
-
-.features{
-  list-style:none;
-  margin:25px 0;
-  display:grid;
-  gap:11px;
-}
-
-.features li{
-  font-size:12px;
-  display:flex;
-  gap:9px;
-  align-items:flex-start;
-}
-
-.features li::before{
-  content:"✓";
-  color:var(--red);
-  font-weight:900;
-}
-
-.price-card .btn{
-  width:100%;
-}
-
-/* ================= ABOUT ================= */
-
-.about-grid{
-  display:grid;
-  grid-template-columns:.85fr 1.15fr;
-  gap:16px;
-}
-
-.profile-card,
-.info-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:32px;
-  box-shadow:var(--shadow);
-}
-
-.profile-card{
-  background:var(--black);
-  color:white;
-  min-height:480px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.profile-label{
-  color:#888;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.1em;
-}
-
-.profile-name{
-  font-family:"Manrope";
-  font-size:45px;
-  line-height:.95;
-  letter-spacing:-.07em;
-  margin-top:10px;
-}
-
-.profile-name span{
-  color:var(--red);
-}
-
-.profile-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:20px;
-}
-
-.profile-location{
-  font-size:12px;
-  color:#888;
-}
-
-.profile-status{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  background:var(--red);
-  display:grid;
-  place-items:center;
-}
-
-.info-stack{
-  display:grid;
-  gap:16px;
-}
-
-.info-card h3{
-  font-family:"Manrope";
-  font-size:24px;
-  letter-spacing:-.05em;
-  margin-bottom:13px;
-}
-
-.info-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.75;
-}
-
-.skill-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-}
-
-.skill{
-  padding:13px;
-  background:#f0f0ec;
-  border-radius:13px;
-  font-size:11px;
-  font-weight:700;
-}
-
-/* ================= TIMELINE ================= */
-
-.timeline-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.timeline-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:25px;
-  min-height:220px;
-}
-
-.timeline-card small{
-  color:var(--red);
-  font-size:10px;
-  font-weight:800;
-  text-transform:uppercase;
-}
-
-.timeline-card h3{
-  font-family:"Manrope";
-  font-size:20px;
-  margin-top:30px;
-  letter-spacing:-.04em;
-}
-
-.timeline-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-  margin-top:8px;
-}
-
-/* ================= FINAL CTA ================= */
-
-.final-section{
-  padding:70px 0;
-}
-
-.final-card{
-  min-height:450px;
-  border-radius:32px;
-  background:var(--red);
-  color:white;
-  padding:55px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.final-card::after{
-  content:"LET'S BUILD";
-  position:absolute;
-  right:-40px;
-  bottom:-25px;
-  font-family:"Manrope";
-  font-size:110px;
-  font-weight:800;
-  letter-spacing:-.09em;
-  color:rgba(0,0,0,.08);
-  white-space:nowrap;
-}
-
-.final-card h2{
-  max-width:720px;
-  font-family:"Manrope";
-  font-size:clamp(42px,6vw,76px);
-  line-height:.95;
-  letter-spacing:-.07em;
-  position:relative;
-  z-index:2;
-}
-
-.final-card p{
-  max-width:530px;
-  color:rgba(255,255,255,.78);
-  margin-top:20px;
-  font-size:15px;
-  line-height:1.7;
-  position:relative;
-  z-index:2;
-}
-
-.final-card .btn{
-  width:max-content;
-  margin-top:27px;
-  background:white;
-  color:var(--black);
-  position:relative;
-  z-index:2;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  background:var(--black);
-  color:white;
-  padding:50px 0 95px;
-}
-
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr .8fr;
-  gap:40px;
-}
-
-.footer-brand{
-  font-family:"Manrope";
-  font-size:27px;
-  font-weight:800;
-  letter-spacing:-.06em;
-}
-
-.footer-brand span{
-  color:var(--red);
-}
-
-.footer-text{
-  max-width:350px;
-  color:#777;
-  font-size:12px;
-  line-height:1.7;
-  margin-top:12px;
-}
-
-.footer-column h4{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.1em;
-  color:#777;
-  margin-bottom:15px;
-}
-
-.footer-column a{
-  display:block;
-  font-size:12px;
-  color:#ccc;
-  margin-bottom:10px;
-}
-
-.footer-column a:hover{
-  color:white;
-}
-
-.footer-bottom{
-  margin-top:45px;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:#666;
-  font-size:10px;
-  display:flex;
-  justify-content:space-between;
-}
-
-/* ================= MOBILE NAV ================= */
-
-.mobile-dock{
-  display:none;
-  position:fixed;
-  z-index:900;
-  bottom:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:calc(100% - 24px);
-  max-width:430px;
-  padding:7px;
-  background:rgba(8,8,8,.9);
-  backdrop-filter:blur(18px);
-  border-radius:999px;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.mobile-dock a{
-  flex:1;
-  text-align:center;
-  padding:11px 8px;
-  color:#777;
-  font-size:10px;
-  font-weight:700;
-  border-radius:999px;
-}
-
-.mobile-dock a.active{
-  background:white;
-  color:#111;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.68);
-  backdrop-filter:blur(12px);
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:min(520px,100%);
-  max-height:90svh;
-  overflow:auto;
-  background:white;
-  border-radius:28px;
-  padding:30px;
-  position:relative;
-  box-shadow:0 30px 100px rgba(0,0,0,.3);
-}
-
-.modal-close{
-  position:absolute;
-  right:18px;
-  top:18px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#eee;
-  font-size:20px;
-}
-
-.modal-box h2{
-  font-family:"Manrope";
-  font-size:32px;
-  letter-spacing:-.06em;
-}
-
-.modal-box>p{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:6px;
-  margin-bottom:25px;
-}
-
-.form-group{
-  margin-bottom:14px;
-}
-
-.form-group label{
-  display:block;
-  font-size:11px;
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea{
-  width:100%;
-  border:1px solid #ddd;
-  background:#f7f7f4;
-  border-radius:13px;
-  padding:12px 13px;
-  outline:none;
-  font-size:13px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus{
-  border-color:var(--red);
-}
-
-.form-group textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-.agreement{
-  display:flex;
-  gap:9px;
-  align-items:flex-start;
-  font-size:10px;
-  color:#666;
-  margin:16px 0;
-}
-
-.agreement input{
-  margin-top:2px;
-  accent-color:var(--red);
-}
-
-.submit-btn{
-  width:100%;
-  background:var(--black);
-  color:white;
-  min-height:50px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:12px;
-}
-
-.submit-btn:disabled{
-  opacity:.35;
-  cursor:not-allowed;
-}
-
-/* ================= REVEAL ================= */
-
-.reveal{
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity .8s var(--ease),transform .8s var(--ease);
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:none;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:900px){
-
-  .desktop-nav{
-    display:none;
-  }
-
-  .mobile-dock{
-    display:flex;
-  }
-
-  .header-inner{
-    padding:10px 14px;
-  }
-
-  .hero-layout,
-  .intro-grid,
-  .about-grid{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    padding-top:115px;
-  }
-
-  .hero-visual{
-    min-height:510px;
-  }
-
-  .hero-card{
-    min-height:500px;
-  }
-
-  .projects{
-    grid-template-columns:1fr;
-  }
-
-  .project-card,
-  .project-card:nth-child(2),
-  .project-card:nth-child(3),
-  .project-card:nth-child(4){
-    grid-column:auto;
-    min-height:430px;
-  }
-
-  .process-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .pricing-grid{
-    grid-template-columns:1fr;
-  }
-
-  .price-card.featured{
-    transform:none;
-  }
-
-  .timeline-grid{
-    grid-template-columns:1fr;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .footer-grid>div:first-child{
-    grid-column:1/-1;
-  }
-}
-
-@media(max-width:600px){
-
-  .container{
-    width:min(100% - 24px,500px);
-  }
-
-  section{
-    padding:72px 0;
-  }
-
-  .site-header{
-    padding:10px 0;
-  }
-
-  .header-inner{
-    width:calc(100% - 24px);
-  }
-
-  .logo{
-    font-size:14px;
-  }
-
-  .header-cta{
-    padding:9px 13px!important;
-    font-size:11px!important;
-  }
-
-  .hero{
-    padding:100px 0 50px;
-  }
-
-  .hero h1{
-    font-size:clamp(48px,16vw,76px);
-  }
-
-  .hero-description{
-    font-size:14px;
-  }
-
-  .hero-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-  }
-
-  .btn{
-    min-height:47px;
-    padding:0 14px;
-    font-size:11px;
-  }
-
-  .hero-visual{
-    min-height:440px;
-  }
-
-  .hero-card{
-    min-height:430px;
-    border-radius:26px;
-  }
-
-  .portrait{
-    width:78%;
-  }
-
-  .hero-meta{
-    left:17px;
-    right:17px;
-    bottom:17px;
-  }
-
-  .section-head{
-    display:block;
-    margin-bottom:24px;
-  }
-
-  .section-description{
-    margin-top:15px;
-  }
-
-  .intro-card,
-  .profile-card,
-  .info-card,
-  .service-card,
-  .price-card{
-    padding:24px;
-  }
-
-  .intro-card h3{
-    font-size:25px;
-  }
-
-  .services-grid{
-    grid-template-columns:1fr;
-  }
-
-  .service-card{
-    min-height:230px;
-  }
-
-  .process-grid{
-    grid-template-columns:1fr;
-  }
-
-  .process-card{
-    min-height:180px;
-  }
-
-  .project-card,
-  .project-card:nth-child(2),
-  .project-card:nth-child(3),
-  .project-card:nth-child(4){
-    min-height:390px;
-  }
-
-  .browser{
-    width:82%;
-    height:48%;
-  }
-
-  .project-info h3{
-    font-size:25px;
-  }
-
-  .skill-grid{
-    grid-template-columns:1fr;
-  }
-
-  .final-card{
-    min-height:400px;
-    padding:32px 25px;
-    border-radius:25px;
-  }
-
-  .final-card::after{
-    font-size:70px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:30px;
-  }
-
-  .footer-grid>div:first-child{
-    grid-column:auto;
-  }
-
-  .footer-bottom{
-    display:block;
-    line-height:1.7;
-  }
-
-  .footer-bottom span{
-    display:block;
-  }
-
-  .modal-box{
-    padding:25px 20px;
-    border-radius:22px;
-  }
-
-  .modal-box h2{
-    font-size:28px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  html{
-    scroll-behavior:auto;
-  }
-
-  *,
-  *::before,
-  *::after{
-    animation:none!important;
-    transition:none!important;
-  }
-
-  .reveal{
-    opacity:1;
-    transform:none;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Noctis Atalic — Fullstack Web Developer</title>
+  <meta name="description" content="Noctis Atalic — Fullstack Web Developer, builder, designer, and digital creator.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: rgba(255,255,255,.72);
+      --surface-solid: #ffffff;
+      --text: #101010;
+      --muted: #707070;
+      --line: rgba(0,0,0,.09);
+      --red: #e00000;
+      --red-dark: #a90000;
+      --black: #0b0b0b;
+      --radius: 28px;
+      --shadow: 0 20px 60px rgba(0,0,0,.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--red);
+      color: white;
+    }
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .95;
+      letter-spacing: -.055em;
+      max-width: 850px;
+    }
+
+    .section-title span {
+      color: var(--red);
+    }
+
+    .section-description {
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 25px;
+    }
+
+    /* =========================
+       CURSOR
+    ========================= */
+
+    .cursor {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition:
+        width .2s ease,
+        height .2s ease,
+        background .2s ease;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.active {
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,.18);
+    }
+
+    @media(max-width: 800px) {
+      .cursor {
+        display: none;
+      }
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    .nav-inner {
+      width: min(1180px, calc(100% - 24px));
+      margin: auto;
+      padding: 10px 14px 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,.68);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.04);
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -.04em;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: #555;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-cta {
+      background: var(--black);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    @media(max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-inner {
+        padding-left: 16px;
+      }
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 130px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: -300px;
+      top: 80px;
+      background: rgba(224,0,0,.08);
+      filter: blur(100px);
+      border-radius: 50%;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.7);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #1fa64a;
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(31,166,74,.1);
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(55px, 9vw, 112px);
+      line-height: .84;
+      letter-spacing: -.075em;
+      max-width: 800px;
+    }
+
+    .hero h1 .red {
+      color: var(--red);
+    }
+
+    .hero-role {
+      font-size: clamp(17px, 2vw, 23px);
+      font-weight: 600;
+      margin-top: 28px;
+      max-width: 580px;
+      line-height: 1.4;
+    }
+
+    .hero-role span {
+      color: var(--muted);
+    }
+
+    .hero-text {
+      color: var(--muted);
+      max-width: 570px;
+      line-height: 1.8;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 22px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: .25s ease;
+      border: 1px solid var(--line);
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: var(--red);
+      border-color: var(--red);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: white;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* PHOTO */
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .photo-frame {
+      width: min(100%, 390px);
+      aspect-ratio: 3 / 4;
+      position: relative;
+      border-radius: 34px;
+      overflow: hidden;
+      background: #ddd;
+      border: 1px solid rgba(0,0,0,.1);
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+      transition: transform .5s ease;
+    }
+
+    .photo-frame:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-tag {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      padding: 13px 15px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(18px);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.7);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .photo-tag small {
+      display: block;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .floating-number {
+      position: absolute;
+      right: -25px;
+      top: 50px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 100px;
+      line-height: 1;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0,0,0,.12);
+      z-index: -1;
+    }
+
+    @media(max-width: 850px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      .hero-visual {
+        justify-content: flex-start;
+      }
+
+      .photo-frame {
+        width: min(80vw, 350px);
+      }
+    }
+
+    /* =========================
+       IDENTITY
+    ========================= */
+
+    .identity {
+      background: var(--black);
+      color: white;
+      overflow: hidden;
+    }
+
+    .identity .eyebrow {
+      color: #ff4a4a;
+    }
+
+    .identity .eyebrow::before {
+      background: #ff4a4a;
+    }
+
+    .identity .section-title {
+      max-width: 900px;
+    }
+
+    .identity .section-description {
+      color: #999;
+    }
+
+    .identity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 70px;
+    }
+
+    .identity-card {
+      padding: 34px;
+      min-height: 260px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.035);
+      transition: .35s ease;
+    }
+
+    .identity-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(255,255,255,.3);
+      background: rgba(255,255,255,.06);
+    }
+
+    .identity-card-number {
+      font-family: "Space Grotesk", sans-serif;
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 70px;
+    }
+
+    .identity-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 27px;
+      margin-bottom: 12px;
+    }
+
+    .identity-card p {
+      color: #999;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    @media(max-width: 700px) {
+      .identity-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================
+       MARQUEE
+    ========================= */
+
+    .marquee {
+      overflow: hidden;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      white-space: nowrap;
+      background: white;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 45px;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee span {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+
+    .marquee .dot {
+      color: var(--red);
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* =========================
+       WORK
+    ========================= */
+
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+
+    .work-header .section-description {
+      margin: 0;
+      max-width: 380px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .work-card {
+      position: relative;
+      min-height: 470px;
+      overflow: hidden;
+      border-radius: 30px;
+      background: #ddd;
+      border: 1px solid var(--line);
+      transition: transform .4s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .work-card.large {
+      min-height: 610px;
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      transition: transform .7s ease;
+    }
+
+    .work-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      background: linear-gradient(
+        transparent 30%,
+        rgba(0,0,0,.82)
+      );
+      color: white;
+    }
+
+    .work-type {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: #ccc;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .work-overlay h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 34px;
+      letter-spacing: -.04em;
+    }
+
+    .work-overlay p {
+      color: #ccc;
+      font-size: 12px;
+      line-height: 1.6;
+      max-width: 450px;
+      margin-top: 7px;
+    }
+
+    .work-link {
+      margin-top: 17px;
+      font-size: 11px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .work-link span {
+      color: #ff4040;
+    }
+
+    @media(max-width: 700px) {
+      .work-header {
+        display: block;
+      }
+
+      .work-header .section-description {
+        margin-top: 22px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card,
+      .work-card.large {
+        min-height: 440px;
+      }
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      background: #ececea;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 60px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      transition: .35s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card.featured {
+      background: var(--black);
+      color: white;
+    }
+
+    .service-index {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .service-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 30px;
+      margin-top: 70px;
+      letter-spacing: -.04em;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 13px;
+      margin-top: 13px;
+    }
+
+    .featured p {
+      color: #999;
+    }
+
+    .service-price {
+      margin-top: auto;
+      padding-top: 30px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .service-price small {
+      font-family: Inter, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    @media(max-width: 850px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: 330px;
+      }
+
+      .service-card h3 {
+        margin-top: 45px;
+      }
+    }
+
+    /* =========================
+       TECHNOLOGY
+    ========================= */
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 65px;
+    }
+
+    .tech-card {
+      padding: 24px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      transition: .3s ease;
+      cursor: default;
+    }
+
+    .tech-card:hover {
+      border-color: rgba(224,0,0,.3);
+      transform: translateY(-5px);
+    }
+
+    .tech-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .tech-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      background: #f1f1ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .tech-number {
+      font-size: 10px;
+      color: #aaa;
+      font-weight: 700;
+    }
+
+    .tech-card h3 {
+      margin-top: 28px;
+      font-size: 17px;
+    }
+
+    .tech-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .tech-category {
+      margin-top: 13px;
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #f2f2f0;
+      color: #777;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    @media(max-width: 800px) {
+      .tech-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width: 500px) {
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+      background: var(--black);
+      color: white;
+    }
+
+    .process .section-description {
+      color: #999;
+    }
+
+    .process-list {
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr;
+      gap: 25px;
+      padding: 30px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      align-items: start;
+      transition: padding .3s ease;
+    }
+
+    .process-item:hover {
+      padding-left: 12px;
+    }
+
+    .process-number {
+      color: #666;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+    }
+
+    .process-item h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 28px;
+    }
+
+    .process-item p {
+      color: #999;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    @media(max-width: 700px) {
+      .process-item {
+        grid-template-columns: 45px 1fr;
+      }
+
+      .process-item p {
+        grid-column: 2;
+      }
+    }
+
+    /* =========================
+       ABOUT / IDENTITY FINAL
+    ========================= */
+
+    .about-box {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 35px;
+      padding: clamp(30px, 6vw, 70px);
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-big {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(35px, 5vw, 62px);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .about-big span {
+      color: var(--red);
+    }
+
+    .about-details p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 27px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    @media(max-width: 700px) {
+      .about-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 140px 0;
+      background: var(--red);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: "BUILD";
+      position: absolute;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 30vw;
+      font-weight: 800;
+      line-height: .8;
+      color: rgba(0,0,0,.06);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(50px, 9vw, 110px);
+      line-height: .85;
+      letter-spacing: -.07em;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .cta p {
+      max-width: 550px;
+      margin: 25px auto;
+      color: rgba(255,255,255,.8);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .cta .btn {
+      background: white;
+      color: var(--black);
+      border-color: white;
+      margin-top: 10px;
+    }
+
+    .cta .btn:hover {
+      background: var(--black);
+      color: white;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 45px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .footer-logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .footer-logo span {
+      color: var(--red);
+    }
+
+    .footer-copy {
+      color: #777;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    @media(max-width: 650px) {
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       SCROLLBAR
+    ========================= */
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #bbb;
+      border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--red);
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
+  <div class="cursor"></div>
 
-    <a href="#home" class="logo">
-      NOCTIS<span>.</span>
-    </a>
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
 
-    <nav class="desktop-nav">
-      <a href="#home">Home</a>
-      <a href="#layanan">Layanan</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#tentang">Tentang Saya</a>
-      <a href="#harga">Harga</a>
-    </nav>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo">
+        NOCTIS<span>.</span>
+      </a>
 
-    <button class="btn header-cta open-modal">
-      Konsultasi
-    </button>
-
-  </div>
-</header>
-
-<main>
-
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-  <div class="container hero-layout">
-
-    <div class="hero-copy reveal">
-
-      <div class="eyebrow">
-        Fullstack Web Developer
+      <div class="nav-links">
+        <a href="#identity">Identity</a>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#technology">Technology</a>
+        <a href="#process">Process</a>
       </div>
 
-      <h1>
-        Website yang<br>
-        terlihat <em>serius.</em>
-      </h1>
+      <a href="#contact" class="nav-cta">
+        Let's Talk
+      </a>
+    </div>
+  </nav>
 
-      <p class="hero-description">
-        Saya membantu bisnis, brand, dan individu membangun website
-        modern yang bukan cuma bagus dilihat, tetapi juga dirancang
-        untuk membangun kepercayaan dan mendorong tindakan.
-      </p>
 
-      <div class="hero-actions">
+  <!-- =========================
+       HERO / PERSONAL IDENTITY
+  ========================= -->
 
-        <button class="btn btn-dark open-modal">
-          Mulai Konsultasi
-        </button>
+  <main>
 
-        <a href="#portfolio" class="btn btn-light">
-          Lihat Portfolio
-        </a>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
 
+          <div class="hero-copy reveal">
+
+            <div class="status">
+              <span class="status-dot"></span>
+              Available for selected projects
+            </div>
+
+            <h1>
+              NOCTIS<br>
+              <span class="red">ATALIC.</span>
+            </h1>
+
+            <div class="hero-role">
+              Fullstack Developer.
+              <span>Builder. Designer. Problem Solver.</span>
+            </div>
+
+            <p class="hero-text">
+              Gue membangun pengalaman digital yang bukan cuma terlihat bagus,
+              tapi punya struktur, fungsi, dan identitas yang jelas.
+              Dari interface sampai sistem di belakangnya — semuanya dirancang
+              sebagai satu kesatuan.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#identity" class="btn btn-primary">
+                Kenal Gue →
+              </a>
+
+              <a href="#work" class="btn btn-secondary">
+                Lihat Karya
+              </a>
+            </div>
+
+          </div>
+
+
+          <div class="hero-visual reveal">
+
+            <div class="floating-number">
+              01
+            </div>
+
+            <div class="photo-frame">
+              <!-- FOTO UTAMA -->
+              <img
+                src="hero-foto-asli.png"
+                alt="Noctis Atalic"
+              >
+
+              <div class="photo-tag">
+                NOCTIS ATALIC
+                <small>Fullstack Web Developer · Indonesia</small>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
+    </section>
 
+
+    <!-- =========================
+         MARQUEE
+    ========================= -->
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>IDENTITY</span>
+        <span class="dot">●</span>
+        <span>DESIGN</span>
+        <span class="dot">●</span>
+        <span>DEVELOPMENT</span>
+        <span class="dot">●</span>
+        <span>SYSTEM</span>
+        <span class="dot">●</span>
+        <span>EXPERIENCE</span>
+        <span class="dot">●</span>
+
+        <span>IDENTITY</span>
+        <span class="dot">●</span>
+        <span>DESIGN</span>
+        <span class="dot">●</span>
+        <span>DEVELOPMENT</span>
+        <span class="dot">●</span>
+        <span>SYSTEM</span>
+        <span class="dot">●</span>
+        <span>EXPERIENCE</span>
+        <span class="dot">●</span>
+      </div>
     </div>
 
-    <div class="hero-visual reveal">
 
-      <div class="hero-card">
+    <!-- =========================
+         IDENTITY
+    ========================= -->
 
-        <img
-          src="./foto-asli.png"
-          alt="Noctis Atalic"
-          class="portrait"
-          id="heroPortrait"
-        >
+    <section class="identity" id="identity">
 
-        <div class="hero-meta">
+      <div class="container">
+
+        <div class="reveal">
+          <div class="eyebrow">01 — Identity</div>
+
+          <h2 class="section-title">
+            Bukan cuma orang yang
+            <span>bikin website.</span>
+          </h2>
+
+          <p class="section-description">
+            Gue melihat website sebagai alat untuk menyampaikan identitas,
+            membangun kepercayaan, dan menyelesaikan masalah nyata.
+            Coding adalah salah satu alatnya — bukan identitas gue satu-satunya.
+          </p>
+        </div>
+
+
+        <div class="identity-grid">
+
+          <article class="identity-card reveal">
+            <div class="identity-card-number">01 / MINDSET</div>
+
+            <h3>Think Before Build.</h3>
+
+            <p>
+              Setiap project dimulai dari memahami masalah.
+              Apa yang ingin dicapai, siapa yang menggunakannya,
+              dan kenapa sistem tersebut perlu dibuat.
+            </p>
+          </article>
+
+
+          <article class="identity-card reveal">
+            <div class="identity-card-number">02 / APPROACH</div>
+
+            <h3>Design With Purpose.</h3>
+
+            <p>
+              Visual bukan sekadar dekorasi.
+              Typography, spacing, interaction dan motion digunakan
+              untuk membentuk pengalaman dan memperkuat identitas.
+            </p>
+          </article>
+
+
+          <article class="identity-card reveal">
+            <div class="identity-card-number">03 / BUILD</div>
+
+            <h3>From Interface to System.</h3>
+
+            <p>
+              Gue bisa bekerja dari frontend sampai backend:
+              interface, database, authentication, API,
+              dashboard, deployment dan integrasi.
+            </p>
+          </article>
+
+
+          <article class="identity-card reveal">
+            <div class="identity-card-number">04 / PRINCIPLE</div>
+
+            <h3>Simple. Functional. Memorable.</h3>
+
+            <p>
+              Sistem yang bagus tidak harus terlihat rumit.
+              Tujuannya adalah membuat sesuatu yang mudah dipahami,
+              bekerja dengan baik, dan meninggalkan kesan.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SELECTED WORK
+    ========================= -->
+
+    <section id="work">
+
+      <div class="container">
+
+        <div class="work-header reveal">
 
           <div>
-            <strong>Noctis Atalic</strong>
-            <small>Web Developer · Digital Builder</small>
+            <div class="eyebrow">02 — Selected Work</div>
+
+            <h2 class="section-title">
+              Things I've<br>
+              <span>built.</span>
+            </h2>
           </div>
 
-          <div class="available">
-            <i></i>
-            Available
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= INTRO ================= -->
-
-<section class="intro-section">
-
-  <div class="container">
-
-    <div class="intro-grid">
-
-      <article class="intro-card dark reveal">
-
-        <div class="section-kicker">
-          Digital Presence
-        </div>
-
-        <h3>
-          Website bukan sekadar halaman internet.
-        </h3>
-
-        <p>
-          Website adalah tempat pertama seseorang menilai sebuah
-          bisnis. Karena itu saya menggabungkan visual, struktur,
-          pengalaman pengguna, dan teknologi agar website terasa
-          profesional sejak interaksi pertama.
-        </p>
-
-        <div class="mini-stats">
-
-          <div class="stat">
-            <strong>UI</strong>
-            <span>Modern Interface</span>
-          </div>
-
-          <div class="stat">
-            <strong>UX</strong>
-            <span>Clear Experience</span>
-          </div>
-
-          <div class="stat">
-            <strong>WEB</strong>
-            <span>Responsive Build</span>
-          </div>
-
-          <div class="stat">
-            <strong>AI</strong>
-            <span>Assisted Workflow</span>
-          </div>
-
-        </div>
-
-      </article>
-
-      <article class="intro-card reveal">
-
-        <div class="section-kicker">
-          What I Build
-        </div>
-
-        <h3>
-          Digital experience yang terasa premium.
-        </h3>
-
-        <p>
-          Mulai dari company profile, portfolio, landing page,
-          sampai website bisnis dengan sistem yang lebih kompleks.
-          Setiap proyek disusun sesuai kebutuhan dan karakter brand.
-        </p>
-
-        <button
-          class="btn btn-dark open-modal"
-          style="margin-top:25px"
-        >
-          Diskusikan Project
-        </button>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= PORTFOLIO ================= -->
-
-<section class="portfolio-section" id="portfolio">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Selected Work
-        </div>
-
-        <h2 class="section-title">
-          Project yang<br>
-          pernah dibangun.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Beberapa project yang menunjukkan bagaimana desain,
-        struktur, dan teknologi diterapkan menjadi sebuah
-        pengalaman website.
-      </p>
-
-    </div>
-
-    <div class="projects">
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                SPR AUDIO
-              </div>
-
-              <div class="fake-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            Sound System · Business Website
-          </div>
-
-          <h3>
-            SPR Audio
-          </h3>
-
-          <p>
-            Website untuk layanan sound system dan audio production.
+          <p class="section-description">
+            Beberapa project yang merepresentasikan cara gue menggabungkan
+            design, development, branding dan sistem.
           </p>
 
+        </div>
+
+
+        <div class="work-grid">
+
+          <!-- PROJECT 1 -->
+
+          <article class="work-card large reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=85"
+              alt="Cyrus Web Project"
+            >
+
+            <div class="work-overlay">
+
+              <div class="work-type">
+                Digital Agency / Fullstack
+              </div>
+
+              <h3>Cyrus Web</h3>
+
+              <p>
+                Digital presence dan service platform dengan pendekatan
+                modern interface, responsive experience dan struktur
+                yang siap dikembangkan menjadi sistem bisnis.
+              </p>
+
+              <div class="work-link">
+                VIEW PROJECT <span>↗</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 2 -->
+
+          <article class="work-card reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1400&q=85"
+              alt="SPR Audio Project"
+            >
+
+            <div class="work-overlay">
+
+              <div class="work-type">
+                Business / Audio
+              </div>
+
+              <h3>SPR Audio</h3>
+
+              <p>
+                Website bisnis sound system dengan package,
+                pricing calculator, booking flow dan customer contact.
+              </p>
+
+              <div class="work-link">
+                VIEW PROJECT <span>↗</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 3 -->
+
+          <article class="work-card reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=85"
+              alt="Business dashboard"
+            >
+
+            <div class="work-overlay">
+
+              <div class="work-type">
+                Web Application
+              </div>
+
+              <h3>Business System</h3>
+
+              <p>
+                Konsep operational system dengan role-based access,
+                dashboard, database dan workflow antar bagian.
+              </p>
+
+              <div class="work-link">
+                VIEW PROJECT <span>↗</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 4 -->
+
+          <article class="work-card large reveal">
+
+            <img
+              src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1400&q=85"
+              alt="Digital product interface"
+            >
+
+            <div class="work-overlay">
+
+              <div class="work-type">
+                E-Commerce / Digital Product
+              </div>
+
+              <h3>IHSAN Koi</h3>
+
+              <p>
+                Premium aquarium store experience dengan product
+                presentation, catalog flow, FAQ dan direct customer ordering.
+              </p>
+
+              <div class="work-link">
+                VIEW PROJECT <span>↗</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================= -->
+
+    <section class="services" id="services">
+
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            03 — Services
+          </div>
+
+          <h2 class="section-title">
+            You bring the idea.<br>
+            <span>I build the system.</span>
+          </h2>
+
+          <p class="section-description">
+            Jasa pembuatan website untuk personal brand, bisnis,
+            company profile, portfolio sampai web application.
+          </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+          <article class="service-card reveal">
+
+            <div class="service-index">
+              01 / STANDARD
+            </div>
+
+            <h3>Standard Website</h3>
+
+            <p>
+              Website profesional untuk personal brand,
+              portfolio, UMKM atau company profile sederhana.
+            </p>
+
+            <div class="service-price">
+              Rp 1.800.000
+              <small> / project</small>
+            </div>
+
+          </article>
+
+
+          <article class="service-card featured reveal">
+
+            <div class="service-index">
+              02 / PRO
+            </div>
+
+            <h3>Pro Website</h3>
+
+            <p>
+              Website dengan visual custom, interaction,
+              responsive architecture dan fitur bisnis
+              yang lebih kompleks.
+            </p>
+
+            <div class="service-price">
+              Rp 3.000.000
+              <small> / project</small>
+            </div>
+
+          </article>
+
+
+          <article class="service-card reveal">
+
+            <div class="service-index">
+              03 / EVENT
+            </div>
+
+            <h3>Event Website</h3>
+
+            <p>
+              Website khusus event, campaign atau launching
+              dengan visual yang kuat dan conversion-focused experience.
+            </p>
+
+            <div class="service-price">
+              Rp 6.000.000
+              <small> / project</small>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TECHNOLOGY
+    ========================= -->
+
+    <section id="technology">
+
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            04 — Technology
+          </div>
+
+          <h2 class="section-title">
+            Tools I use to<br>
+            <span>build things.</span>
+          </h2>
+
+          <p class="section-description">
+            Teknologi yang gue gunakan untuk membangun interface,
+            application logic, backend, database, deployment
+            dan digital experience.
+          </p>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+          <!-- HTML -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">HTML</div>
+              <div class="tech-number">01</div>
+            </div>
+
+            <h3>HTML5</h3>
+
+            <p>
+              Struktur dasar website dan semantic markup
+              agar konten memiliki struktur yang jelas.
+            </p>
+
+            <span class="tech-category">
+              Structure
+            </span>
+
+          </article>
+
+
+          <!-- CSS -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">CSS</div>
+              <div class="tech-number">02</div>
+            </div>
+
+            <h3>CSS3</h3>
+
+            <p>
+              Styling, responsive layout, animation,
+              glass effect dan visual system.
+            </p>
+
+            <span class="tech-category">
+              Styling
+            </span>
+
+          </article>
+
+
+          <!-- JS -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">JS</div>
+              <div class="tech-number">03</div>
+            </div>
+
+            <h3>JavaScript</h3>
+
+            <p>
+              Membuat interface menjadi interaktif,
+              dinamis dan mampu menjalankan logic di browser.
+            </p>
+
+            <span class="tech-category">
+              Frontend
+            </span>
+
+          </article>
+
+
+          <!-- React -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">⚛</div>
+              <div class="tech-number">04</div>
+            </div>
+
+            <h3>React</h3>
+
+            <p>
+              Membuat interface berbasis component
+              yang scalable dan mudah dikembangkan.
+            </p>
+
+            <span class="tech-category">
+              Frontend
+            </span>
+
+          </article>
+
+
+          <!-- NEXT -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">N</div>
+              <div class="tech-number">05</div>
+            </div>
+
+            <h3>Next.js</h3>
+
+            <p>
+              Framework React untuk membangun fullstack
+              application dengan routing, server logic dan API.
+            </p>
+
+            <span class="tech-category">
+              Fullstack
+            </span>
+
+          </article>
+
+
+          <!-- TAILWIND -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">TW</div>
+              <div class="tech-number">06</div>
+            </div>
+
+            <h3>Tailwind CSS</h3>
+
+            <p>
+              Utility-first CSS framework untuk membangun
+              interface secara cepat dan konsisten.
+            </p>
+
+            <span class="tech-category">
+              Styling
+            </span>
+
+          </article>
+
+
+          <!-- NODE -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">JS</div>
+              <div class="tech-number">07</div>
+            </div>
+
+            <h3>Node.js</h3>
+
+            <p>
+              Runtime JavaScript untuk backend,
+              API, automation dan server-side application.
+            </p>
+
+            <span class="tech-category">
+              Backend
+            </span>
+
+          </article>
+
+
+          <!-- POSTGRES -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">PG</div>
+              <div class="tech-number">08</div>
+            </div>
+
+            <h3>PostgreSQL</h3>
+
+            <p>
+              Relational database untuk menyimpan
+              dan mengelola data aplikasi secara terstruktur.
+            </p>
+
+            <span class="tech-category">
+              Database
+            </span>
+
+          </article>
+
+
+          <!-- PRISMA -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">P</div>
+              <div class="tech-number">09</div>
+            </div>
+
+            <h3>Prisma</h3>
+
+            <p>
+              ORM untuk menghubungkan application logic
+              dengan database secara lebih aman dan terstruktur.
+            </p>
+
+            <span class="tech-category">
+              Backend
+            </span>
+
+          </article>
+
+
+          <!-- GIT -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">Git</div>
+              <div class="tech-number">10</div>
+            </div>
+
+            <h3>Git & GitHub</h3>
+
+            <p>
+              Version control dan repository management
+              untuk mengembangkan serta deploy project.
+            </p>
+
+            <span class="tech-category">
+              Development
+            </span>
+
+          </article>
+
+
+          <!-- VERCEL -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">▲</div>
+              <div class="tech-number">11</div>
+            </div>
+
+            <h3>Vercel</h3>
+
+            <p>
+              Deployment platform untuk frontend,
+              Next.js application dan serverless functions.
+            </p>
+
+            <span class="tech-category">
+              Deployment
+            </span>
+
+          </article>
+
+
+          <!-- GSAP -->
+
+          <article class="tech-card reveal">
+
+            <div class="tech-top">
+              <div class="tech-logo">GS</div>
+              <div class="tech-number">12</div>
+            </div>
+
+            <h3>GSAP</h3>
+
+            <p>
+              Animation framework untuk membuat motion,
+              scroll animation dan interaction yang kompleks.
+            </p>
+
+            <span class="tech-category">
+              Motion
+            </span>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROCESS
+    ========================= -->
+
+    <section class="process" id="process">
+
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            05 — Process
+          </div>
+
+          <h2 class="section-title">
+            How I turn an idea<br>
+            into <span>reality.</span>
+          </h2>
+
+          <p class="section-description">
+            Website bukan dimulai dari coding.
+            Proses dimulai dari memahami apa yang sebenarnya perlu dibangun.
+          </p>
+
+        </div>
+
+
+        <div class="process-list">
+
+          <div class="process-item reveal">
+            <div class="process-number">01</div>
+
+            <h3>Discover</h3>
+
+            <p>
+              Memahami bisnis, target user, tujuan,
+              masalah dan karakter brand.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-number">02</div>
+
+            <h3>Design</h3>
+
+            <p>
+              Menentukan visual direction, layout,
+              hierarchy, interaction dan user experience.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-number">03</div>
+
+            <h3>Develop</h3>
+
+            <p>
+              Mengubah design menjadi interface dan
+              sistem yang benar-benar bisa digunakan.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-number">04</div>
+
+            <h3>Deploy</h3>
+
+            <p>
+              Testing, optimization, deployment,
+              domain setup dan final delivery.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            06 — Beyond Code
+          </div>
+
+          <h2 class="section-title">
+            The person behind<br>
+            the <span>interface.</span>
+          </h2>
+
+        </div>
+
+
+        <div class="about-box reveal">
+
+          <div class="about-big">
+            I don't want to<br>
+            just <span>write code.</span><br>
+            I want to build<br>
+            something useful.
+          </div>
+
+
+          <div class="about-details">
+
+            <p>
+              Gue tertarik pada bagaimana manusia berinteraksi
+              dengan teknologi — bagaimana sebuah visual bisa
+              membangun persepsi, bagaimana sebuah sistem
+              menyelesaikan pekerjaan, dan bagaimana keduanya
+              bisa digabungkan menjadi pengalaman digital yang kuat.
+            </p>
+
+            <div class="about-stats">
+
+              <div class="stat">
+                <strong>01</strong>
+                <span>Mindset</span>
+              </div>
+
+              <div class="stat">
+                <strong>02</strong>
+                <span>Design</span>
+              </div>
+
+              <div class="stat">
+                <strong>03</strong>
+                <span>Code</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================= -->
+
+    <section class="cta" id="contact">
+
+      <div class="container">
+
+        <div class="cta-content reveal">
+
+          <h2>
+            HAVE AN IDEA?
+            LET'S BUILD IT.
+          </h2>
+
+          <p>
+            Kalau lo punya bisnis, brand, project atau ide yang
+            membutuhkan digital presence yang serius,
+            let's turn it into something real.
+          </p>
+
+          <!-- GANTI NOMOR WHATSAPP DI BAWAH -->
           <a
-            href="https://spraudio.github.io/SPR-Audio/"
+            href="https://wa.me/6281234567890"
+            class="btn"
             target="_blank"
-            rel="noopener"
-            class="project-link"
           >
-            Buka Website
+            Start a Conversation ↗
           </a>
 
         </div>
 
-      </article>
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                CYRUS WEB
-              </div>
-
-              <div class="fake-lines">
-                <span style="width:80%"></span>
-                <span style="width:55%"></span>
-                <span style="width:65%"></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            Web Development · Digital Service
-          </div>
-
-          <h3>
-            Cyrus Web
-          </h3>
-
-          <p>
-            Platform showcase untuk layanan pembuatan website.
-          </p>
-
-          <a
-            href="https://spraudio.github.io/Cyrus-Web/"
-            target="_blank"
-            rel="noopener"
-            class="project-link"
-          >
-            Buka Website
-          </a>
-
-        </div>
-
-      </article>
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                IHSAN KOI
-              </div>
-
-              <div class="fake-lines">
-                <span style="width:60%"></span>
-                <span style="width:75%"></span>
-                <span style="width:45%"></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            E-Commerce · Koi Business
-          </div>
-
-          <h3>
-            IHSAN KOI
-          </h3>
-
-          <p>
-            Konsep website bisnis aquarium dan koi dengan fokus conversion.
-          </p>
-
-          <button class="project-link open-modal">
-            Konsultasikan Project
-          </button>
-
-        </div>
-
-      </article>
-
-      <article class="project-card reveal">
-
-        <div class="project-visual">
-
-          <div class="browser">
-
-            <div class="browser-top">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <div class="browser-content">
-
-              <div class="fake-logo">
-                YOUR BRAND
-              </div>
-
-              <div class="fake-lines">
-                <span style="width:75%"></span>
-                <span style="width:50%"></span>
-                <span style="width:70%"></span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-info">
-
-          <div class="project-type">
-            Custom Website
-          </div>
-
-          <h3>
-            Project Berikutnya?
-          </h3>
-
-          <p>
-            Website untuk bisnis atau brand Anda bisa dimulai dari sini.
-          </p>
-
-          <button class="project-link open-modal">
-            Mulai Project
-          </button>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= SERVICES ================= -->
-
-<section id="layanan">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Services
-        </div>
-
-        <h2 class="section-title">
-          Yang bisa<br>
-          saya bangun.
-        </h2>
-
       </div>
 
-      <p class="section-description">
-        Fokus pada website yang memiliki tujuan jelas,
-        bukan sekadar tampilan yang terlihat ramai.
-      </p>
+    </section>
 
-    </div>
+  </main>
 
-    <div class="services-grid">
 
-      <article class="service-card reveal">
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-        <div>
+  <footer>
 
-          <h3>
-            Company Profile
-          </h3>
+    <div class="container">
 
-          <p>
-            Website profesional untuk memperkenalkan bisnis,
-            layanan, perusahaan, maupun organisasi.
-          </p>
+      <div class="footer-inner">
 
-        </div>
-
-        <div class="service-tags">
-          <span>Responsive</span>
-          <span>Modern UI</span>
-          <span>SEO Ready</span>
-        </div>
-
-      </article>
-
-      <article class="service-card reveal">
-
-        <div>
-
-          <h3>
-            Landing Page
-          </h3>
-
-          <p>
-            Halaman khusus yang dibuat untuk campaign,
-            promosi produk, iklan, maupun mendapatkan leads.
-          </p>
-
-        </div>
-
-        <div class="service-tags">
-          <span>Conversion</span>
-          <span>CTA</span>
-          <span>Fast</span>
-        </div>
-
-      </article>
-
-      <article class="service-card reveal">
-
-        <div>
-
-          <h3>
-            Business Website
-          </h3>
-
-          <p>
-            Website bisnis dengan struktur lebih lengkap,
-            katalog, layanan, portfolio, FAQ, dan integrasi.
-          </p>
-
-        </div>
-
-        <div class="service-tags">
-          <span>Business</span>
-          <span>CMS</span>
-          <span>Integration</span>
-        </div>
-
-      </article>
-
-      <article class="service-card reveal">
-
-        <div>
-
-          <h3>
-            Custom Web System
-          </h3>
-
-          <p>
-            Sistem website yang membutuhkan database,
-            dashboard, authentication, API, dan fitur custom.
-          </p>
-
-        </div>
-
-        <div class="service-tags">
-          <span>Backend</span>
-          <span>Database</span>
-          <span>API</span>
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= PROCESS ================= -->
-
-<section class="process-section">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Workflow
-        </div>
-
-        <h2 class="section-title">
-          Dari ide menjadi<br>
-          website.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Proses dibuat sederhana supaya Anda bisa memahami
-        apa yang sedang dikerjakan tanpa dibuat bingung
-        dengan istilah teknis.
-      </p>
-
-    </div>
-
-    <div class="process-grid">
-
-      <article class="process-card reveal">
-
-        <h3>
-          Diskusi
-        </h3>
-
-        <p>
-          Memahami bisnis, kebutuhan, target pengguna,
-          dan tujuan website.
-        </p>
-
-      </article>
-
-      <article class="process-card reveal">
-
-        <h3>
-          Perancangan
-        </h3>
-
-        <p>
-          Menentukan struktur halaman, visual direction,
-          dan pengalaman pengguna.
-        </p>
-
-      </article>
-
-      <article class="process-card reveal">
-
-        <h3>
-          Development
-        </h3>
-
-        <p>
-          Desain diterjemahkan menjadi website responsive
-          dengan teknologi yang sesuai.
-        </p>
-
-      </article>
-
-      <article class="process-card reveal">
-
-        <h3>
-          Launch
-        </h3>
-
-        <p>
-          Testing, optimasi, deployment, dan memastikan
-          website siap digunakan.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= PRICING ================= -->
-
-<section id="harga">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Investment
-        </div>
-
-        <h2 class="section-title">
-          Paket website<br>
-          untuk kebutuhanmu.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Harga dapat menyesuaikan kompleksitas, jumlah halaman,
-        fitur, integrasi, dan kebutuhan bisnis.
-      </p>
-
-    </div>
-
-    <div class="pricing-grid">
-
-      <article class="price-card reveal">
-
-        <h3>
-          Starter
-        </h3>
-
-        <div class="price">
-          Rp800K
-          <small>— mulai</small>
-        </div>
-
-        <p>
-          Cocok untuk personal, UMKM, atau kebutuhan
-          website sederhana.
-        </p>
-
-        <ul class="features">
-          <li>Landing page</li>
-          <li>Responsive mobile</li>
-          <li>Modern visual design</li>
-          <li>CTA WhatsApp</li>
-          <li>Deployment website</li>
-        </ul>
-
-        <button class="btn btn-dark open-modal">
-          Konsultasikan
-        </button>
-
-      </article>
-
-      <article class="price-card featured reveal">
-
-        <div class="price-badge">
-          POPULER
-        </div>
-
-        <h3>
-          Business
-        </h3>
-
-        <div class="price">
-          Rp5JT
-          <small>— mulai</small>
-        </div>
-
-        <p>
-          Untuk bisnis yang membutuhkan website profesional
-          dengan struktur dan fitur lebih lengkap.
-        </p>
-
-        <ul class="features">
-          <li>Multi-section website</li>
-          <li>Premium UI/UX</li>
-          <li>Portfolio / katalog</li>
-          <li>Form & WhatsApp integration</li>
-          <li>Basic SEO</li>
-          <li>Deployment</li>
-        </ul>
-
-        <button
-          class="btn"
-          style="background:white;color:#111"
-          onclick="openConsultation()"
-        >
-          Pilih Paket
-        </button>
-
-      </article>
-
-      <article class="price-card reveal">
-
-        <h3>
-          Custom
-        </h3>
-
-        <div class="price">
-          Rp10JT+
-          <small>— mulai</small>
-        </div>
-
-        <p>
-          Untuk bisnis atau project yang membutuhkan
-          sistem website custom.
-        </p>
-
-        <ul class="features">
-          <li>Custom UI/UX</li>
-          <li>Dashboard admin</li>
-          <li>Database</li>
-          <li>Authentication</li>
-          <li>API / integration</li>
-          <li>Custom feature</li>
-        </ul>
-
-        <button class="btn btn-dark open-modal">
-          Bahas Project
-        </button>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= ABOUT ================= -->
-
-<section id="tentang">
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          About
-        </div>
-
-        <h2 class="section-title">
-          Di balik<br>
-          pekerjaannya.
-        </h2>
-
-      </div>
-
-      <p class="section-description">
-        Bukan hanya soal menulis kode. Saya tertarik memahami
-        masalah lalu mencari cara paling masuk akal untuk
-        mengubahnya menjadi solusi digital.
-      </p>
-
-    </div>
-
-    <div class="about-grid">
-
-      <article class="profile-card reveal">
-
-        <div>
-
-          <div class="profile-label">
-            Independent Developer
-          </div>
-
-          <div class="profile-name">
-            Noctis<br>
-            <span>Atalic.</span>
-          </div>
-
-        </div>
-
-        <div class="profile-bottom">
-
-          <div class="profile-location">
-            Indonesia<br>
-            Available for projects
-          </div>
-
-          <div class="profile-status"></div>
-
-        </div>
-
-      </article>
-
-      <div class="info-stack">
-
-        <article class="info-card reveal">
-
-          <h3>
-            Mindset
-          </h3>
-
-          <p>
-            Saya memiliki semangat belajar tinggi, disiplin,
-            bertanggung jawab, mampu bekerja secara mandiri
-            maupun dalam tim, serta terus mengembangkan
-            kompetensi untuk menghasilkan pekerjaan yang lebih baik.
-          </p>
-
-        </article>
-
-        <article class="info-card reveal">
-
-          <h3>
-            Core Skills
-          </h3>
-
-          <div class="skill-grid">
-
-            <div class="skill">
-              Front-End Web Development
-            </div>
-
-            <div class="skill">
-              AI-Assisted Development
-            </div>
-
-            <div class="skill">
-              Problem Solving
-            </div>
-
-            <div class="skill">
-              Adaptasi
-            </div>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= EXPERIENCE ================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div class="section-kicker">
-          Background
-        </div>
-
-        <h2 class="section-title">
-          Pengalaman yang<br>
-          membentuk saya.
-        </h2>
-
-      </div>
-
-    </div>
-
-    <div class="timeline-grid">
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Web Development
-        </small>
-
-        <h3>
-          SPR Audio
-        </h3>
-
-        <p>
-          Mengembangkan, memonitor, memperbaiki bug,
-          melakukan update, dan menjaga website tetap berjalan.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Internship
-        </small>
-
-        <h3>
-          PT. Sarandi
-        </h3>
-
-        <p>
-          Pengalaman di bagian ASSY dengan aktivitas
-          perakitan dan packing peralatan rumah sakit.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Organization
-        </small>
-
-        <h3>
-          Yayasan Baitul Yatim
-        </h3>
-
-        <p>
-          Bertanggung jawab menjaga integritas,
-          kebersihan, dan kerapihan lingkungan yayasan.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= EDUCATION ================= -->
-
-<section style="padding-top:0">
-
-  <div class="container">
-
-    <div class="timeline-grid">
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Pendidikan
-        </small>
-
-        <h3>
-          SDN Cimahi
-        </h3>
-
-        <p>
-          Pendidikan dasar.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Pendidikan
-        </small>
-
-        <h3>
-          SMP Yayasan Nuurulhuda
-        </h3>
-
-        <p>
-          Pendidikan menengah pertama.
-        </p>
-
-      </article>
-
-      <article class="timeline-card reveal">
-
-        <small>
-          Pendidikan
-        </small>
-
-        <h3>
-          SMK Daarussalam
-        </h3>
-
-        <p>
-          Pendidikan menengah kejuruan.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ================= FINAL CTA ================= -->
-
-<section class="final-section">
-
-  <div class="container">
-
-    <div class="final-card reveal">
-
-      <div
-        class="section-kicker"
-        style="color:white"
-      >
-        Start Something
-      </div>
-
-      <h2>
-        Punya ide website?
-        Mari kita bangun.
-      </h2>
-
-      <p>
-        Ceritakan kebutuhanmu. Tidak harus sudah punya
-        konsep yang matang — kita bisa mulai dari masalah
-        yang ingin diselesaikan.
-      </p>
-
-      <button class="btn open-modal">
-        Konsultasi via WhatsApp
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-  <div class="container">
-
-    <div class="footer-grid">
-
-      <div>
-
-        <div class="footer-brand">
+        <div class="footer-logo">
           NOCTIS<span>.</span>
         </div>
 
-        <p class="footer-text">
-          Fullstack web development untuk bisnis, brand,
-          dan individu yang ingin memiliki digital presence
-          yang lebih profesional.
-        </p>
+        <div class="footer-copy">
+          © 2026 Noctis Atalic. Built with intention.
+        </div>
 
-      </div>
-
-      <div class="footer-column">
-
-        <h4>
-          Navigation
-        </h4>
-
-        <a href="#home">
-          Home
-        </a>
-
-        <a href="#layanan">
-          Layanan
-        </a>
-
-        <a href="#portfolio">
-          Portfolio
-        </a>
-
-        <a href="#tentang">
-          Tentang Saya
-        </a>
-
-        <a href="#harga">
-          Harga
-        </a>
-
-      </div>
-
-      <div class="footer-column">
-
-        <h4>
-          Contact
-        </h4>
-
-        <a href="mailto:noctisatalic@gmail.com">
-          Email
-        </a>
-
-        <a
-          href="https://wa.me/6281318048885"
-          target="_blank"
-          rel="noopener"
-        >
-          WhatsApp
-        </a>
-
-        <a
-          href="javascript:void(0)"
-          class="open-modal"
-        >
-          Konsultasi
-        </a>
+        <div class="footer-links">
+          <a href="#home">Back to top ↑</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </div>
 
       </div>
 
     </div>
 
-    <div class="footer-bottom">
+  </footer>
 
-      <span>
-        © 2026 Noctis Atalic. All rights reserved.
-      </span>
 
-      <span>
-        Built with intent.
-      </span>
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
-    </div>
+  <script>
 
-  </div>
+    /* =========================
+       CUSTOM CURSOR
+    ========================= */
 
-</footer>
+    const cursor = document.querySelector(".cursor");
 
-<!-- ================= MOBILE NAV ================= -->
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
 
-<nav class="mobile-dock">
+    document.querySelectorAll("a, button, .work-card, .tech-card, .service-card")
+      .forEach(el => {
 
-  <a href="#home" class="active">
-    Home
-  </a>
+        el.addEventListener("mouseenter", () => {
+          cursor.classList.add("active");
+        });
 
-  <a href="#layanan">
-    Layanan
-  </a>
-
-  <a href="#tentang">
-    Tentang Saya
-  </a>
-
-</nav>
-
-<!-- ================= CONSULTATION MODAL ================= -->
-
-<div class="modal" id="consultationModal">
-
-  <div class="modal-box">
-
-    <button
-      class="modal-close"
-      id="closeModal"
-    >
-      ×
-    </button>
-
-    <h2>
-      Mulai konsultasi.
-    </h2>
-
-    <p>
-      Isi kebutuhanmu supaya pembicaraan di WhatsApp
-      bisa langsung fokus ke project.
-    </p>
-
-    <form id="consultationForm">
-
-      <div class="form-group">
-
-        <label>
-          Nama
-        </label>
-
-        <input
-          type="text"
-          id="clientName"
-          placeholder="Nama kamu"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>
-          Nomor WhatsApp
-        </label>
-
-        <input
-          type="tel"
-          id="clientPhone"
-          placeholder="08xxxxxxxxxx"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>
-          Kebutuhan
-        </label>
-
-        <input
-          type="text"
-          id="clientNeed"
-          placeholder="Contoh: Website company profile"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>
-          Pesan
-        </label>
-
-        <textarea
-          id="clientMessage"
-          placeholder="Ceritakan sedikit tentang project kamu..."
-          required
-        ></textarea>
-
-      </div>
-
-      <label class="agreement">
-
-        <input
-          type="checkbox"
-          id="agreement"
-        >
-
-        <span>
-          Saya menyetujui informasi yang saya masukkan
-          digunakan untuk kebutuhan konsultasi project.
-        </span>
-
-      </label>
-
-      <button
-        type="submit"
-        class="submit-btn"
-        id="submitConsultation"
-        disabled
-      >
-        Lanjut ke WhatsApp
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
-<script>
-
-/* ================= WHATSAPP ================= */
-
-const WA_NUMBER = "6281318048885";
-
-const modal =
-  document.getElementById("consultationModal");
-
-const closeModalBtn =
-  document.getElementById("closeModal");
-
-const form =
-  document.getElementById("consultationForm");
-
-const agreement =
-  document.getElementById("agreement");
-
-const submitBtn =
-  document.getElementById("submitConsultation");
-
-
-function openConsultation(){
-
-  modal.classList.add("show");
-
-  document.body.classList.add("modal-open");
-
-  setTimeout(()=>{
-
-    document
-      .getElementById("clientName")
-      ?.focus();
-
-  },100);
-
-}
-
-
-function closeConsultation(){
-
-  modal.classList.remove("show");
-
-  document.body.classList.remove("modal-open");
-
-}
-
-
-document
-  .querySelectorAll(".open-modal")
-  .forEach(button=>{
-
-    button.addEventListener(
-      "click",
-      openConsultation
-    );
-
-  });
-
-
-closeModalBtn.addEventListener(
-  "click",
-  closeConsultation
-);
-
-
-modal.addEventListener("click",e=>{
-
-  if(e.target === modal){
-
-    closeConsultation();
-
-  }
-
-});
-
-
-document.addEventListener("keydown",e=>{
-
-  if(e.key === "Escape"){
-
-    closeConsultation();
-
-  }
-
-});
-
-
-agreement.addEventListener("change",()=>{
-
-  submitBtn.disabled =
-    !agreement.checked;
-
-});
-
-
-form.addEventListener("submit",e=>{
-
-  e.preventDefault();
-
-  if(!agreement.checked){
-    return;
-  }
-
-  const name =
-    document
-      .getElementById("clientName")
-      .value
-      .trim();
-
-  const phone =
-    document
-      .getElementById("clientPhone")
-      .value
-      .trim();
-
-  const need =
-    document
-      .getElementById("clientNeed")
-      .value
-      .trim();
-
-  const message =
-    document
-      .getElementById("clientMessage")
-      .value
-      .trim();
-
-  const text =
-`Halo Noctis, saya ingin konsultasi website.
-
-Nama: ${name}
-WhatsApp: ${phone}
-Kebutuhan: ${need}
-
-Pesan:
-${message}
-
-Saya ingin mengetahui solusi dan estimasi untuk project saya.`;
-
-  const url =
-    `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
-
-  window.open(
-    url,
-    "_blank",
-    "noopener"
-  );
-
-});
-
-
-/* ================= REVEAL ================= */
-
-const revealObserver =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          entry.target.classList.add(
-            "visible"
-          );
-
-          revealObserver.unobserve(
-            entry.target
-          );
-
-        }
+        el.addEventListener("mouseleave", () => {
+          cursor.classList.remove("active");
+        });
 
       });
 
-    },
-    {
-      threshold:.08
-    }
-  );
 
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
 
-document
-  .querySelectorAll(".reveal")
-  .forEach(el=>{
+    const observer = new IntersectionObserver(
+      entries => {
 
-    revealObserver.observe(el);
+        entries.forEach(entry => {
 
-  });
+          if (entry.isIntersecting) {
 
+            entry.target.classList.add("visible");
 
-/* ================= HERO PARALLAX ================= */
-
-const portrait =
-  document.getElementById("heroPortrait");
-
-
-if(
-  portrait &&
-  !window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches
-){
-
-  let ticking = false;
-
-  window.addEventListener(
-    "mousemove",
-    e=>{
-
-      if(ticking) return;
-
-      window.requestAnimationFrame(()=>{
-
-        const x =
-          (e.clientX /
-            window.innerWidth -
-            .5) * 14;
-
-        const y =
-          (e.clientY /
-            window.innerHeight -
-            .5) * 14;
-
-        portrait.style.transform =
-          `translateX(calc(-50% + ${x}px)) translateY(${y}px)`;
-
-        ticking = false;
-
-      });
-
-      ticking = true;
-
-    }
-  );
-
-}
-
-
-/* ================= MOBILE ACTIVE NAV ================= */
-
-const sections =
-  document.querySelectorAll(
-    "main section[id]"
-  );
-
-const mobileLinks =
-  document.querySelectorAll(
-    ".mobile-dock a"
-  );
-
-
-const navObserver =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          mobileLinks.forEach(link=>{
-
-            link.classList.remove(
-              "active"
-            );
-
-          });
-
-          const active =
-            document.querySelector(
-              `.mobile-dock a[href="#${entry.target.id}"]`
-            );
-
-          if(active){
-
-            active.classList.add(
-              "active"
-            );
+            observer.unobserve(entry.target);
 
           }
 
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    document.querySelectorAll(".reveal")
+      .forEach(el => observer.observe(el));
+
+
+    /* =========================
+       HERO PHOTO PARALLAX
+    ========================= */
+
+    const photo = document.querySelector(".photo-frame");
+
+    if (window.innerWidth > 800) {
+
+      document.addEventListener("mousemove", e => {
+
+        const x = (e.clientX / window.innerWidth - .5);
+        const y = (e.clientY / window.innerHeight - .5);
+
+        photo.style.transform =
+          `rotate(${2 + x * 3}deg)
+           translate(${x * 8}px, ${y * 8}px)`;
+
+      });
+
+    }
+
+
+    /* =========================
+       MAGNETIC BUTTON
+    ========================= */
+
+    document.querySelectorAll(".btn, .nav-cta").forEach(button => {
+
+      button.addEventListener("mousemove", e => {
+
+        if (window.innerWidth < 800) return;
+
+        const rect = button.getBoundingClientRect();
+
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        button.style.transform =
+          `translate(${x * .15}px, ${y * .15}px)`;
+
+      });
+
+      button.addEventListener("mouseleave", () => {
+
+        button.style.transform = "";
+
+      });
+
+    });
+
+
+    /* =========================
+       ACTIVE NAV
+    ========================= */
+
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 200;
+
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute("id");
         }
 
       });
 
-    },
-    {
-      rootMargin:
-        "-35% 0px -55% 0px"
-    }
-  );
+      navLinks.forEach(link => {
+
+        link.style.color = "";
+
+        if (link.getAttribute("href") === "#" + current) {
+          link.style.color = "var(--red)";
+        }
+
+      });
+
+    });
 
 
-sections.forEach(section=>{
+    /* =========================
+       IMAGE FALLBACK
+    ========================= */
 
-  navObserver.observe(section);
+    document.querySelectorAll("img").forEach(img => {
 
-});
+      img.addEventListener("error", () => {
 
+        img.style.background =
+          "linear-gradient(135deg,#111,#444)";
 
-/* ================= PHOTO CHECK ================= */
+      });
 
-if(portrait){
+    });
 
-  portrait.addEventListener(
-    "error",
-    ()=>{
-
-      console.warn(
-        "foto-asli.png tidak ditemukan. Pastikan file berada di folder yang sama dengan index.html."
-      );
-
-    }
-  );
-
-}
-
-</script>
+  </script>
 
 </body>
-  </html>
+</html>
