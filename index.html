@@ -3,27 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Noctis Atalic — Fullstack Web Developer</title>
-  <meta name="description" content="Noctis Atalic — Fullstack Web Developer, builder, designer, and digital creator.">
+  <meta name="description" content="Noctis Atalic — Fullstack Developer, Designer & Digital Builder.">
+  <title>Noctis Atalic — Fullstack Developer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #f7f7f5;
-      --surface: rgba(255,255,255,.72);
-      --surface-solid: #ffffff;
-      --text: #101010;
-      --muted: #707070;
-      --line: rgba(0,0,0,.09);
-      --red: #e00000;
-      --red-dark: #a90000;
-      --black: #0b0b0b;
-      --radius: 28px;
-      --shadow: 0 20px 60px rgba(0,0,0,.08);
+      --white: #ffffff;
+      --text: #111111;
+      --muted: #6f6f6f;
+      --line: #dededb;
+      --red: #d71920;
+      --dark: #111111;
+      --radius: 22px;
+      --max: 1180px;
     }
 
     * {
@@ -37,9 +34,10 @@
     }
 
     body {
-      font-family: Inter, sans-serif;
+      font-family: "Inter", sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
@@ -48,995 +46,653 @@
       text-decoration: none;
     }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     button {
       font: inherit;
     }
 
-    ::selection {
-      background: var(--red);
-      color: white;
-    }
-
-    /* =========================
-       GLOBAL
-    ========================= */
-
     .container {
-      width: min(1180px, calc(100% - 32px));
+      width: min(calc(100% - 32px), var(--max));
       margin: auto;
     }
 
-    section {
-      padding: 110px 0;
-      position: relative;
-    }
+    /* NAV */
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 18px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--red);
-    }
-
-    .section-title {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: .95;
-      letter-spacing: -.055em;
-      max-width: 850px;
-    }
-
-    .section-title span {
-      color: var(--red);
-    }
-
-    .section-description {
-      max-width: 620px;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-top: 25px;
-    }
-
-    /* =========================
-       CURSOR
-    ========================= */
-
-    .cursor {
+    nav {
       position: fixed;
-      width: 18px;
-      height: 18px;
-      border: 1px solid var(--red);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition:
-        width .2s ease,
-        height .2s ease,
-        background .2s ease;
-      mix-blend-mode: difference;
-    }
-
-    .cursor.active {
-      width: 50px;
-      height: 50px;
-      background: rgba(255,255,255,.18);
-    }
-
-    @media(max-width: 800px) {
-      .cursor {
-        display: none;
-      }
-    }
-
-    /* =========================
-       NAVBAR
-    ========================= */
-
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(calc(100% - 28px), 900px);
       z-index: 1000;
-      padding: 15px 0;
-    }
-
-    .nav-inner {
-      width: min(1180px, calc(100% - 24px));
-      margin: auto;
-      padding: 10px 14px 10px 20px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+      padding: 8px 10px 8px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255,255,255,.68);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.04);
     }
 
-    .logo {
-      font-family: "Space Grotesk", sans-serif;
+    .nav-logo {
       font-weight: 800;
-      font-size: 17px;
       letter-spacing: -.04em;
     }
 
-    .logo span {
+    .nav-logo span {
       color: var(--red);
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
       align-items: center;
-      font-size: 12px;
-      font-weight: 600;
+      gap: 4px;
     }
 
     .nav-links a {
+      padding: 9px 13px;
+      font-size: 13px;
       color: #555;
-      transition: color .2s;
+      border-radius: 999px;
+      transition: .25s;
     }
 
     .nav-links a:hover {
-      color: var(--red);
+      background: #f0f0ee;
+      color: #111;
     }
 
-    .nav-cta {
-      background: var(--black);
-      color: white;
-      padding: 11px 18px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
+    .nav-contact {
+      background: var(--dark) !important;
+      color: white !important;
     }
 
-    @media(max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-
-      .nav-inner {
-        padding-left: 16px;
-      }
-    }
-
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
-      min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
-      padding-top: 130px;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      right: -300px;
-      top: 80px;
-      background: rgba(224,0,0,.08);
-      filter: blur(100px);
-      border-radius: 50%;
+      padding: 120px 0 70px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.05fr .95fr;
       align-items: center;
       gap: 70px;
     }
 
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-    }
-
-    .status {
-      display: inline-flex;
+    .eyebrow {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.7);
-      border-radius: 999px;
-      font-size: 10px;
+      gap: 10px;
+      color: var(--red);
+      font-size: 12px;
       font-weight: 700;
-      color: #555;
-      margin-bottom: 25px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
     }
 
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: #1fa64a;
-      border-radius: 50%;
-      box-shadow: 0 0 0 5px rgba(31,166,74,.1);
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--red);
     }
 
     .hero h1 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(55px, 9vw, 112px);
-      line-height: .84;
-      letter-spacing: -.075em;
-      max-width: 800px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .92;
+      letter-spacing: -.07em;
+      font-weight: 800;
+      margin-bottom: 26px;
     }
 
-    .hero h1 .red {
+    .hero h1 span {
       color: var(--red);
     }
 
     .hero-role {
-      font-size: clamp(17px, 2vw, 23px);
+      font-size: clamp(18px, 2.5vw, 25px);
       font-weight: 600;
-      margin-top: 28px;
-      max-width: 580px;
-      line-height: 1.4;
+      margin-bottom: 18px;
+      max-width: 650px;
     }
 
-    .hero-role span {
+    .hero-description {
       color: var(--muted);
+      max-width: 590px;
+      font-size: 15px;
+      margin-bottom: 30px;
     }
 
-    .hero-text {
-      color: var(--muted);
-      max-width: 570px;
-      line-height: 1.8;
-      margin-top: 18px;
-      font-size: 14px;
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-bottom: 32px;
+    }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .meta small {
+      color: #999;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 700;
+    }
+
+    .meta strong {
+      font-size: 13px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
+      gap: 10px;
     }
 
     .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-      padding: 15px 22px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      transition: .25s ease;
-      border: 1px solid var(--line);
-    }
-
-    .btn-primary {
-      background: var(--black);
-      color: white;
-      border-color: var(--black);
-    }
-
-    .btn-primary:hover {
-      background: var(--red);
-      border-color: var(--red);
-      transform: translateY(-3px);
-    }
-
-    .btn-secondary {
-      background: white;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      border-color: var(--red);
-      color: var(--red);
-    }
-
-    /* PHOTO */
-
-    .hero-visual {
-      display: flex;
       justify-content: center;
-      position: relative;
-    }
-
-    .photo-frame {
-      width: min(100%, 390px);
-      aspect-ratio: 3 / 4;
-      position: relative;
-      border-radius: 34px;
-      overflow: hidden;
-      background: #ddd;
-      border: 1px solid rgba(0,0,0,.1);
-      box-shadow: var(--shadow);
-      transform: rotate(2deg);
-      transition: transform .5s ease;
-    }
-
-    .photo-frame:hover {
-      transform: rotate(0deg) scale(1.02);
-    }
-
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-tag {
-      position: absolute;
-      bottom: 18px;
-      left: 18px;
-      right: 18px;
-      padding: 13px 15px;
-      background: rgba(255,255,255,.78);
-      backdrop-filter: blur(18px);
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.7);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .photo-tag small {
-      display: block;
-      color: var(--muted);
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    .floating-number {
-      position: absolute;
-      right: -25px;
-      top: 50px;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 100px;
-      line-height: 1;
-      font-weight: 800;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(0,0,0,.12);
-      z-index: -1;
-    }
-
-    @media(max-width: 850px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 55px;
-      }
-
-      .hero-visual {
-        justify-content: flex-start;
-      }
-
-      .photo-frame {
-        width: min(80vw, 350px);
-      }
-    }
-
-    /* =========================
-       IDENTITY
-    ========================= */
-
-    .identity {
-      background: var(--black);
-      color: white;
-      overflow: hidden;
-    }
-
-    .identity .eyebrow {
-      color: #ff4a4a;
-    }
-
-    .identity .eyebrow::before {
-      background: #ff4a4a;
-    }
-
-    .identity .section-title {
-      max-width: 900px;
-    }
-
-    .identity .section-description {
-      color: #999;
-    }
-
-    .identity-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 70px;
-    }
-
-    .identity-card {
-      padding: 34px;
-      min-height: 260px;
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.035);
-      transition: .35s ease;
-    }
-
-    .identity-card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(255,255,255,.3);
-      background: rgba(255,255,255,.06);
-    }
-
-    .identity-card-number {
-      font-family: "Space Grotesk", sans-serif;
-      color: #666;
-      font-size: 12px;
-      margin-bottom: 70px;
-    }
-
-    .identity-card h3 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 27px;
-      margin-bottom: 12px;
-    }
-
-    .identity-card p {
-      color: #999;
-      line-height: 1.7;
+      min-height: 48px;
+      padding: 0 21px;
+      border-radius: 999px;
       font-size: 13px;
-    }
-
-    @media(max-width: 700px) {
-      .identity-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* =========================
-       MARQUEE
-    ========================= */
-
-    .marquee {
-      overflow: hidden;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
-      border-top: 1px solid var(--line);
-      white-space: nowrap;
-      background: white;
-    }
-
-    .marquee-track {
-      display: inline-flex;
-      gap: 45px;
-      animation: marquee 20s linear infinite;
-    }
-
-    .marquee span {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 18px;
       font-weight: 700;
-      letter-spacing: -.03em;
+      border: 1px solid var(--text);
+      transition: transform .25s, background .25s, color .25s;
     }
 
-    .marquee .dot {
-      color: var(--red);
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .btn-dark {
+      background: var(--dark);
+      color: white;
     }
 
-    /* =========================
-       WORK
-    ========================= */
+    .btn-red {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
 
-    .work-header {
+    .btn-light {
+      background: transparent;
+    }
+
+    /* CV PHOTO */
+
+    .hero-photo-wrap {
       display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      align-items: end;
-      margin-bottom: 60px;
-    }
-
-    .work-header .section-description {
-      margin: 0;
-      max-width: 380px;
-    }
-
-    .work-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-
-    .work-card {
+      justify-content: flex-end;
       position: relative;
-      min-height: 470px;
-      overflow: hidden;
-      border-radius: 30px;
-      background: #ddd;
-      border: 1px solid var(--line);
+    }
+
+    .hero-photo {
+      width: min(100%, 430px);
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
       transition: transform .4s ease;
     }
 
-    .work-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .work-card.large {
-      min-height: 610px;
-    }
-
-    .work-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .photo-caption {
       position: absolute;
-      inset: 0;
-      transition: transform .7s ease;
+      bottom: 12px;
+      right: 0;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 10px;
+      letter-spacing: .18em;
+      font-weight: 700;
+      color: #999;
     }
 
-    .work-card:hover img {
-      transform: scale(1.06);
+    /* SECTION */
+
+    section {
+      padding: 110px 0;
     }
 
-    .work-overlay {
-      position: absolute;
-      inset: 0;
-      padding: 28px;
+    .section-head {
       display: flex;
-      flex-direction: column;
-      justify-content: end;
-      background: linear-gradient(
-        transparent 30%,
-        rgba(0,0,0,.82)
-      );
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .section-number {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 420px;
+      font-size: 14px;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--dark);
       color: white;
     }
 
-    .work-type {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .15em;
-      color: #ccc;
-      font-weight: 700;
-      margin-bottom: 9px;
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 80px;
     }
 
-    .work-overlay h3 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 34px;
+    .about .section-number {
+      color: #ff4b50;
+    }
+
+    .about-copy {
+      font-size: clamp(24px, 4vw, 45px);
+      line-height: 1.15;
       letter-spacing: -.04em;
     }
 
-    .work-overlay p {
-      color: #ccc;
-      font-size: 12px;
-      line-height: 1.6;
-      max-width: 450px;
-      margin-top: 7px;
+    .about-copy span {
+      color: #777;
     }
 
-    .work-link {
-      margin-top: 17px;
+    .about-info {
+      margin-top: 45px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .info-item {
+      border-top: 1px solid #333;
+      padding-top: 15px;
+    }
+
+    .info-item small {
+      color: #777;
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 7px;
+    }
+
+    .info-item strong {
+      font-size: 14px;
+    }
+
+    /* PROJECT */
+
+    .project-section {
+      background: white;
+    }
+
+    .project-showcase {
+      border: 1px solid var(--line);
+      background: var(--bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .project-top {
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-label {
+      color: var(--red);
       font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
       font-weight: 800;
-      color: white;
+      margin-bottom: 9px;
     }
 
-    .work-link span {
-      color: #ff4040;
+    .project-name {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: -.055em;
+      font-weight: 800;
     }
 
-    @media(max-width: 700px) {
-      .work-header {
-        display: block;
-      }
-
-      .work-header .section-description {
-        margin-top: 22px;
-      }
-
-      .work-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .work-card,
-      .work-card.large {
-        min-height: 440px;
-      }
+    .project-description {
+      color: var(--muted);
+      max-width: 500px;
+      font-size: 14px;
+      margin-top: 13px;
     }
 
-    /* =========================
-       SERVICES
-    ========================= */
-
-    .services {
-      background: #ececea;
+    .project-link {
+      white-space: nowrap;
     }
+
+    /* LIVE WEBSITE */
+
+    .browser {
+      margin: 30px;
+      background: #161616;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,.16);
+    }
+
+    .browser-bar {
+      height: 46px;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #202020;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #777;
+    }
+
+    .browser-url {
+      margin-left: 10px;
+      height: 27px;
+      flex: 1;
+      max-width: 500px;
+      border-radius: 7px;
+      background: #2b2b2b;
+      color: #999;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .website-frame {
+      width: 100%;
+      height: 650px;
+      border: 0;
+      display: block;
+      background: white;
+    }
+
+    .project-bottom {
+      padding: 0 30px 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .project-detail {
+      border-top: 1px solid var(--line);
+      padding-top: 15px;
+    }
+
+    .project-detail small {
+      display: block;
+      color: #999;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 5px;
+    }
+
+    .project-detail strong {
+      font-size: 13px;
+    }
+
+    /* SERVICES */
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      margin-top: 60px;
     }
 
     .service-card {
-      background: white;
-      padding: 30px;
-      border-radius: var(--radius);
       border: 1px solid var(--line);
-      min-height: 390px;
+      padding: 30px;
+      min-height: 350px;
       display: flex;
       flex-direction: column;
-      transition: .35s ease;
+      transition: .3s;
+      background: white;
     }
 
     .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
+      transform: translateY(-5px);
+      border-color: #aaa;
     }
 
     .service-card.featured {
-      background: var(--black);
+      background: var(--dark);
       color: white;
     }
 
-    .service-index {
+    .service-number {
+      color: var(--red);
       font-size: 11px;
       font-weight: 800;
-      color: var(--red);
+      margin-bottom: auto;
     }
 
     .service-card h3 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 30px;
-      margin-top: 70px;
+      font-size: 26px;
       letter-spacing: -.04em;
+      margin-bottom: 7px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      margin-bottom: 20px;
     }
 
     .service-card p {
       color: var(--muted);
-      line-height: 1.7;
       font-size: 13px;
-      margin-top: 13px;
+      margin-bottom: 22px;
     }
 
     .featured p {
-      color: #999;
+      color: #aaa;
     }
 
-    .service-price {
-      margin-top: auto;
-      padding-top: 30px;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 24px;
-      font-weight: 800;
+    .service-list {
+      list-style: none;
+      border-top: 1px solid rgba(0,0,0,.1);
+      padding-top: 15px;
     }
 
-    .service-price small {
-      font-family: Inter, sans-serif;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--muted);
+    .featured .service-list {
+      border-color: #333;
     }
 
-    @media(max-width: 850px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-card {
-        min-height: 330px;
-      }
-
-      .service-card h3 {
-        margin-top: 45px;
-      }
+    .service-list li {
+      font-size: 12px;
+      padding: 5px 0;
+      color: #666;
     }
 
-    /* =========================
-       TECHNOLOGY
-    ========================= */
+    .featured .service-list li {
+      color: #aaa;
+    }
+
+    /* TECHNOLOGY */
+
+    .tech-section {
+      background: white;
+    }
 
     .tech-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 65px;
-    }
-
-    .tech-card {
-      padding: 24px;
-      background: white;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
       border: 1px solid var(--line);
-      border-radius: 22px;
-      transition: .3s ease;
-      cursor: default;
     }
 
-    .tech-card:hover {
-      border-color: rgba(224,0,0,.3);
-      transform: translateY(-5px);
+    .tech {
+      background: white;
+      padding: 27px;
+      min-height: 170px;
+      transition: .25s;
     }
 
-    .tech-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
+    .tech:hover {
+      background: #fafafa;
     }
 
-    .tech-logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 15px;
-      background: #f1f1ef;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 17px;
+    .tech-icon {
+      font-size: 24px;
       font-weight: 800;
+      margin-bottom: 20px;
     }
 
-    .tech-number {
-      font-size: 10px;
-      color: #aaa;
-      font-weight: 700;
+    .tech h3 {
+      font-size: 15px;
+      margin-bottom: 7px;
     }
 
-    .tech-card h3 {
-      margin-top: 28px;
-      font-size: 17px;
-    }
-
-    .tech-card p {
-      margin-top: 8px;
+    .tech p {
+      font-size: 11px;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    .tech-category {
-      margin-top: 13px;
-      display: inline-block;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #f2f2f0;
-      color: #777;
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    @media(max-width: 800px) {
-      .tech-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(max-width: 500px) {
-      .tech-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* =========================
-       PROCESS
-    ========================= */
-
-    .process {
-      background: var(--black);
-      color: white;
-    }
-
-    .process .section-description {
-      color: #999;
-    }
+    /* PROCESS */
 
     .process-list {
-      margin-top: 60px;
-      border-top: 1px solid rgba(255,255,255,.12);
+      border-top: 1px solid var(--line);
     }
 
-    .process-item {
+    .process {
       display: grid;
       grid-template-columns: 100px 1fr 1fr;
-      gap: 25px;
-      padding: 30px 0;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      align-items: start;
-      transition: padding .3s ease;
-    }
-
-    .process-item:hover {
-      padding-left: 12px;
+      align-items: center;
+      gap: 30px;
+      padding: 27px 0;
+      border-bottom: 1px solid var(--line);
     }
 
     .process-number {
-      color: #666;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-    }
-
-    .process-item h3 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 28px;
-    }
-
-    .process-item p {
-      color: #999;
-      line-height: 1.7;
-      font-size: 13px;
-    }
-
-    @media(max-width: 700px) {
-      .process-item {
-        grid-template-columns: 45px 1fr;
-      }
-
-      .process-item p {
-        grid-column: 2;
-      }
-    }
-
-    /* =========================
-       ABOUT / IDENTITY FINAL
-    ========================= */
-
-    .about-box {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 35px;
-      padding: clamp(30px, 6vw, 70px);
-      margin-top: 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .about-big {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(35px, 5vw, 62px);
-      line-height: 1;
-      letter-spacing: -.06em;
-    }
-
-    .about-big span {
+      font-size: 12px;
+      font-weight: 800;
       color: var(--red);
     }
 
-    .about-details p {
+    .process h3 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+    }
+
+    .process p {
       color: var(--muted);
-      line-height: 1.9;
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 30px;
+    /* STATEMENT */
+
+    .statement {
+      background: #eee;
     }
 
-    .stat {
-      border-top: 1px solid var(--line);
-      padding-top: 13px;
+    .statement-text {
+      font-size: clamp(38px, 7vw, 82px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      max-width: 1050px;
     }
 
-    .stat strong {
-      display: block;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 27px;
+    .statement-text span {
+      color: var(--red);
     }
 
-    .stat span {
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    @media(max-width: 700px) {
-      .about-box {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* =========================
-       CTA
-    ========================= */
+    /* CTA */
 
     .cta {
-      padding: 140px 0;
       background: var(--red);
       color: white;
       text-align: center;
-      overflow: hidden;
-    }
-
-    .cta::before {
-      content: "BUILD";
-      position: absolute;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 30vw;
-      font-weight: 800;
-      line-height: .8;
-      color: rgba(0,0,0,.06);
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      pointer-events: none;
-    }
-
-    .cta-content {
-      position: relative;
-      z-index: 2;
     }
 
     .cta h2 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(50px, 9vw, 110px);
-      line-height: .85;
+      font-size: clamp(42px, 7vw, 85px);
+      line-height: .92;
       letter-spacing: -.07em;
-      max-width: 900px;
-      margin: auto;
+      margin-bottom: 25px;
     }
 
     .cta p {
-      max-width: 550px;
-      margin: 25px auto;
+      max-width: 520px;
+      margin: 0 auto 30px;
       color: rgba(255,255,255,.8);
-      line-height: 1.7;
       font-size: 14px;
     }
 
     .cta .btn {
       background: white;
-      color: var(--black);
+      color: var(--dark);
       border-color: white;
-      margin-top: 10px;
     }
 
-    .cta .btn:hover {
-      background: var(--black);
-      color: white;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     footer {
-      background: var(--black);
+      background: var(--dark);
       color: white;
-      padding: 45px 0;
+      padding: 35px 0;
     }
 
     .footer-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      align-items: center;
+      gap: 20px;
     }
 
-    .footer-logo {
-      font-family: "Space Grotesk", sans-serif;
+    .footer-brand {
+      font-size: 18px;
       font-weight: 800;
-      font-size: 20px;
+      letter-spacing: -.04em;
     }
 
-    .footer-logo span {
+    .footer-brand span {
       color: var(--red);
     }
 
@@ -1045,32 +701,12 @@
       font-size: 11px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      font-size: 11px;
-      color: #aaa;
-    }
-
-    .footer-links a:hover {
-      color: white;
-    }
-
-    @media(max-width: 650px) {
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    /* =========================
-       REVEAL
-    ========================= */
+    /* REVEAL */
 
     .reveal {
       opacity: 0;
-      transform: translateY(35px);
-      transition: opacity .8s ease, transform .8s ease;
+      transform: translateY(25px);
+      transition: opacity .7s ease, transform .7s ease;
     }
 
     .reveal.visible {
@@ -1078,428 +714,406 @@
       transform: translateY(0);
     }
 
-    /* =========================
-       SCROLLBAR
-    ========================= */
+    /* MOBILE */
 
-    ::-webkit-scrollbar {
-      width: 7px;
+    @media (max-width: 850px) {
+      nav {
+        top: 10px;
+      }
+
+      .nav-links a:not(.nav-contact) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 105px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .hero-photo-wrap {
+        justify-content: center;
+        order: -1;
+      }
+
+      .hero-photo {
+        width: min(78vw, 340px);
+      }
+
+      .photo-caption {
+        right: 5%;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .project-top {
+        flex-direction: column;
+      }
+
+      .browser {
+        margin: 15px;
+      }
+
+      .website-frame {
+        height: 560px;
+      }
+
+      .project-bottom {
+        grid-template-columns: 1fr;
+        padding: 0 15px 20px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process {
+        grid-template-columns: 45px 1fr;
+        gap: 15px;
+      }
+
+      .process p {
+        grid-column: 2;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
+    @media (max-width: 480px) {
+      .container {
+        width: min(calc(100% - 24px), var(--max));
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background: #bbb;
-      border-radius: 20px;
-    }
+      section {
+        padding: 80px 0;
+      }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--red);
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-meta {
+        gap: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .browser {
+        border-radius: 12px;
+      }
+
+      .website-frame {
+        height: 500px;
+      }
+
+      .tech {
+        padding: 20px;
+        min-height: 155px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="cursor"></div>
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">NOCTIS<span>.</span></a>
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
-
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#home" class="logo">
-        NOCTIS<span>.</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#identity">Identity</a>
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#technology">Technology</a>
-        <a href="#process">Process</a>
-      </div>
-
-      <a href="#contact" class="nav-cta">
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#project">Project</a>
+      <a href="#services">Services</a>
+      <a href="#technology">Stack</a>
+      <a
+        href="https://wa.me/6281318048885?text=Halo%20Noctis%2C%20saya%20tertarik%20dengan%20jasa%20website."
+        target="_blank"
+        class="nav-contact"
+      >
         Let's Talk
       </a>
     </div>
   </nav>
 
 
-  <!-- =========================
-       HERO / PERSONAL IDENTITY
-  ========================= -->
+  <!-- HERO -->
+  <main id="home">
 
-  <main>
+    <section class="hero">
+      <div class="container hero-grid">
 
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-grid">
+        <div class="hero-content reveal">
 
-          <div class="hero-copy reveal">
+          <div class="eyebrow">
+            Digital Builder
+          </div>
 
-            <div class="status">
-              <span class="status-dot"></span>
-              Available for selected projects
+          <h1>
+            NOCTIS<br>
+            <span>ATALIC.</span>
+          </h1>
+
+          <div class="hero-role">
+            Fullstack Developer. Designer & Digital Builder.
+          </div>
+
+          <p class="hero-description">
+            Saya membangun website yang tidak hanya terlihat bagus,
+            tetapi juga dirancang untuk memiliki struktur, pengalaman,
+            dan fungsi yang jelas untuk kebutuhan bisnis.
+          </p>
+
+          <div class="hero-meta">
+
+            <div class="meta">
+              <small>Based</small>
+              <strong>Indonesia</strong>
             </div>
 
-            <h1>
-              NOCTIS<br>
-              <span class="red">ATALIC.</span>
-            </h1>
-
-            <div class="hero-role">
-              Fullstack Developer.
-              <span>Builder. Designer. Problem Solver.</span>
+            <div class="meta">
+              <small>Focus</small>
+              <strong>Web & Digital</strong>
             </div>
 
-            <p class="hero-text">
-              Gue membangun pengalaman digital yang bukan cuma terlihat bagus,
-              tapi punya struktur, fungsi, dan identitas yang jelas.
-              Dari interface sampai sistem di belakangnya — semuanya dirancang
-              sebagai satu kesatuan.
-            </p>
-
-            <div class="hero-actions">
-              <a href="#identity" class="btn btn-primary">
-                Kenal Gue →
-              </a>
-
-              <a href="#work" class="btn btn-secondary">
-                Lihat Karya
-              </a>
+            <div class="meta">
+              <small>Status</small>
+              <strong>Available</strong>
             </div>
 
           </div>
 
+          <div class="hero-actions">
+            <a href="#project" class="btn btn-dark">
+              View Project
+            </a>
 
-          <div class="hero-visual reveal">
-
-            <div class="floating-number">
-              01
-            </div>
-
-            <div class="photo-frame">
-              <!-- FOTO UTAMA -->
-              <img
-                src="hero-foto-asli.png"
-                alt="Noctis Atalic"
-              >
-
-              <div class="photo-tag">
-                NOCTIS ATALIC
-                <small>Fullstack Web Developer · Indonesia</small>
-              </div>
-            </div>
-
+            <a
+              href="https://wa.me/6281318048885?text=Halo%20Noctis%2C%20saya%20ingin%20konsultasi%20tentang%20website."
+              target="_blank"
+              class="btn btn-red"
+            >
+              Start a Project
+            </a>
           </div>
 
         </div>
+
+
+        <div class="hero-photo-wrap reveal">
+
+          <img
+            src="hero-foto-asli.png"
+            alt="Noctis Atalic"
+            class="hero-photo"
+          >
+
+          <div class="photo-caption">
+            NOCTIS ATALIC — FULLSTACK DEVELOPER
+          </div>
+
+        </div>
+
       </div>
     </section>
 
 
-    <!-- =========================
-         MARQUEE
-    ========================= -->
-
-    <div class="marquee">
-      <div class="marquee-track">
-        <span>IDENTITY</span>
-        <span class="dot">●</span>
-        <span>DESIGN</span>
-        <span class="dot">●</span>
-        <span>DEVELOPMENT</span>
-        <span class="dot">●</span>
-        <span>SYSTEM</span>
-        <span class="dot">●</span>
-        <span>EXPERIENCE</span>
-        <span class="dot">●</span>
-
-        <span>IDENTITY</span>
-        <span class="dot">●</span>
-        <span>DESIGN</span>
-        <span class="dot">●</span>
-        <span>DEVELOPMENT</span>
-        <span class="dot">●</span>
-        <span>SYSTEM</span>
-        <span class="dot">●</span>
-        <span>EXPERIENCE</span>
-        <span class="dot">●</span>
-      </div>
-    </div>
-
-
-    <!-- =========================
-         IDENTITY
-    ========================= -->
-
-    <section class="identity" id="identity">
-
-      <div class="container">
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <div class="container about-grid">
 
         <div class="reveal">
-          <div class="eyebrow">01 — Identity</div>
-
+          <div class="section-number">01 / ABOUT</div>
           <h2 class="section-title">
-            Bukan cuma orang yang
-            <span>bikin website.</span>
+            More than<br>
+            just code.
           </h2>
-
-          <p class="section-description">
-            Gue melihat website sebagai alat untuk menyampaikan identitas,
-            membangun kepercayaan, dan menyelesaikan masalah nyata.
-            Coding adalah salah satu alatnya — bukan identitas gue satu-satunya.
-          </p>
         </div>
 
+        <div class="reveal">
 
-        <div class="identity-grid">
+          <p class="about-copy">
+            Saya menggabungkan
+            <span>development, design, dan problem solving</span>
+            untuk membangun produk digital yang memiliki tujuan.
+          </p>
 
-          <article class="identity-card reveal">
-            <div class="identity-card-number">01 / MINDSET</div>
+          <div class="about-info">
 
-            <h3>Think Before Build.</h3>
+            <div class="info-item">
+              <small>Specialization</small>
+              <strong>Fullstack Web Development</strong>
+            </div>
 
-            <p>
-              Setiap project dimulai dari memahami masalah.
-              Apa yang ingin dicapai, siapa yang menggunakannya,
-              dan kenapa sistem tersebut perlu dibuat.
-            </p>
-          </article>
+            <div class="info-item">
+              <small>Approach</small>
+              <strong>Clean · Functional · Scalable</strong>
+            </div>
 
+            <div class="info-item">
+              <small>Design</small>
+              <strong>Modern & User Focused</strong>
+            </div>
 
-          <article class="identity-card reveal">
-            <div class="identity-card-number">02 / APPROACH</div>
+            <div class="info-item">
+              <small>Goal</small>
+              <strong>Build Digital Presence</strong>
+            </div>
 
-            <h3>Design With Purpose.</h3>
-
-            <p>
-              Visual bukan sekadar dekorasi.
-              Typography, spacing, interaction dan motion digunakan
-              untuk membentuk pengalaman dan memperkuat identitas.
-            </p>
-          </article>
-
-
-          <article class="identity-card reveal">
-            <div class="identity-card-number">03 / BUILD</div>
-
-            <h3>From Interface to System.</h3>
-
-            <p>
-              Gue bisa bekerja dari frontend sampai backend:
-              interface, database, authentication, API,
-              dashboard, deployment dan integrasi.
-            </p>
-          </article>
-
-
-          <article class="identity-card reveal">
-            <div class="identity-card-number">04 / PRINCIPLE</div>
-
-            <h3>Simple. Functional. Memorable.</h3>
-
-            <p>
-              Sistem yang bagus tidak harus terlihat rumit.
-              Tujuannya adalah membuat sesuatu yang mudah dipahami,
-              bekerja dengan baik, dan meninggalkan kesan.
-            </p>
-          </article>
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================
-         SELECTED WORK
-    ========================= -->
-
-    <section id="work">
-
+    <!-- PROJECT -->
+    <section id="project" class="project-section">
       <div class="container">
 
-        <div class="work-header reveal">
+        <div class="section-head reveal">
 
           <div>
-            <div class="eyebrow">02 — Selected Work</div>
-
+            <div class="section-number">02 / SELECTED PROJECT</div>
             <h2 class="section-title">
-              Things I've<br>
-              <span>built.</span>
+              One project.<br>
+              One result.
             </h2>
           </div>
 
           <p class="section-description">
-            Beberapa project yang merepresentasikan cara gue menggabungkan
-            design, development, branding dan sistem.
+            Saya memilih menampilkan satu project utama secara langsung
+            agar pengunjung dapat melihat hasil website sebenarnya,
+            bukan sekadar screenshot.
           </p>
 
         </div>
 
 
-        <div class="work-grid">
+        <div class="project-showcase reveal">
 
-          <!-- PROJECT 1 -->
+          <div class="project-top">
 
-          <article class="work-card large reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=85"
-              alt="Cyrus Web Project"
-            >
-
-            <div class="work-overlay">
-
-              <div class="work-type">
-                Digital Agency / Fullstack
+            <div>
+              <div class="project-label">
+                Featured Project
               </div>
 
-              <h3>Cyrus Web</h3>
+              <h3 class="project-name">
+                SPR Audio
+              </h3>
 
-              <p>
-                Digital presence dan service platform dengan pendekatan
-                modern interface, responsive experience dan struktur
-                yang siap dikembangkan menjadi sistem bisnis.
+              <p class="project-description">
+                Website untuk bisnis sound system dan audio production,
+                dengan fokus pada visual produk, informasi layanan,
+                paket harga, dan alur pemesanan.
               </p>
-
-              <div class="work-link">
-                VIEW PROJECT <span>↗</span>
-              </div>
-
             </div>
 
-          </article>
-
-
-          <!-- PROJECT 2 -->
-
-          <article class="work-card reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1400&q=85"
-              alt="SPR Audio Project"
+            <a
+              href="https://spraudio.github.io/SPR-Audio/"
+              target="_blank"
+              class="btn btn-dark project-link"
             >
+              Open Project ↗
+            </a>
 
-            <div class="work-overlay">
+          </div>
 
-              <div class="work-type">
-                Business / Audio
+
+          <!-- LIVE WEBSITE PREVIEW -->
+
+          <div class="browser">
+
+            <div class="browser-bar">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+
+              <div class="browser-url">
+                spraudio.github.io/SPR-Audio/
               </div>
-
-              <h3>SPR Audio</h3>
-
-              <p>
-                Website bisnis sound system dengan package,
-                pricing calculator, booking flow dan customer contact.
-              </p>
-
-              <div class="work-link">
-                VIEW PROJECT <span>↗</span>
-              </div>
-
             </div>
 
-          </article>
+            <iframe
+              class="website-frame"
+              src="https://spraudio.github.io/SPR-Audio/"
+              title="SPR Audio Website Preview"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+
+          </div>
 
 
-          <!-- PROJECT 3 -->
+          <div class="project-bottom">
 
-          <article class="work-card reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=85"
-              alt="Business dashboard"
-            >
-
-            <div class="work-overlay">
-
-              <div class="work-type">
-                Web Application
-              </div>
-
-              <h3>Business System</h3>
-
-              <p>
-                Konsep operational system dengan role-based access,
-                dashboard, database dan workflow antar bagian.
-              </p>
-
-              <div class="work-link">
-                VIEW PROJECT <span>↗</span>
-              </div>
-
+            <div class="project-detail">
+              <small>Role</small>
+              <strong>Fullstack / Web Developer</strong>
             </div>
 
-          </article>
-
-
-          <!-- PROJECT 4 -->
-
-          <article class="work-card large reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1400&q=85"
-              alt="Digital product interface"
-            >
-
-            <div class="work-overlay">
-
-              <div class="work-type">
-                E-Commerce / Digital Product
-              </div>
-
-              <h3>IHSAN Koi</h3>
-
-              <p>
-                Premium aquarium store experience dengan product
-                presentation, catalog flow, FAQ dan direct customer ordering.
-              </p>
-
-              <div class="work-link">
-                VIEW PROJECT <span>↗</span>
-              </div>
-
+            <div class="project-detail">
+              <small>Type</small>
+              <strong>Business Website</strong>
             </div>
 
-          </article>
+            <div class="project-detail">
+              <small>Focus</small>
+              <strong>Brand · Service · Conversion</strong>
+            </div>
+
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================
-         SERVICES
-    ========================= -->
-
-    <section class="services" id="services">
-
+    <!-- SERVICES -->
+    <section id="services">
       <div class="container">
 
-        <div class="reveal">
+        <div class="section-head reveal">
 
-          <div class="eyebrow">
-            03 — Services
+          <div>
+            <div class="section-number">03 / SERVICES</div>
+            <h2 class="section-title">
+              Build your<br>
+              digital presence.
+            </h2>
           </div>
 
-          <h2 class="section-title">
-            You bring the idea.<br>
-            <span>I build the system.</span>
-          </h2>
-
           <p class="section-description">
-            Jasa pembuatan website untuk personal brand, bisnis,
-            company profile, portfolio sampai web application.
+            Paket dibuat berdasarkan kebutuhan website,
+            mulai dari landing page hingga website bisnis
+            dengan kebutuhan fitur yang lebih kompleks.
           </p>
 
         </div>
@@ -1507,65 +1121,90 @@
 
         <div class="services-grid">
 
+          <!-- STANDARD -->
           <article class="service-card reveal">
 
-            <div class="service-index">
-              01 / STANDARD
-            </div>
+            <div class="service-number">01</div>
 
-            <h3>Standard Website</h3>
+            <div>
+              <h3>Standard</h3>
 
-            <p>
-              Website profesional untuk personal brand,
-              portfolio, UMKM atau company profile sederhana.
-            </p>
+              <div class="price">
+                Rp 1.800.000
+              </div>
 
-            <div class="service-price">
-              Rp 1.800.000
-              <small> / project</small>
+              <p>
+                Website profesional untuk memperkenalkan
+                bisnis, jasa, produk, atau personal brand.
+              </p>
+
+              <ul class="service-list">
+                <li>✓ Responsive Design</li>
+                <li>✓ Modern UI</li>
+                <li>✓ Landing Page</li>
+                <li>✓ WhatsApp Integration</li>
+                <li>✓ Deployment</li>
+              </ul>
             </div>
 
           </article>
 
 
+          <!-- PRO -->
           <article class="service-card featured reveal">
 
-            <div class="service-index">
-              02 / PRO
-            </div>
+            <div class="service-number">02 / RECOMMENDED</div>
 
-            <h3>Pro Website</h3>
+            <div>
+              <h3>Pro</h3>
 
-            <p>
-              Website dengan visual custom, interaction,
-              responsive architecture dan fitur bisnis
-              yang lebih kompleks.
-            </p>
+              <div class="price">
+                Rp 3.000.000
+              </div>
 
-            <div class="service-price">
-              Rp 3.000.000
-              <small> / project</small>
+              <p>
+                Website bisnis yang lebih lengkap dengan
+                halaman, interaksi, dan struktur yang lebih profesional.
+              </p>
+
+              <ul class="service-list">
+                <li>✓ Multi Page Website</li>
+                <li>✓ Advanced UI / UX</li>
+                <li>✓ Interactive Components</li>
+                <li>✓ Contact / WhatsApp System</li>
+                <li>✓ SEO Basic</li>
+                <li>✓ Deployment</li>
+              </ul>
             </div>
 
           </article>
 
 
+          <!-- EVENT -->
           <article class="service-card reveal">
 
-            <div class="service-index">
-              03 / EVENT
-            </div>
+            <div class="service-number">03</div>
 
-            <h3>Event Website</h3>
+            <div>
+              <h3>Event</h3>
 
-            <p>
-              Website khusus event, campaign atau launching
-              dengan visual yang kuat dan conversion-focused experience.
-            </p>
+              <div class="price">
+                Rp 6.000.000
+              </div>
 
-            <div class="service-price">
-              Rp 6.000.000
-              <small> / project</small>
+              <p>
+                Website khusus kebutuhan event,
+                promosi, campaign, launching, atau acara besar.
+              </p>
+
+              <ul class="service-list">
+                <li>✓ Custom Event Website</li>
+                <li>✓ Interactive Experience</li>
+                <li>✓ Schedule / Information</li>
+                <li>✓ Registration Flow</li>
+                <li>✓ WhatsApp Integration</li>
+                <li>✓ Deployment</li>
+              </ul>
             </div>
 
           </article>
@@ -1573,33 +1212,27 @@
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================
-         TECHNOLOGY
-    ========================= -->
-
-    <section id="technology">
-
+    <!-- TECHNOLOGY -->
+    <section id="technology" class="tech-section">
       <div class="container">
 
-        <div class="reveal">
+        <div class="section-head reveal">
 
-          <div class="eyebrow">
-            04 — Technology
+          <div>
+            <div class="section-number">04 / TECHNOLOGY</div>
+
+            <h2 class="section-title">
+              Tools behind<br>
+              the work.
+            </h2>
           </div>
 
-          <h2 class="section-title">
-            Tools I use to<br>
-            <span>build things.</span>
-          </h2>
-
           <p class="section-description">
-            Teknologi yang gue gunakan untuk membangun interface,
-            application logic, backend, database, deployment
-            dan digital experience.
+            Teknologi dipilih berdasarkan kebutuhan project,
+            bukan sekadar untuk terlihat kompleks.
           </p>
 
         </div>
@@ -1607,472 +1240,232 @@
 
         <div class="tech-grid">
 
-          <!-- HTML -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">HTML</div>
-              <div class="tech-number">01</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">HTML5</div>
             <h3>HTML5</h3>
-
             <p>
-              Struktur dasar website dan semantic markup
-              agar konten memiliki struktur yang jelas.
+              Struktur utama halaman website agar konten
+              memiliki struktur yang jelas dan semantik.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Structure
-            </span>
-
-          </article>
-
-
-          <!-- CSS -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">CSS</div>
-              <div class="tech-number">02</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">CSS3</div>
             <h3>CSS3</h3>
-
             <p>
-              Styling, responsive layout, animation,
-              glass effect dan visual system.
+              Mengatur visual, responsive layout, animasi,
+              dan pengalaman visual website.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Styling
-            </span>
-
-          </article>
-
-
-          <!-- JS -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">JS</div>
-              <div class="tech-number">03</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">JS</div>
             <h3>JavaScript</h3>
-
             <p>
-              Membuat interface menjadi interaktif,
-              dinamis dan mampu menjalankan logic di browser.
+              Membuat website menjadi interaktif dan mampu
+              menjalankan berbagai logic di sisi client.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Frontend
-            </span>
-
-          </article>
-
-
-          <!-- React -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">⚛</div>
-              <div class="tech-number">04</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">React</div>
             <h3>React</h3>
-
             <p>
-              Membuat interface berbasis component
-              yang scalable dan mudah dikembangkan.
+              Membangun interface menggunakan component
+              yang reusable dan mudah dikembangkan.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Frontend
-            </span>
-
-          </article>
-
-
-          <!-- NEXT -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">N</div>
-              <div class="tech-number">05</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">NEXT</div>
             <h3>Next.js</h3>
-
             <p>
-              Framework React untuk membangun fullstack
-              application dengan routing, server logic dan API.
+              Framework React untuk membangun aplikasi
+              web modern dengan performa dan struktur yang baik.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Fullstack
-            </span>
-
-          </article>
-
-
-          <!-- TAILWIND -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">TW</div>
-              <div class="tech-number">06</div>
-            </div>
-
-            <h3>Tailwind CSS</h3>
-
-            <p>
-              Utility-first CSS framework untuk membangun
-              interface secara cepat dan konsisten.
-            </p>
-
-            <span class="tech-category">
-              Styling
-            </span>
-
-          </article>
-
-
-          <!-- NODE -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">JS</div>
-              <div class="tech-number">07</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">NODE</div>
             <h3>Node.js</h3>
-
             <p>
-              Runtime JavaScript untuk backend,
-              API, automation dan server-side application.
+              Menjalankan backend JavaScript untuk API,
+              server logic, dan kebutuhan aplikasi.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Backend
-            </span>
-
-          </article>
-
-
-          <!-- POSTGRES -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">PG</div>
-              <div class="tech-number">08</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">SQL</div>
             <h3>PostgreSQL</h3>
-
             <p>
-              Relational database untuk menyimpan
-              dan mengelola data aplikasi secara terstruktur.
+              Database relational untuk menyimpan dan
+              mengelola data aplikasi secara terstruktur.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Database
-            </span>
-
-          </article>
-
-
-          <!-- PRISMA -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">P</div>
-              <div class="tech-number">09</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">PRISMA</div>
             <h3>Prisma</h3>
-
             <p>
-              ORM untuk menghubungkan application logic
+              ORM yang membantu menghubungkan aplikasi
               dengan database secara lebih aman dan terstruktur.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Backend
-            </span>
-
-          </article>
-
-
-          <!-- GIT -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">Git</div>
-              <div class="tech-number">10</div>
-            </div>
-
-            <h3>Git & GitHub</h3>
-
+          <div class="tech reveal">
+            <div class="tech-icon">GIT</div>
+            <h3>Git</h3>
             <p>
-              Version control dan repository management
-              untuk mengembangkan serta deploy project.
+              Version control untuk mengelola perubahan
+              dan perkembangan source code.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Development
-            </span>
+          <div class="tech reveal">
+            <div class="tech-icon">GH</div>
+            <h3>GitHub</h3>
+            <p>
+              Platform untuk menyimpan repository,
+              kolaborasi, dan pengelolaan source code.
+            </p>
+          </div>
 
-          </article>
-
-
-          <!-- VERCEL -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">▲</div>
-              <div class="tech-number">11</div>
-            </div>
-
+          <div class="tech reveal">
+            <div class="tech-icon">VERCEL</div>
             <h3>Vercel</h3>
-
             <p>
-              Deployment platform untuk frontend,
-              Next.js application dan serverless functions.
+              Deployment platform untuk menjalankan
+              aplikasi web modern secara online.
             </p>
+          </div>
 
-            <span class="tech-category">
-              Deployment
-            </span>
-
-          </article>
-
-
-          <!-- GSAP -->
-
-          <article class="tech-card reveal">
-
-            <div class="tech-top">
-              <div class="tech-logo">GS</div>
-              <div class="tech-number">12</div>
-            </div>
-
-            <h3>GSAP</h3>
-
+          <div class="tech reveal">
+            <div class="tech-icon">UI</div>
+            <h3>UI / UX</h3>
             <p>
-              Animation framework untuk membuat motion,
-              scroll animation dan interaction yang kompleks.
+              Prinsip desain digunakan untuk membuat
+              interface yang mudah dipahami dan digunakan.
             </p>
-
-            <span class="tech-category">
-              Motion
-            </span>
-
-          </article>
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================
-         PROCESS
-    ========================= -->
-
-    <section class="process" id="process">
-
+    <!-- PROCESS -->
+    <section>
       <div class="container">
 
-        <div class="reveal">
+        <div class="section-head reveal">
 
-          <div class="eyebrow">
-            05 — Process
+          <div>
+            <div class="section-number">05 / PROCESS</div>
+
+            <h2 class="section-title">
+              From idea<br>
+              to website.
+            </h2>
           </div>
-
-          <h2 class="section-title">
-            How I turn an idea<br>
-            into <span>reality.</span>
-          </h2>
-
-          <p class="section-description">
-            Website bukan dimulai dari coding.
-            Proses dimulai dari memahami apa yang sebenarnya perlu dibangun.
-          </p>
 
         </div>
 
 
         <div class="process-list">
 
-          <div class="process-item reveal">
+          <div class="process reveal">
             <div class="process-number">01</div>
-
-            <h3>Discover</h3>
-
+            <h3>Discovery</h3>
             <p>
-              Memahami bisnis, target user, tujuan,
-              masalah dan karakter brand.
+              Memahami bisnis, kebutuhan, target audience,
+              dan tujuan website.
             </p>
           </div>
 
-
-          <div class="process-item reveal">
+          <div class="process reveal">
             <div class="process-number">02</div>
-
-            <h3>Design</h3>
-
+            <h3>Structure</h3>
             <p>
-              Menentukan visual direction, layout,
-              hierarchy, interaction dan user experience.
+              Menentukan struktur halaman, content flow,
+              dan fitur yang dibutuhkan.
             </p>
           </div>
 
-
-          <div class="process-item reveal">
+          <div class="process reveal">
             <div class="process-number">03</div>
-
-            <h3>Develop</h3>
-
+            <h3>Design</h3>
             <p>
-              Mengubah design menjadi interface dan
-              sistem yang benar-benar bisa digunakan.
+              Membuat visual interface yang sesuai
+              karakter brand dan kebutuhan pengguna.
             </p>
           </div>
 
-
-          <div class="process-item reveal">
+          <div class="process reveal">
             <div class="process-number">04</div>
-
-            <h3>Deploy</h3>
-
+            <h3>Development</h3>
             <p>
-              Testing, optimization, deployment,
-              domain setup dan final delivery.
+              Mengubah desain menjadi website yang responsive,
+              interactive, dan functional.
+            </p>
+          </div>
+
+          <div class="process reveal">
+            <div class="process-number">05</div>
+            <h3>Launch</h3>
+            <p>
+              Testing, optimasi, deployment,
+              dan website siap digunakan.
             </p>
           </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
-
-    <section>
-
+    <!-- STATEMENT -->
+    <section class="statement">
       <div class="container">
 
-        <div class="reveal">
-
-          <div class="eyebrow">
-            06 — Beyond Code
-          </div>
-
-          <h2 class="section-title">
-            The person behind<br>
-            the <span>interface.</span>
-          </h2>
-
+        <div class="section-number reveal">
+          06 / STATEMENT
         </div>
 
-
-        <div class="about-box reveal">
-
-          <div class="about-big">
-            I don't want to<br>
-            just <span>write code.</span><br>
-            I want to build<br>
-            something useful.
-          </div>
-
-
-          <div class="about-details">
-
-            <p>
-              Gue tertarik pada bagaimana manusia berinteraksi
-              dengan teknologi — bagaimana sebuah visual bisa
-              membangun persepsi, bagaimana sebuah sistem
-              menyelesaikan pekerjaan, dan bagaimana keduanya
-              bisa digabungkan menjadi pengalaman digital yang kuat.
-            </p>
-
-            <div class="about-stats">
-
-              <div class="stat">
-                <strong>01</strong>
-                <span>Mindset</span>
-              </div>
-
-              <div class="stat">
-                <strong>02</strong>
-                <span>Design</span>
-              </div>
-
-              <div class="stat">
-                <strong>03</strong>
-                <span>Code</span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
+        <p class="statement-text reveal">
+          Good websites don't just
+          <span>look good.</span>
+          They make people
+          <span>act.</span>
+        </p>
 
       </div>
-
     </section>
 
 
-    <!-- =========================
-         CTA
-    ========================= -->
+    <!-- CTA -->
+    <section class="cta">
 
-    <section class="cta" id="contact">
+      <div class="container reveal">
 
-      <div class="container">
+        <h2>
+          Have an idea?
+        </h2>
 
-        <div class="cta-content reveal">
+        <p>
+          Ceritakan kebutuhan website lo.
+          Kita mulai dari konsep, struktur,
+          sampai website siap digunakan.
+        </p>
 
-          <h2>
-            HAVE AN IDEA?
-            LET'S BUILD IT.
-          </h2>
-
-          <p>
-            Kalau lo punya bisnis, brand, project atau ide yang
-            membutuhkan digital presence yang serius,
-            let's turn it into something real.
-          </p>
-
-          <!-- GANTI NOMOR WHATSAPP DI BAWAH -->
-          <a
-            href="https://wa.me/6281234567890"
-            class="btn"
-            target="_blank"
-          >
-            Start a Conversation ↗
-          </a>
-
-        </div>
+        <a
+          href="https://wa.me/6281318048885?text=Halo%20Noctis%2C%20saya%20ingin%20membuat%20website.%20Saya%20ingin%20konsultasi%20dulu."
+          target="_blank"
+          class="btn"
+        >
+          Chat via WhatsApp →
+        </a>
 
       </div>
 
@@ -2081,195 +1474,134 @@
   </main>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
+  <!-- FOOTER -->
   <footer>
 
-    <div class="container">
+    <div class="container footer-inner">
 
-      <div class="footer-inner">
-
-        <div class="footer-logo">
-          NOCTIS<span>.</span>
-        </div>
-
-        <div class="footer-copy">
-          © 2026 Noctis Atalic. Built with intention.
-        </div>
-
-        <div class="footer-links">
-          <a href="#home">Back to top ↑</a>
-          <a href="#work">Work</a>
-          <a href="#contact">Contact</a>
-        </div>
-
+      <div class="footer-brand">
+        NOCTIS<span>.</span>
       </div>
+
+      <div class="footer-copy">
+        © 2026 Noctis Atalic. Built with intention.
+      </div>
+
+      <a
+        href="https://wa.me/6281318048885"
+        target="_blank"
+        class="footer-copy"
+      >
+        WhatsApp ↗
+      </a>
 
     </div>
 
   </footer>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
   <script>
 
-    /* =========================
-       CUSTOM CURSOR
-    ========================= */
+    /* SCROLL REVEAL */
 
-    const cursor = document.querySelector(".cursor");
-
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-    });
-
-    document.querySelectorAll("a, button, .work-card, .tech-card, .service-card")
-      .forEach(el => {
-
-        el.addEventListener("mouseenter", () => {
-          cursor.classList.add("active");
-        });
-
-        el.addEventListener("mouseleave", () => {
-          cursor.classList.remove("active");
-        });
-
-      });
-
-
-    /* =========================
-       SCROLL REVEAL
-    ========================= */
+    const reveals = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver(
       entries => {
-
         entries.forEach(entry => {
-
           if (entry.isIntersecting) {
-
             entry.target.classList.add("visible");
-
             observer.unobserve(entry.target);
-
           }
-
         });
-
       },
       {
-        threshold: 0.12
+        threshold: 0.08
       }
     );
 
-
-    document.querySelectorAll(".reveal")
-      .forEach(el => observer.observe(el));
+    reveals.forEach(el => observer.observe(el));
 
 
-    /* =========================
-       HERO PHOTO PARALLAX
-    ========================= */
+    /* HERO PHOTO MOVEMENT */
 
-    const photo = document.querySelector(".photo-frame");
+    const photo = document.querySelector(".hero-photo");
 
-    if (window.innerWidth > 800) {
+    if (photo && window.innerWidth > 850) {
 
       document.addEventListener("mousemove", e => {
 
-        const x = (e.clientX / window.innerWidth - .5);
-        const y = (e.clientY / window.innerHeight - .5);
+        const x = (e.clientX / window.innerWidth - .5) * 8;
+        const y = (e.clientY / window.innerHeight - .5) * 8;
 
         photo.style.transform =
-          `rotate(${2 + x * 3}deg)
-           translate(${x * 8}px, ${y * 8}px)`;
+          `translate(${x}px, ${y}px)`;
 
       });
 
     }
 
 
-    /* =========================
-       MAGNETIC BUTTON
-    ========================= */
+    /* NAV BACKDROP */
 
-    document.querySelectorAll(".btn, .nav-cta").forEach(button => {
-
-      button.addEventListener("mousemove", e => {
-
-        if (window.innerWidth < 800) return;
-
-        const rect = button.getBoundingClientRect();
-
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        button.style.transform =
-          `translate(${x * .15}px, ${y * .15}px)`;
-
-      });
-
-      button.addEventListener("mouseleave", () => {
-
-        button.style.transform = "";
-
-      });
-
-    });
-
-
-    /* =========================
-       ACTIVE NAV
-    ========================= */
-
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-links a");
+    const nav = document.querySelector("nav");
 
     window.addEventListener("scroll", () => {
 
-      let current = "";
-
-      sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 200;
-
-        if (window.scrollY >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-
-      });
-
-      navLinks.forEach(link => {
-
-        link.style.color = "";
-
-        if (link.getAttribute("href") === "#" + current) {
-          link.style.color = "var(--red)";
-        }
-
-      });
+      if (window.scrollY > 40) {
+        nav.style.background = "rgba(255,255,255,.95)";
+      } else {
+        nav.style.background = "rgba(255,255,255,.88)";
+      }
 
     });
 
 
-    /* =========================
-       IMAGE FALLBACK
-    ========================= */
+    /* ESCAPE IFRAME ISSUE FALLBACK */
 
-    document.querySelectorAll("img").forEach(img => {
+    const frame = document.querySelector(".website-frame");
 
-      img.addEventListener("error", () => {
+    frame.addEventListener("error", () => {
 
-        img.style.background =
-          "linear-gradient(135deg,#111,#444)";
+      frame.outerHTML = `
+        <div style="
+          height:650px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+          gap:15px;
+          background:#fff;
+          text-align:center;
+          padding:30px;
+          font-family:Inter,sans-serif;
+        ">
+          <strong>SPR Audio</strong>
 
-      });
+          <span style="
+            color:#777;
+            font-size:13px;
+          ">
+            Preview tidak dapat ditampilkan di dalam frame.
+          </span>
+
+          <a
+            href="https://spraudio.github.io/SPR-Audio/"
+            target="_blank"
+            style="
+              background:#111;
+              color:#fff;
+              padding:12px 20px;
+              border-radius:999px;
+              text-decoration:none;
+              font-size:12px;
+              font-weight:700;
+            "
+          >
+            Open SPR Audio ↗
+          </a>
+        </div>
+      `;
 
     });
 
