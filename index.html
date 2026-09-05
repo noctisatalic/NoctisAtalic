@@ -148,8 +148,6 @@
       z-index: 2;
     }
 
-    /* HERO ENTRANCE */
-
     .hero-content > * {
       opacity: 0;
       transform: translateY(35px);
@@ -482,24 +480,32 @@
       border-bottom: 1px solid #111;
     }
 
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
     .project {
       background: #fff;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
+      min-width: 0;
     }
 
     .project-info {
-      padding: 28px;
+      padding: 24px;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      gap: 30px;
-      align-items: center;
+      gap: 22px;
+      min-height: 255px;
     }
 
     .project-title {
       font-family: "Manrope", sans-serif;
-      font-size: 27px;
+      font-size: 25px;
       font-weight: 800;
       letter-spacing: -.04em;
     }
@@ -508,7 +514,6 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
-      max-width: 580px;
       margin-top: 8px;
     }
 
@@ -528,40 +533,40 @@
     }
 
     .project-open {
-      flex-shrink: 0;
+      align-self: flex-start;
     }
 
     .project-preview {
       background: #e9e9e7;
-      padding: 14px;
+      padding: 10px;
     }
 
     .browser-frame {
       background: #fff;
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,.08);
     }
 
     .browser-top {
-      height: 34px;
+      height: 30px;
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 0 13px;
+      gap: 5px;
+      padding: 0 11px;
       border-bottom: 1px solid var(--line);
     }
 
     .browser-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #d8d8d6;
     }
 
     .project-iframe {
       width: 100%;
-      height: 620px;
+      height: 480px;
       border: 0;
       display: block;
       background: #fff;
@@ -858,6 +863,21 @@
        MOBILE
     ========================= */
 
+    @media (max-width: 900px) {
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-info {
+        min-height: auto;
+      }
+
+      .project-iframe {
+        height: 520px;
+      }
+    }
+
     @media (max-width: 800px) {
 
       nav {
@@ -904,15 +924,6 @@
       .work-link {
         display: inline-block;
         margin-top: 20px;
-      }
-
-      .project-info {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .project-iframe {
-        height: 520px;
       }
 
       .capability-grid {
@@ -971,7 +982,9 @@
       }
     }
 
-    /* REDUCE MOTION */
+    /* =========================
+       REDUCE MOTION
+    ========================= */
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -1190,99 +1203,245 @@
             </div>
 
             <h2 class="section-title">
-              SPR Audio.
+              Selected Work.
             </h2>
 
             <p class="section-intro">
-              A digital experience created for a sound system
-              and audio production business.
+              A selection of digital experiences and websites
+              created through development, interface design,
+              and technology.
             </p>
 
           </div>
 
-          <a
-            href="https://spraudio.github.io/SPR-Audio/"
-            target="_blank"
-            rel="noopener"
-            class="work-link"
-          >
-            Open Project
-          </a>
-
         </div>
 
 
-        <article class="project reveal">
+        <div class="projects-grid">
 
-          <div class="project-info">
 
-            <div>
+          <!-- SPR AUDIO -->
 
-              <div class="project-title">
-                SPR Audio
+          <article class="project reveal">
+
+            <div class="project-info">
+
+              <div>
+
+                <div class="project-title">
+                  SPR Audio
+                </div>
+
+                <p class="project-description">
+                  Website experience created for a sound system
+                  and audio production business.
+                </p>
+
+                <div class="project-tags">
+
+                  <span class="tag">
+                    Web Development
+                  </span>
+
+                  <span class="tag">
+                    UI Design
+                  </span>
+
+                  <span class="tag">
+                    Interactive
+                  </span>
+
+                </div>
+
               </div>
 
-              <p class="project-description">
-                Website experience focused on presenting audio
-                production services, packages, information, and
-                customer interaction through a modern interface.
-              </p>
 
-              <div class="project-tags">
+              <a
+                href="https://spraudio.github.io/SPR-Audio/"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-dark project-open"
+              >
+                View Project
+              </a>
 
-                <span class="tag">
-                  Web Development
-                </span>
+            </div>
 
-                <span class="tag">
-                  UI Design
-                </span>
 
-                <span class="tag">
-                  Interactive
-                </span>
+            <div class="project-preview">
+
+              <div class="browser-frame">
+
+                <div class="browser-top">
+
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+
+                </div>
+
+                <iframe
+                  src="https://spraudio.github.io/SPR-Audio/"
+                  class="project-iframe"
+                  title="SPR Audio Website Preview"
+                ></iframe>
 
               </div>
 
             </div>
 
-
-            <a
-              href="https://spraudio.github.io/SPR-Audio/"
-              target="_blank"
-              rel="noopener"
-              class="btn btn-dark project-open"
-            >
-              View Project
-            </a>
-
-          </div>
+          </article>
 
 
-          <div class="project-preview">
+          <!-- IHSAN KOI -->
 
-            <div class="browser-frame">
+          <article class="project reveal">
 
-              <div class="browser-top">
+            <div class="project-info">
 
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
+              <div>
+
+                <div class="project-title">
+                  IHSAN Koi
+                </div>
+
+                <p class="project-description">
+                  Premium digital experience for an aquarium
+                  and koi business, focused on product presentation
+                  and customer interaction.
+                </p>
+
+                <div class="project-tags">
+
+                  <span class="tag">
+                    Web Development
+                  </span>
+
+                  <span class="tag">
+                    UI Design
+                  </span>
+
+                  <span class="tag">
+                    E-Commerce
+                  </span>
+
+                </div>
 
               </div>
 
-              <iframe
-                src="https://spraudio.github.io/SPR-Audio/"
-                class="project-iframe"
-                title="SPR Audio Website Preview"
-                loading="lazy"
-              ></iframe>
+
+              <a
+                href="https://spraudio.github.io/IHSAN-Koi/#koleksi"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-dark project-open"
+              >
+                View Project
+              </a>
 
             </div>
 
-          </div>
 
-        </article>
+            <div class="project-preview">
+
+              <div class="browser-frame">
+
+                <div class="browser-top">
+
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+
+                </div>
+
+                <iframe
+                  src="https://spraudio.github.io/IHSAN-Koi/#koleksi"
+                  class="project-iframe"
+                  title="IHSAN Koi Website Preview"
+                ></iframe>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- CYRUS WEB -->
+
+          <article class="project reveal">
+
+            <div class="project-info">
+
+              <div>
+
+                <div class="project-title">
+                  Cyrus Web
+                </div>
+
+                <p class="project-description">
+                  Digital platform exploring modern web development,
+                  service presentation, interface design, and
+                  structured website experience.
+                </p>
+
+                <div class="project-tags">
+
+                  <span class="tag">
+                    Web Development
+                  </span>
+
+                  <span class="tag">
+                    UI Design
+                  </span>
+
+                  <span class="tag">
+                    Responsive
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <a
+                href="https://noctisatalic.github.io/Cyrus-Web/faq.html"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-dark project-open"
+              >
+                View Project
+              </a>
+
+            </div>
+
+
+            <div class="project-preview">
+
+              <div class="browser-frame">
+
+                <div class="browser-top">
+
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+
+                </div>
+
+                <iframe
+                  src="https://noctisatalic.github.io/Cyrus-Web/faq.html"
+                  class="project-iframe"
+                  title="Cyrus Web Website Preview"
+                ></iframe>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+        </div>
 
       </div>
 
@@ -1434,6 +1593,7 @@
             </div>
 
             <div class="tech-item">
+
               <div class="nextjs-logo">
                 N
               </div>
@@ -1441,6 +1601,7 @@
               <span>
                 Next.js
               </span>
+
             </div>
 
             <div class="tech-item">
