@@ -59,7 +59,7 @@
     }
 
     /* =========================
-       NAVBAR
+       NAV
     ========================= */
 
     nav {
@@ -84,6 +84,8 @@
       border-radius: 999px;
 
       box-shadow: 0 12px 40px rgba(0,0,0,.06);
+
+      animation: navEnter .9s cubic-bezier(.22,1,.36,1) .15s both;
     }
 
     .nav-logo {
@@ -146,6 +148,14 @@
       z-index: 2;
     }
 
+    /* HERO ENTRANCE */
+
+    .hero-content > * {
+      opacity: 0;
+      transform: translateY(35px);
+      animation: heroEnter 1s cubic-bezier(.22,1,.36,1) forwards;
+    }
+
     .hero-kicker {
       display: inline-flex;
       align-items: center;
@@ -158,6 +168,8 @@
       color: var(--muted);
 
       margin-bottom: 24px;
+
+      animation-delay: .25s !important;
     }
 
     .hero-kicker::before {
@@ -166,6 +178,8 @@
       height: 7px;
       border-radius: 50%;
       background: var(--accent);
+
+      animation: pulseDot 1.8s ease-in-out .9s infinite;
     }
 
     .hero h1 {
@@ -174,6 +188,8 @@
       line-height: .9;
       letter-spacing: -.065em;
       font-weight: 800;
+
+      animation-delay: .4s !important;
     }
 
     .hero h1 span {
@@ -187,6 +203,8 @@
       font-size: clamp(18px, 3vw, 28px);
       font-weight: 600;
       letter-spacing: -.025em;
+
+      animation-delay: .55s !important;
     }
 
     .hero-description {
@@ -196,6 +214,8 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.8;
+
+      animation-delay: .7s !important;
     }
 
     .hero-actions {
@@ -204,6 +224,8 @@
       gap: 10px;
       flex-wrap: wrap;
       margin-top: 34px;
+
+      animation-delay: .85s !important;
     }
 
     .btn {
@@ -253,6 +275,8 @@
       font-size: 10px;
       letter-spacing: .15em;
       text-transform: uppercase;
+
+      animation-delay: 1s !important;
     }
 
     .hero-meta i {
@@ -260,6 +284,48 @@
       height: 4px;
       background: var(--accent);
       border-radius: 50%;
+    }
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    @keyframes heroEnter {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes navEnter {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.6);
+        opacity: .55;
+      }
     }
 
     /* =========================
@@ -335,12 +401,14 @@
       right: -2%;
       bottom: -1px;
       height: 32%;
+
       background: linear-gradient(
         to bottom,
         rgba(17,17,17,0),
         rgba(17,17,17,.72) 55%,
         #111 100%
       );
+
       pointer-events: none;
     }
 
@@ -770,13 +838,15 @@
     }
 
     /* =========================
-       REVEAL
+       SCROLL REVEAL
     ========================= */
 
     .reveal {
       opacity: 0;
       transform: translateY(25px);
-      transition: opacity .8s ease, transform .8s ease;
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.22,1,.36,1);
     }
 
     .reveal.visible {
@@ -900,10 +970,39 @@
         min-height: 100px;
       }
     }
+
+    /* REDUCE MOTION */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .hero-content > * {
+        opacity: 1;
+        transform: none;
+      }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- NAV -->
 
   <nav>
 
@@ -941,9 +1040,11 @@
 
   <main id="home">
 
+    <!-- HERO -->
+
     <section class="hero">
 
-      <div class="hero-content reveal">
+      <div class="hero-content">
 
         <div class="hero-kicker">
           Personal Portfolio
@@ -997,6 +1098,8 @@
 
     </section>
 
+
+    <!-- ABOUT -->
 
     <section class="about" id="about">
 
@@ -1071,6 +1174,8 @@
 
     </section>
 
+
+    <!-- SELECTED WORK -->
 
     <section id="work">
 
@@ -1184,6 +1289,8 @@
     </section>
 
 
+    <!-- CAPABILITIES -->
+
     <section class="capabilities">
 
       <div class="container">
@@ -1274,6 +1381,8 @@
     </section>
 
 
+    <!-- TECHNOLOGY -->
+
     <section class="technology" id="technology">
 
       <div class="container">
@@ -1328,7 +1437,10 @@
               <div class="nextjs-logo">
                 N
               </div>
-              <span>Next.js</span>
+
+              <span>
+                Next.js
+              </span>
             </div>
 
             <div class="tech-item">
@@ -1426,6 +1538,8 @@
     </section>
 
 
+    <!-- APPROACH -->
+
     <section>
 
       <div class="container">
@@ -1494,6 +1608,8 @@
     </section>
 
 
+    <!-- CTA -->
+
     <section class="cta">
 
       <div class="container reveal">
@@ -1527,6 +1643,8 @@
   </main>
 
 
+  <!-- FOOTER -->
+
   <footer>
 
     <div class="container">
@@ -1549,22 +1667,35 @@
 
 
   <script>
+
     const observer = new IntersectionObserver(
       (entries) => {
+
         entries.forEach((entry) => {
+
           if (entry.isIntersecting) {
+
             entry.target.classList.add("visible");
+
           }
+
         });
+
       },
       {
         threshold: 0.12
       }
     );
 
-    document.querySelectorAll(".reveal").forEach((el) => {
-      observer.observe(el);
-    });
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach((el) => {
+
+        observer.observe(el);
+
+      });
+
   </script>
 
 </body>
