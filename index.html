@@ -14,17 +14,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
   <style>
+
     :root {
-      --bg: #f7f7f5;
-      --surface: #ffffff;
-      --text: #111111;
-      --muted: #777777;
-      --line: rgba(17,17,17,.09);
+      --bg: #0b0b0b;
+      --surface: #111111;
+      --surface-2: #151515;
+      --surface-3: #1a1a1a;
+
+      --text: #f5f5f5;
+      --muted: #888888;
+      --muted-light: #a2a2a2;
+
+      --line: rgba(255,255,255,.09);
+      --line-strong: rgba(255,255,255,.14);
+
       --accent: #d71920;
-      --accent-soft: rgba(215,25,32,.08);
+      --accent-bright: #ff3b43;
+      --accent-soft: rgba(215,25,32,.10);
+
+      --white: #ffffff;
+      --black: #080808;
+
       --radius: 28px;
       --max: 1180px;
     }
+
 
     * {
       margin: 0;
@@ -32,9 +46,11 @@
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
+
 
     body {
       font-family: "Inter", sans-serif;
@@ -43,31 +59,48 @@
       overflow-x: hidden;
     }
 
+
+    body::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+
     a {
       color: inherit;
       text-decoration: none;
     }
+
+
+    button {
+      font-family: inherit;
+    }
+
 
     img {
       max-width: 100%;
       display: block;
     }
 
+
     .container {
       width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
     }
 
-    /* =========================
+
+    /* =========================================================
        NAV
-    ========================= */
+    ========================================================= */
 
     nav {
       position: fixed;
       top: 18px;
       left: 50%;
       transform: translateX(-50%);
+
       width: min(calc(100% - 28px), 720px);
+
       z-index: 1000;
 
       display: flex;
@@ -76,71 +109,100 @@
 
       padding: 10px 12px 10px 18px;
 
-      background: rgba(255,255,255,.76);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+      background: rgba(255,255,255,.10);
 
-      border: 1px solid rgba(17,17,17,.08);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 999px;
 
-      box-shadow: 0 12px 40px rgba(0,0,0,.06);
+      box-shadow:
+        0 12px 45px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.08);
 
       animation: navEnter .9s cubic-bezier(.22,1,.36,1) .15s both;
     }
+
 
     .nav-logo {
       font-family: "Manrope", sans-serif;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: .08em;
+      color: #fff;
     }
 
+
     .nav-logo span {
-      color: var(--accent);
+      color: var(--accent-bright);
     }
+
 
     .nav-links {
       display: flex;
       gap: 4px;
     }
 
+
     .nav-links a {
       font-size: 12px;
-      color: #666;
+      color: #a0a0a0;
+
       padding: 9px 12px;
+
       border-radius: 999px;
+
       transition: .25s ease;
     }
 
+
     .nav-links a:hover {
-      background: #f1f1ef;
-      color: #111;
+      background: rgba(255,255,255,.08);
+      color: #fff;
     }
 
+
     .nav-contact {
-      background: #111;
-      color: #fff !important;
+      background: #fff;
+      color: #111 !important;
       padding: 9px 15px !important;
+      font-weight: 600;
     }
+
 
     .nav-contact:hover {
       background: var(--accent) !important;
       color: #fff !important;
     }
 
-    /* =========================
+
+    /* =========================================================
        HERO
-    ========================= */
+    ========================================================= */
 
     .hero {
       min-height: 100svh;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       text-align: center;
+
       position: relative;
+
       padding: 120px 20px 80px;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(215,25,32,.055),
+          transparent 34%
+        ),
+        #0b0b0b;
     }
+
 
     .hero-content {
       max-width: 900px;
@@ -148,11 +210,16 @@
       z-index: 2;
     }
 
+
     .hero-content > * {
       opacity: 0;
       transform: translateY(35px);
-      animation: heroEnter 1s cubic-bezier(.22,1,.36,1) forwards;
+
+      animation:
+        heroEnter 1s cubic-bezier(.22,1,.36,1)
+        forwards;
     }
+
 
     .hero-kicker {
       display: inline-flex;
@@ -161,134 +228,198 @@
 
       font-size: 11px;
       font-weight: 600;
+
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--muted);
+
+      color: #8b8b8b;
 
       margin-bottom: 24px;
 
       animation-delay: .25s !important;
     }
 
+
     .hero-kicker::before {
       content: "";
+
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
+
       background: var(--accent);
 
-      animation: pulseDot 1.8s ease-in-out .9s infinite;
+      box-shadow:
+        0 0 16px rgba(215,25,32,.45);
+
+      animation:
+        pulseDot 1.8s ease-in-out .9s infinite;
     }
+
 
     .hero h1 {
       font-family: "Manrope", sans-serif;
+
       font-size: clamp(52px, 10vw, 118px);
+
       line-height: .9;
+
       letter-spacing: -.065em;
+
       font-weight: 800;
+
+      color: #fff;
 
       animation-delay: .4s !important;
     }
 
+
     .hero h1 span {
-      color: var(--accent);
+      color: var(--accent-bright);
     }
+
 
     .hero-role {
       margin-top: 28px;
 
       font-family: "Manrope", sans-serif;
+
       font-size: clamp(18px, 3vw, 28px);
+
       font-weight: 600;
+
       letter-spacing: -.025em;
+
+      color: #eee;
 
       animation-delay: .55s !important;
     }
 
+
     .hero-description {
       max-width: 570px;
+
       margin: 20px auto 0;
 
-      color: var(--muted);
+      color: #858585;
+
       font-size: 15px;
+
       line-height: 1.8;
 
       animation-delay: .7s !important;
     }
 
+
     .hero-actions {
       display: flex;
+
       justify-content: center;
+
       gap: 10px;
+
       flex-wrap: wrap;
+
       margin-top: 34px;
 
       animation-delay: .85s !important;
     }
 
+
     .btn {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
 
       min-height: 48px;
+
       padding: 0 21px;
 
       border-radius: 999px;
+
       font-size: 13px;
+
       font-weight: 600;
 
       transition: .3s ease;
     }
 
+
     .btn-dark {
-      background: #111;
-      color: #fff;
+      background: #fff;
+      color: #111;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.18);
     }
+
 
     .btn-dark:hover {
       background: var(--accent);
+      color: #fff;
+
       transform: translateY(-2px);
     }
+
 
     .btn-light {
-      background: #fff;
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+
+      color: #fff;
+
+      border: 1px solid rgba(255,255,255,.13);
     }
 
+
     .btn-light:hover {
-      border-color: #ccc;
+      border-color: rgba(255,255,255,.28);
+
+      background: rgba(255,255,255,.08);
+
       transform: translateY(-2px);
     }
+
 
     .hero-meta {
       margin-top: 70px;
 
       display: flex;
+
       justify-content: center;
       align-items: center;
+
       gap: 22px;
 
-      color: #999;
+      color: #656565;
+
       font-size: 10px;
+
       letter-spacing: .15em;
+
       text-transform: uppercase;
 
       animation-delay: 1s !important;
     }
 
+
     .hero-meta i {
       width: 4px;
       height: 4px;
+
       background: var(--accent);
+
       border-radius: 50%;
     }
 
-    /* =========================
+
+    /* =========================================================
        ANIMATION
-    ========================= */
+    ========================================================= */
 
     @keyframes heroEnter {
+
       from {
         opacity: 0;
         transform: translateY(35px);
@@ -300,9 +431,12 @@
         transform: translateY(0);
         filter: blur(0);
       }
+
     }
 
+
     @keyframes navEnter {
+
       from {
         opacity: 0;
         transform: translate(-50%, -20px);
@@ -312,9 +446,12 @@
         opacity: 1;
         transform: translate(-50%, 0);
       }
+
     }
 
+
     @keyframes pulseDot {
+
       0%, 100% {
         transform: scale(1);
         opacity: 1;
@@ -324,242 +461,460 @@
         transform: scale(1.6);
         opacity: .55;
       }
+
     }
 
-    /* =========================
+
+    /* =========================================================
        SECTIONS
-    ========================= */
+    ========================================================= */
 
     section {
       padding: 110px 0;
     }
 
+
     .section-label {
       font-size: 10px;
+
       font-weight: 700;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
-      color: var(--accent);
+
+      color: var(--accent-bright);
+
       margin-bottom: 18px;
     }
 
+
     .section-title {
       font-family: "Manrope", sans-serif;
+
       font-size: clamp(34px, 5vw, 62px);
+
       line-height: 1;
+
       letter-spacing: -.05em;
+
       font-weight: 800;
+
+      color: #fff;
     }
+
 
     .section-intro {
       max-width: 600px;
-      color: var(--muted);
+
+      color: #808080;
+
       line-height: 1.8;
+
       font-size: 14px;
+
       margin-top: 18px;
     }
 
-    /* =========================
+
+    /* =========================================================
        ABOUT
-    ========================= */
+    ========================================================= */
 
     .about {
       background: #111;
       color: #fff;
+
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
     }
+
 
     .about-grid {
       display: grid;
+
       grid-template-columns: .85fr 1.15fr;
+
       gap: 80px;
+
       align-items: center;
     }
 
+
     .about-photo-wrap {
       position: relative;
+
       width: min(100%, 390px);
+
       margin: 0 auto;
     }
 
+
     .about-photo {
       width: 100%;
+
       aspect-ratio: 3 / 4;
+
       object-fit: cover;
+
       object-position: center top;
 
       border-radius: 24px 24px 0 0;
 
-      filter: saturate(.9);
+      filter: saturate(.85) brightness(.9);
     }
+
 
     .about-photo-wrap::after {
       content: "";
+
       position: absolute;
+
       left: -2%;
       right: -2%;
+
       bottom: -1px;
+
       height: 32%;
 
-      background: linear-gradient(
-        to bottom,
-        rgba(17,17,17,0),
-        rgba(17,17,17,.72) 55%,
-        #111 100%
-      );
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(17,17,17,0),
+          rgba(17,17,17,.72) 55%,
+          #111 100%
+        );
 
       pointer-events: none;
     }
 
+
     .about-copy .section-label {
-      color: #ff4b51;
+      color: var(--accent-bright);
     }
+
 
     .about-copy h2 {
       font-family: "Manrope", sans-serif;
+
       font-size: clamp(34px, 5vw, 60px);
+
       line-height: 1;
+
       letter-spacing: -.05em;
     }
 
+
     .about-copy h2 span {
-      color: #ff3a42;
+      color: var(--accent-bright);
     }
+
 
     .about-copy p {
       margin-top: 24px;
-      color: #aaa;
+
+      color: #999;
+
       font-size: 15px;
+
       line-height: 1.9;
+
       max-width: 620px;
     }
+
 
     .about-facts {
       margin-top: 35px;
 
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
+
       gap: 12px;
     }
 
+
     .about-fact {
       padding: 18px;
+
       border: 1px solid rgba(255,255,255,.09);
+
       border-radius: 18px;
+
       background: rgba(255,255,255,.025);
     }
 
+
     .about-fact strong {
       display: block;
+
       font-size: 12px;
+
       color: #fff;
+
       margin-bottom: 5px;
     }
 
+
     .about-fact span {
       color: #777;
+
       font-size: 11px;
     }
 
-    /* =========================
+
+    /* =========================================================
        SELECTED WORK
-    ========================= */
+       FIXED / CONSISTENT CARDS
+    ========================================================= */
+
+    #work {
+      background: #0b0b0b;
+    }
+
 
     .work-head {
       display: flex;
+
       align-items: end;
+
       justify-content: space-between;
+
       gap: 30px;
+
       margin-bottom: 38px;
     }
 
-    .work-link {
-      font-size: 12px;
-      font-weight: 600;
-      white-space: nowrap;
-      padding-bottom: 7px;
-      border-bottom: 1px solid #111;
-    }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
       gap: 16px;
+
+      /*
+        IMPORTANT:
+        Semua card dibuat stretch agar tinggi konsisten
+        pada desktop.
+      */
+      align-items: stretch;
     }
+
 
     .project {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
       min-width: 0;
+
+      /*
+        Card menjadi flex container.
+        Ini membuat isi card dapat mengunci
+        tombol di bagian bawah.
+      */
+      display: flex;
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.075),
+          rgba(255,255,255,.035)
+        );
+
+      border: 1px solid rgba(255,255,255,.10);
+
+      border-radius: var(--radius);
+
+      overflow: hidden;
+
+      transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
     }
 
-    .project-info {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 22px;
-      min-height: 255px;
+
+    .project:hover {
+      transform: translateY(-4px);
+
+      border-color:
+        rgba(255,255,255,.17);
+
+      box-shadow:
+        0 22px 60px rgba(0,0,0,.30);
     }
+
+
+    /*
+      Struktur utama card.
+      Grid dipakai agar:
+
+      ROW 1 = konten
+      ROW 2 = tombol
+
+      Tombol TIDAK lagi mengikuti panjang
+      description.
+    */
+    .project-info {
+      width: 100%;
+
+      min-height: 315px;
+
+      padding: 26px;
+
+      display: grid;
+
+      grid-template-rows: minmax(0, 1fr) auto;
+
+      gap: 22px;
+    }
+
+
+    /*
+      Seluruh title + description + tags
+      berada dalam area konten sendiri.
+    */
+    .project-content {
+      min-width: 0;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: flex-start;
+    }
+
 
     .project-title {
       font-family: "Manrope", sans-serif;
+
       font-size: 25px;
+
       font-weight: 800;
+
       letter-spacing: -.04em;
+
+      color: #fff;
     }
 
+
     .project-description {
-      color: var(--muted);
+      color: #8c8c8c;
+
       font-size: 13px;
+
       line-height: 1.7;
-      margin-top: 8px;
+
+      margin-top: 9px;
+
+      max-width: 100%;
     }
+
 
     .project-tags {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 7px;
+
       margin-top: 15px;
     }
 
+
     .tag {
       font-size: 10px;
+
       padding: 7px 10px;
+
       border-radius: 999px;
-      background: #f3f3f1;
-      color: #666;
+
+      background: rgba(255,255,255,.07);
+
+      border: 1px solid rgba(255,255,255,.06);
+
+      color: #929292;
+
+      white-space: nowrap;
     }
 
+
+    /*
+      BUTTON FIX
+      ---------------------------------------------------------
+      align-self:flex-start supaya tidak melebar.
+
+      Karena berada di grid row kedua,
+      posisinya selalu berada di bawah.
+
+      Tidak menggunakan absolute positioning,
+      sehingga tidak mungkin menumpuk dengan text.
+    */
     .project-open {
-      align-self: flex-start;
+      align-self: end;
+
+      justify-self: start;
+
       cursor: pointer;
+
       border: 0;
-      font-family: inherit;
+
+      min-height: 46px;
+
+      padding-left: 20px;
+      padding-right: 20px;
+
+      flex-shrink: 0;
+
+      background: #fff;
+
+      color: #111;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.22);
     }
 
-    /* =========================
+
+    .project-open:hover {
+      background: var(--accent);
+
+      color: #fff;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================================
        PROJECT MODAL
-    ========================= */
+    ========================================================= */
 
     .project-modal {
       position: fixed;
+
       inset: 0;
+
       z-index: 2000;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       padding: 30px;
 
-      background: rgba(10,10,10,.72);
+      background:
+        rgba(0,0,0,.78);
+
       backdrop-filter: blur(18px);
+
       -webkit-backdrop-filter: blur(18px);
 
       opacity: 0;
+
       visibility: hidden;
+
       pointer-events: none;
 
       transition:
@@ -567,63 +922,97 @@
         visibility .35s ease;
     }
 
+
     .project-modal.active {
       opacity: 1;
+
       visibility: visible;
+
       pointer-events: auto;
     }
+
 
     .project-modal-content {
       position: relative;
 
       width: min(1180px, 100%);
-      max-height: calc(100svh - 60px);
+
+      max-height:
+        calc(100svh - 60px);
 
       display: flex;
+
       flex-direction: column;
 
-      transform: translateY(25px) scale(.97);
-      transition: transform .4s cubic-bezier(.22,1,.36,1);
+      transform:
+        translateY(25px)
+        scale(.97);
+
+      transition:
+        transform .4s
+        cubic-bezier(.22,1,.36,1);
     }
 
-    .project-modal.active .project-modal-content {
-      transform: translateY(0) scale(1);
+
+    .project-modal.active
+    .project-modal-content {
+      transform:
+        translateY(0)
+        scale(1);
     }
+
 
     .project-modal-header {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 20px;
 
       margin-bottom: 14px;
+
       padding: 0 4px;
     }
 
+
     .project-modal-title {
       color: #fff;
+
       font-family: "Manrope", sans-serif;
+
       font-size: 15px;
+
       font-weight: 700;
+
       letter-spacing: -.02em;
     }
+
 
     .project-modal-close {
       width: 38px;
       height: 38px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       border: 1px solid rgba(255,255,255,.16);
+
       border-radius: 50%;
 
-      background: rgba(255,255,255,.08);
+      background:
+        rgba(255,255,255,.08);
+
       color: #fff;
 
       font-size: 25px;
+
       font-weight: 300;
+
       line-height: 1;
 
       cursor: pointer;
@@ -631,39 +1020,50 @@
       transition: .25s ease;
     }
 
+
     .project-modal-close:hover {
       background: var(--accent);
+
       border-color: var(--accent);
+
       transform: rotate(90deg);
     }
+
 
     .device-frame {
       width: 100%;
 
-      background: #171717;
-      border: 1px solid rgba(255,255,255,.13);
+      background: #111;
+
+      border:
+        1px solid rgba(255,255,255,.13);
 
       border-radius: 20px;
+
       padding: 12px;
 
       box-shadow:
-        0 40px 100px rgba(0,0,0,.45),
+        0 40px 100px rgba(0,0,0,.55),
         0 0 0 1px rgba(0,0,0,.3);
 
       overflow: hidden;
     }
 
+
     .device-top {
       height: 34px;
 
       display: flex;
+
       align-items: center;
+
       gap: 7px;
 
       padding: 0 11px;
 
-      background: #171717;
+      background: #111;
     }
+
 
     .device-dot {
       width: 8px;
@@ -674,483 +1074,856 @@
       background: #555;
     }
 
+
     .device-screen {
       width: 100%;
-      height: min(72svh, 720px);
+
+      height:
+        min(72svh, 720px);
 
       border-radius: 10px;
+
       overflow: hidden;
 
       background: #fff;
     }
+
 
     .device-screen iframe {
       width: 100%;
       height: 100%;
 
       border: 0;
+
       display: block;
 
       background: #fff;
     }
 
-    /* =========================
+
+    /* =========================================================
        CAPABILITIES
-    ========================= */
+    ========================================================= */
 
     .capabilities {
-      background: #fff;
+      background: #111;
+
+      border-top:
+        1px solid rgba(255,255,255,.05);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.05);
     }
+
 
     .capability-grid {
       margin-top: 55px;
 
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 14px;
     }
 
+
     .capability {
       min-height: 220px;
+
       padding: 30px;
 
-      border: 1px solid var(--line);
+      border:
+        1px solid rgba(255,255,255,.09);
+
       border-radius: 24px;
+
+      background:
+        rgba(255,255,255,.018);
 
       transition: .3s ease;
     }
 
+
     .capability:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.06);
+
+      background:
+        rgba(255,255,255,.025);
+
+      border-color:
+        rgba(255,255,255,.15);
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.25);
     }
+
 
     .capability h3 {
       font-family: "Manrope", sans-serif;
+
       font-size: 24px;
+
       margin-top: 20px;
+
       letter-spacing: -.03em;
+
+      color: #fff;
     }
 
+
     .capability p {
-      color: var(--muted);
+      color: #858585;
+
       font-size: 13px;
+
       line-height: 1.7;
+
       margin-top: 10px;
+
       max-width: 430px;
     }
 
-    /* =========================
+
+    /* =========================================================
        TECHNOLOGY
-    ========================= */
+    ========================================================= */
 
     .technology {
-      background: #f0f0ee;
+      background: #151515;
     }
+
 
     .tech-group {
       margin-top: 48px;
     }
 
+
     .tech-group-title {
       font-size: 11px;
+
       font-weight: 700;
+
       text-transform: uppercase;
+
       letter-spacing: .16em;
-      color: #888;
+
+      color: #777;
+
       margin-bottom: 15px;
     }
 
+
     .tech-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 10px;
     }
+
 
     .tech-item {
       min-height: 112px;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 11px;
 
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(17,17,17,.07);
+      background:
+        rgba(255,255,255,.035);
+
+      border:
+        1px solid rgba(255,255,255,.07);
+
       border-radius: 18px;
 
       transition: .3s ease;
     }
 
+
     .tech-item:hover {
-      background: #fff;
+      background:
+        rgba(255,255,255,.065);
+
       transform: translateY(-3px);
-      border-color: rgba(215,25,32,.22);
+
+      border-color:
+        rgba(215,25,32,.35);
     }
+
 
     .tech-item i {
       font-size: 29px;
-      color: #252525;
+
+      color: #d0d0d0;
+
       transition: .25s ease;
     }
 
+
     .tech-item:hover i {
-      color: var(--accent);
+      color: var(--accent-bright);
     }
+
 
     .tech-item span {
       font-size: 11px;
-      color: #555;
+
+      color: #999;
+
       font-weight: 600;
     }
 
-    /* NEXT.JS */
+
+    /* =========================================================
+       NEXT.JS
+    ========================================================= */
 
     .nextjs-logo {
       width: 29px;
       height: 29px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
-      background: #111;
-      color: #fff;
+      background: #fff;
+
+      color: #111;
 
       border-radius: 7px;
 
       font-family: "Manrope", sans-serif;
+
       font-size: 17px;
+
       font-weight: 800;
+
       letter-spacing: -.08em;
 
       transition: .25s ease;
     }
 
+
     .tech-item:hover .nextjs-logo {
       background: var(--accent);
+
+      color: #fff;
     }
 
-    /* CREATIVE TOOLS */
+
+    /* =========================================================
+       CREATIVE TOOLS
+    ========================================================= */
 
     .tool-icon {
       font-family: "Manrope", sans-serif;
+
       font-weight: 800;
+
       font-size: 23px;
-      color: #222;
+
+      color: #ddd;
+
       letter-spacing: -.05em;
     }
+
 
     .tool-icon.excel {
       font-size: 22px;
     }
 
+
     .tool-icon.pixel {
       font-size: 18px;
+
       letter-spacing: -.08em;
     }
 
+
     .tool-icon.gpt {
       font-size: 17px;
+
       letter-spacing: .01em;
     }
 
-    /* =========================
+
+    /* =========================================================
        APPROACH
-    ========================= */
+    ========================================================= */
 
     .approach-grid {
       margin-top: 55px;
 
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
       gap: 14px;
     }
 
+
     .approach-card {
       padding: 30px;
-      border-top: 1px solid #111;
+
+      border-top:
+        1px solid rgba(255,255,255,.18);
     }
+
 
     .approach-card h3 {
       font-family: "Manrope", sans-serif;
+
       margin-top: 20px;
+
       font-size: 22px;
+
       letter-spacing: -.03em;
+
+      color: #fff;
     }
 
+
     .approach-card p {
-      color: var(--muted);
+      color: #808080;
+
       margin-top: 12px;
+
       font-size: 13px;
+
       line-height: 1.75;
     }
 
-    /* =========================
+
+    /* =========================================================
        CTA
-    ========================= */
+    ========================================================= */
 
     .cta {
       padding: 130px 0;
-      background: #111;
+
+      background: #080808;
+
       color: #fff;
+
       text-align: center;
+
+      border-top:
+        1px solid rgba(255,255,255,.06);
     }
 
+
     .cta .section-label {
-      color: #ff4148;
+      color: var(--accent-bright);
     }
+
 
     .cta h2 {
       font-family: "Manrope", sans-serif;
+
       font-size: clamp(42px, 7vw, 84px);
+
       line-height: .95;
+
       letter-spacing: -.06em;
+
       max-width: 850px;
+
       margin: 0 auto;
     }
 
+
     .cta p {
-      color: #888;
+      color: #777;
+
       max-width: 500px;
+
       margin: 22px auto 0;
+
       line-height: 1.8;
+
       font-size: 14px;
     }
 
+
     .cta .btn {
       margin-top: 32px;
+
       background: #fff;
+
       color: #111;
     }
 
+
     .cta .btn:hover {
       background: var(--accent);
+
       color: #fff;
     }
 
-    /* =========================
+
+    /* =========================================================
        FOOTER
-    ========================= */
+    ========================================================= */
 
     footer {
-      background: #111;
+      background: #080808;
+
       color: #fff;
+
       padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
+
+      border-top:
+        1px solid rgba(255,255,255,.08);
     }
+
 
     .footer-inner {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 20px;
     }
 
+
     .footer-logo {
       font-family: "Manrope", sans-serif;
+
       font-size: 13px;
+
       font-weight: 800;
+
       letter-spacing: .08em;
+
+      color: #fff;
     }
+
 
     .footer-logo span {
-      color: var(--accent);
+      color: var(--accent-bright);
     }
 
+
     .footer-copy {
-      color: #666;
+      color: #555;
+
       font-size: 10px;
     }
 
-    /* =========================
+
+    /* =========================================================
        SCROLL REVEAL
-    ========================= */
+    ========================================================= */
 
     .reveal {
       opacity: 0;
+
       transform: translateY(25px);
+
       transition:
         opacity .8s ease,
-        transform .8s cubic-bezier(.22,1,.36,1);
+        transform .8s
+        cubic-bezier(.22,1,.36,1);
     }
+
 
     .reveal.visible {
       opacity: 1;
+
       transform: translateY(0);
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
 
     @media (max-width: 900px) {
+
+      /*
+        Desktop/tablet cards tetap menggunakan
+        struktur tombol yang terkunci di bawah.
+      */
 
       .projects-grid {
         grid-template-columns: 1fr;
       }
 
+
       .project-info {
-        min-height: auto;
+        min-height: 300px;
       }
+
 
       .project-modal {
         padding: 18px;
       }
 
+
       .project-modal-content {
-        max-height: calc(100svh - 36px);
+        max-height:
+          calc(100svh - 36px);
       }
+
 
       .device-frame {
         padding: 8px;
+
         border-radius: 16px;
       }
 
+
       .device-screen {
-        height: min(72svh, 650px);
+        height:
+          min(72svh, 650px);
       }
+
     }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
 
     @media (max-width: 800px) {
 
       nav {
-        width: calc(100% - 20px);
+        width:
+          calc(100% - 20px);
       }
+
 
       .nav-links a:not(.nav-contact) {
         display: none;
       }
 
+
       .hero {
         min-height: 92svh;
       }
 
+
       .hero h1 {
-        font-size: clamp(55px, 17vw, 90px);
+        font-size:
+          clamp(55px, 17vw, 90px);
       }
+
 
       .hero-description {
         font-size: 14px;
       }
 
+
       section {
         padding: 85px 0;
       }
 
+
       .about-grid {
         grid-template-columns: 1fr;
+
         gap: 55px;
       }
+
 
       .about-photo-wrap {
         max-width: 330px;
       }
 
+
       .about-copy {
         text-align: left;
       }
+
 
       .work-head {
         display: block;
       }
 
+
+      /*
+        =====================================================
+        MOBILE SELECTED WORK FIX
+        =====================================================
+      */
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        align-items: stretch;
+      }
+
+
+      .project {
+        width: 100%;
+
+        height: auto;
+
+        display: flex;
+      }
+
+
+      /*
+        Setiap card mobile punya area yang cukup.
+        Tombol tetap berada di row terakhir.
+      */
+      .project-info {
+        width: 100%;
+
+        min-height: 330px;
+
+        padding: 24px;
+
+        display: grid;
+
+        grid-template-rows:
+          minmax(0, 1fr)
+          auto;
+
+        gap: 24px;
+      }
+
+
+      .project-content {
+        min-height: 0;
+      }
+
+
+      .project-title {
+        font-size: 24px;
+      }
+
+
+      .project-description {
+        font-size: 13px;
+
+        line-height: 1.7;
+      }
+
+
+      .project-tags {
+        margin-top: 15px;
+
+        gap: 7px;
+      }
+
+
+      /*
+        Tombol tidak absolute.
+        Tidak mengikuti tinggi description.
+        Selalu berada di bawah.
+      */
+      .project-open {
+        min-height: 48px;
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+        justify-self: start;
+
+        align-self: end;
+      }
+
+
       .work-link {
         display: inline-block;
+
         margin-top: 20px;
       }
+
 
       .capability-grid {
         grid-template-columns: 1fr;
       }
 
+
       .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+
 
       .approach-grid {
         grid-template-columns: 1fr;
+
         gap: 30px;
       }
+
 
       .about-facts {
         grid-template-columns: 1fr;
       }
 
+
       .footer-inner {
         flex-direction: column;
+
         align-items: flex-start;
       }
+
     }
+
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
 
     @media (max-width: 430px) {
 
       .container {
-        width: min(calc(100% - 24px), var(--max));
+        width:
+          min(calc(100% - 24px), var(--max));
       }
+
 
       .hero {
         padding-left: 12px;
         padding-right: 12px;
       }
 
+
       .hero-meta {
         gap: 11px;
+
         font-size: 8px;
       }
+
+
+      /*
+        MOBILE CARD FINAL PATCH
+        -----------------------
+        Ini yang menjaga tombol
+        tetap konsisten di bawah.
+      */
+
+      .project-info {
+        min-height: 325px;
+
+        padding: 23px;
+
+        gap: 22px;
+      }
+
+
+      .project-title {
+        font-size: 23px;
+      }
+
+
+      .project-description {
+        font-size: 12.5px;
+
+        line-height: 1.72;
+      }
+
+
+      .project-tags {
+        margin-top: 14px;
+      }
+
+
+      .tag {
+        font-size: 9.5px;
+
+        padding:
+          7px 9px;
+      }
+
+
+      .project-open {
+        min-height: 47px;
+
+        padding:
+          0 19px;
+
+        font-size: 13px;
+      }
+
 
       .project-modal {
         padding: 10px;
       }
 
+
       .project-modal-header {
         margin-bottom: 9px;
       }
+
 
       .project-modal-title {
         font-size: 13px;
       }
 
+
       .project-modal-close {
         width: 34px;
         height: 34px;
+
         font-size: 22px;
       }
 
+
       .device-frame {
         padding: 5px;
+
         border-radius: 12px;
       }
 
+
       .device-top {
         height: 25px;
+
         gap: 5px;
+
         padding: 0 8px;
       }
+
 
       .device-dot {
         width: 6px;
         height: 6px;
       }
 
+
       .device-screen {
-        height: calc(100svh - 105px);
+        height:
+          calc(100svh - 105px);
+
         border-radius: 7px;
       }
+
 
       .tech-grid {
         gap: 7px;
       }
 
+
       .tech-item {
         min-height: 100px;
       }
+
     }
 
-    /* =========================
+
+    /* =========================================================
        REDUCE MOTION
-    ========================= */
+    ========================================================= */
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -1158,36 +1931,50 @@
         scroll-behavior: auto;
       }
 
+
       *,
       *::before,
       *::after {
         animation-duration: .01ms !important;
+
         animation-iteration-count: 1 !important;
+
         transition-duration: .01ms !important;
       }
 
+
       .reveal {
         opacity: 1;
+
         transform: none;
       }
+
 
       .hero-content > * {
         opacity: 1;
+
         transform: none;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- NAV -->
+
+  <!-- =========================================================
+       NAV
+  ========================================================= -->
 
   <nav>
 
     <a href="#home" class="nav-logo">
       NOCTIS<span>.</span>
     </a>
+
 
     <div class="nav-links">
 
@@ -1219,7 +2006,10 @@
 
   <main id="home">
 
-    <!-- HERO -->
+
+    <!-- =======================================================
+         HERO
+    ======================================================= -->
 
     <section class="hero">
 
@@ -1229,24 +2019,32 @@
           Personal Portfolio
         </div>
 
+
         <h1>
           NOCTIS<span>.</span>
         </h1>
 
+
         <div class="hero-role">
           Fullstack Developer · Digital Builder
         </div>
+
 
         <p class="hero-description">
           Building digital experiences through code, design,
           technology, and intentional thinking.
         </p>
 
+
         <div class="hero-actions">
 
-          <a href="#work" class="btn btn-dark">
+          <a
+            href="#work"
+            class="btn btn-dark"
+          >
             Selected Work
           </a>
+
 
           <a
             href="https://wa.me/6281318048885?text=Halo%20Noctis,%20saya%20ingin%20membahas%20project%20website."
@@ -1259,17 +2057,24 @@
 
         </div>
 
+
         <div class="hero-meta">
 
-          <span>Development</span>
+          <span>
+            Development
+          </span>
 
           <i></i>
 
-          <span>Design</span>
+          <span>
+            Design
+          </span>
 
           <i></i>
 
-          <span>Digital</span>
+          <span>
+            Digital
+          </span>
 
         </div>
 
@@ -1278,13 +2083,19 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- =======================================================
+         ABOUT
+    ======================================================= -->
 
-    <section class="about" id="about">
+    <section
+      class="about"
+      id="about"
+    >
 
       <div class="container">
 
         <div class="about-grid">
+
 
           <div class="about-photo-wrap reveal">
 
@@ -1303,45 +2114,83 @@
               About
             </div>
 
+
             <h2>
               More than<br>
               <span>just code.</span>
             </h2>
 
-            <p>
-              Saya Noctis Atalic, seorang Fullstack Developer dan
-              digital builder yang tertarik pada bagaimana teknologi,
-              visual, dan pengalaman pengguna dapat bertemu dalam
-              sebuah produk digital.
-            </p>
 
             <p>
-              Saya mengeksplorasi pengembangan website, aplikasi web,
-              interface, database, serta berbagai tools digital untuk
-              mengubah ide menjadi sesuatu yang dapat digunakan.
+              Saya Noctis Atalic, seorang Fullstack Developer
+              dan digital builder yang tertarik pada bagaimana
+              teknologi, visual, dan pengalaman pengguna dapat
+              bertemu dalam sebuah produk digital.
             </p>
+
+
+            <p>
+              Saya mengeksplorasi pengembangan website,
+              aplikasi web, interface, database, serta berbagai
+              tools digital untuk mengubah ide menjadi sesuatu
+              yang dapat digunakan.
+            </p>
+
 
             <div class="about-facts">
 
-              <div class="about-fact">
-                <strong>Focus</strong>
-                <span>Web Development & Digital Experience</span>
-              </div>
 
               <div class="about-fact">
-                <strong>Approach</strong>
-                <span>Function, clarity & visual detail</span>
+
+                <strong>
+                  Focus
+                </strong>
+
+                <span>
+                  Web Development & Digital Experience
+                </span>
+
               </div>
 
-              <div class="about-fact">
-                <strong>Environment</strong>
-                <span>Modern Web Technology</span>
-              </div>
 
               <div class="about-fact">
-                <strong>Mindset</strong>
-                <span>Learn, build, refine</span>
+
+                <strong>
+                  Approach
+                </strong>
+
+                <span>
+                  Function, clarity & visual detail
+                </span>
+
               </div>
+
+
+              <div class="about-fact">
+
+                <strong>
+                  Environment
+                </strong>
+
+                <span>
+                  Modern Web Technology
+                </span>
+
+              </div>
+
+
+              <div class="about-fact">
+
+                <strong>
+                  Mindset
+                </strong>
+
+                <span>
+                  Learn, build, refine
+                </span>
+
+              </div>
+
 
             </div>
 
@@ -1354,11 +2203,14 @@
     </section>
 
 
-    <!-- SELECTED WORK -->
+    <!-- =======================================================
+         SELECTED WORK
+    ======================================================= -->
 
     <section id="work">
 
       <div class="container">
+
 
         <div class="work-head reveal">
 
@@ -1368,9 +2220,11 @@
               Selected Work
             </div>
 
+
             <h2 class="section-title">
               Selected Work.
             </h2>
+
 
             <p class="section-intro">
               A selection of digital experiences and websites
@@ -1386,22 +2240,27 @@
         <div class="projects-grid">
 
 
-          <!-- SPR AUDIO -->
+          <!-- =================================================
+               SPR AUDIO
+          ================================================== -->
 
           <article class="project reveal">
 
             <div class="project-info">
 
-              <div>
+
+              <div class="project-content">
 
                 <div class="project-title">
                   SPR Audio
                 </div>
 
+
                 <p class="project-description">
                   Website experience created for a sound system
                   and audio production business.
                 </p>
+
 
                 <div class="project-tags">
 
@@ -1430,28 +2289,34 @@
                 View Project
               </button>
 
+
             </div>
 
           </article>
 
 
-          <!-- IHSAN KOI -->
+          <!-- =================================================
+               IHSAN KOI
+          ================================================== -->
 
           <article class="project reveal">
 
             <div class="project-info">
 
-              <div>
+
+              <div class="project-content">
 
                 <div class="project-title">
                   IHSAN Koi
                 </div>
 
+
                 <p class="project-description">
                   Premium digital experience for an aquarium
-                  and koi business, focused on product presentation
-                  and customer interaction.
+                  and koi business, focused on product
+                  presentation and customer interaction.
                 </p>
+
 
                 <div class="project-tags">
 
@@ -1480,28 +2345,34 @@
                 View Project
               </button>
 
+
             </div>
 
           </article>
 
 
-          <!-- CYRUS WEB -->
+          <!-- =================================================
+               CYRUS WEB
+          ================================================== -->
 
           <article class="project reveal">
 
             <div class="project-info">
 
-              <div>
+
+              <div class="project-content">
 
                 <div class="project-title">
                   Cyrus Web
                 </div>
 
+
                 <p class="project-description">
-                  Digital platform exploring modern web development,
-                  service presentation, interface design, and
-                  structured website experience.
+                  Digital platform exploring modern web
+                  development, service presentation, interface
+                  design, and structured website experience.
                 </p>
+
 
                 <div class="project-tags">
 
@@ -1530,6 +2401,7 @@
                 View Project
               </button>
 
+
             </div>
 
           </article>
@@ -1542,7 +2414,9 @@
     </section>
 
 
-    <!-- PROJECT MODAL -->
+    <!-- =======================================================
+         PROJECT MODAL
+    ======================================================= -->
 
     <div
       class="project-modal"
@@ -1552,6 +2426,7 @@
 
       <div class="project-modal-content">
 
+
         <div class="project-modal-header">
 
           <div
@@ -1560,6 +2435,7 @@
           >
             Project
           </div>
+
 
           <button
             type="button"
@@ -1575,13 +2451,17 @@
 
         <div class="device-frame">
 
+
           <div class="device-top">
 
             <span class="device-dot"></span>
+
             <span class="device-dot"></span>
+
             <span class="device-dot"></span>
 
           </div>
+
 
           <div class="device-screen">
 
@@ -1593,6 +2473,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -1600,11 +2481,14 @@
     </div>
 
 
-    <!-- CAPABILITIES -->
+    <!-- =======================================================
+         CAPABILITIES
+    ======================================================= -->
 
     <section class="capabilities">
 
       <div class="container">
+
 
         <div class="reveal">
 
@@ -1612,9 +2496,11 @@
             Capabilities
           </div>
 
+
           <h2 class="section-title">
             What I build.
           </h2>
+
 
           <p class="section-intro">
             Area yang saya eksplorasi dalam membangun produk
@@ -1625,6 +2511,7 @@
 
 
         <div class="capability-grid">
+
 
           <article class="capability reveal">
 
@@ -1685,6 +2572,7 @@
 
           </article>
 
+
         </div>
 
       </div>
@@ -1692,11 +2580,17 @@
     </section>
 
 
-    <!-- TECHNOLOGY -->
+    <!-- =======================================================
+         TECHNOLOGY
+    ======================================================= -->
 
-    <section class="technology" id="technology">
+    <section
+      class="technology"
+      id="technology"
+    >
 
       <div class="container">
+
 
         <div class="reveal">
 
@@ -1704,9 +2598,11 @@
             Technology & Tools
           </div>
 
+
           <h2 class="section-title">
             The tools I use.
           </h2>
+
 
           <p class="section-intro">
             Teknologi dan tools yang saya gunakan dalam proses
@@ -1718,31 +2614,38 @@
 
         <div class="tech-group reveal">
 
+
           <div class="tech-group-title">
             Development
           </div>
 
+
           <div class="tech-grid">
+
 
             <div class="tech-item">
               <i class="devicon-html5-plain"></i>
               <span>HTML5</span>
             </div>
 
+
             <div class="tech-item">
               <i class="devicon-css3-plain"></i>
               <span>CSS3</span>
             </div>
+
 
             <div class="tech-item">
               <i class="devicon-javascript-plain"></i>
               <span>JavaScript</span>
             </div>
 
+
             <div class="tech-item">
               <i class="devicon-react-original"></i>
               <span>React</span>
             </div>
+
 
             <div class="tech-item">
 
@@ -1756,40 +2659,48 @@
 
             </div>
 
+
             <div class="tech-item">
               <i class="devicon-tailwindcss-original"></i>
               <span>Tailwind CSS</span>
             </div>
+
 
             <div class="tech-item">
               <i class="devicon-nodejs-plain"></i>
               <span>Node.js</span>
             </div>
 
+
             <div class="tech-item">
               <i class="devicon-postgresql-plain"></i>
               <span>PostgreSQL</span>
             </div>
+
 
             <div class="tech-item">
               <i class="devicon-prisma-original"></i>
               <span>Prisma</span>
             </div>
 
+
             <div class="tech-item">
               <i class="devicon-git-plain"></i>
               <span>Git</span>
             </div>
+
 
             <div class="tech-item">
               <i class="devicon-github-original"></i>
               <span>GitHub</span>
             </div>
 
+
             <div class="tech-item">
               <i class="devicon-vercel-original"></i>
               <span>Vercel</span>
             </div>
+
 
           </div>
 
@@ -1798,11 +2709,14 @@
 
         <div class="tech-group reveal">
 
+
           <div class="tech-group-title">
             Tools & Creative
           </div>
 
+
           <div class="tech-grid">
+
 
             <div class="tech-item">
 
@@ -1842,6 +2756,7 @@
 
             </div>
 
+
           </div>
 
         </div>
@@ -1851,17 +2766,21 @@
     </section>
 
 
-    <!-- APPROACH -->
+    <!-- =======================================================
+         APPROACH
+    ======================================================= -->
 
     <section>
 
       <div class="container">
+
 
         <div class="reveal">
 
           <div class="section-label">
             Approach
           </div>
+
 
           <h2 class="section-title">
             How I think.
@@ -1871,6 +2790,7 @@
 
 
         <div class="approach-grid">
+
 
           <article class="approach-card reveal">
 
@@ -1914,6 +2834,7 @@
 
           </article>
 
+
         </div>
 
       </div>
@@ -1921,24 +2842,30 @@
     </section>
 
 
-    <!-- CTA -->
+    <!-- =======================================================
+         CTA
+    ======================================================= -->
 
     <section class="cta">
 
       <div class="container reveal">
 
+
         <div class="section-label">
           Currently Available
         </div>
+
 
         <h2>
           Let's build<br>
           something meaningful.
         </h2>
 
+
         <p>
           Available for selected projects and collaborations.
         </p>
+
 
         <a
           href="https://wa.me/6281318048885?text=Halo%20Noctis,%20saya%20ingin%20membahas%20project%20website."
@@ -1949,28 +2876,36 @@
           Get in Touch
         </a>
 
+
       </div>
 
     </section>
 
+
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
 
   <footer>
 
     <div class="container">
 
+
       <div class="footer-inner">
+
 
         <div class="footer-logo">
           NOCTIS<span>.</span>
         </div>
 
+
         <div class="footer-copy">
           Personal Portfolio · Fullstack Developer
         </div>
+
 
       </div>
 
@@ -1979,26 +2914,39 @@
   </footer>
 
 
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
   <script>
 
-    const observer = new IntersectionObserver(
-      (entries) => {
 
-        entries.forEach((entry) => {
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
 
-          if (entry.isIntersecting) {
+    const observer =
+      new IntersectionObserver(
 
-            entry.target.classList.add("visible");
+        (entries) => {
 
-          }
+          entries.forEach((entry) => {
 
-        });
+            if (entry.isIntersecting) {
 
-      },
-      {
-        threshold: 0.12
-      }
-    );
+              entry.target.classList.add("visible");
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
 
 
     document
@@ -2010,65 +2958,119 @@
       });
 
 
-    /* =========================
+    /* =========================================================
        PROJECT MODAL
-    ========================= */
+    ========================================================= */
 
-    const projectModal = document.getElementById("projectModal");
-    const projectModalIframe = document.getElementById("projectModalIframe");
-    const projectModalTitle = document.getElementById("projectModalTitle");
-    const projectModalClose = document.getElementById("projectModalClose");
+    const projectModal =
+      document.getElementById("projectModal");
+
+
+    const projectModalIframe =
+      document.getElementById("projectModalIframe");
+
+
+    const projectModalTitle =
+      document.getElementById("projectModalTitle");
+
+
+    const projectModalClose =
+      document.getElementById("projectModalClose");
+
 
     const projectData = {
 
+
       spr: {
         title: "SPR Audio",
-        url: "https://spraudio.github.io/SPR-Audio/"
+
+        url:
+          "https://spraudio.github.io/SPR-Audio/"
       },
+
 
       ihsan: {
         title: "IHSAN Koi",
-        url: "https://spraudio.github.io/IHSAN-Koi/"
+
+        url:
+          "https://spraudio.github.io/IHSAN-Koi/"
       },
+
 
       cyrus: {
         title: "Cyrus Web",
-        url: "https://noctisatalic.github.io/Cyrus-Web/index.html"
+
+        url:
+          "https://noctisatalic.github.io/Cyrus-Web/index.html"
       }
+
 
     };
 
 
     function openProject(projectKey) {
 
-      const project = projectData[projectKey];
+      const project =
+        projectData[projectKey];
+
 
       if (!project) {
         return;
       }
 
-      projectModalTitle.textContent = project.title;
-      projectModalIframe.src = project.url;
 
-      projectModal.classList.add("active");
-      projectModal.setAttribute("aria-hidden", "false");
+      projectModalTitle.textContent =
+        project.title;
 
-      document.body.style.overflow = "hidden";
+
+      projectModalIframe.src =
+        project.url;
+
+
+      projectModal.classList.add(
+        "active"
+      );
+
+
+      projectModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
 
     }
 
 
     function closeProject() {
 
-      projectModal.classList.remove("active");
-      projectModal.setAttribute("aria-hidden", "true");
+      projectModal.classList.remove(
+        "active"
+      );
 
-      document.body.style.overflow = "";
+
+      projectModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      document.body.style.overflow =
+        "";
+
 
       setTimeout(() => {
 
-        if (!projectModal.classList.contains("active")) {
+        if (
+          !projectModal.classList.contains(
+            "active"
+          )
+        ) {
+
           projectModalIframe.src = "";
+
         }
 
       }, 350);
@@ -2080,40 +3082,62 @@
       .querySelectorAll(".project-open")
       .forEach((button) => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-          openProject(button.dataset.project);
+            openProject(
+              button.dataset.project
+            );
 
-        });
+          }
+        );
 
       });
 
 
-    projectModalClose.addEventListener("click", closeProject);
+    projectModalClose.addEventListener(
+      "click",
+      closeProject
+    );
 
 
-    projectModal.addEventListener("click", (event) => {
+    projectModal.addEventListener(
+      "click",
+      (event) => {
 
-      if (event.target === projectModal) {
+        if (
+          event.target === projectModal
+        ) {
 
-        closeProject();
+          closeProject();
 
-      }
-
-    });
-
-
-    document.addEventListener("keydown", (event) => {
-
-      if (event.key === "Escape" && projectModal.classList.contains("active")) {
-
-        closeProject();
+        }
 
       }
+    );
 
-    });
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          projectModal.classList.contains(
+            "active"
+          )
+        ) {
+
+          closeProject();
+
+        }
+
+      }
+    );
+
 
   </script>
 
 </body>
-      </html>
+              </html>
